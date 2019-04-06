@@ -35,6 +35,15 @@
   grid-column-gap: 16px;
 }
 
+
+.body-copy {
+  overflow: visible;
+  padding-top: 0px;
+  padding-right: 0px;
+  padding-left: 0px;
+  background-color: #181818;
+}
+
 a {
   display: block;
   margin-top: 41px;
@@ -120,6 +129,7 @@ a {
   margin-left: 0px;
   font-family: 'Eina 01', sans-serif;
   font-size: 12px;
+  color:white;
 }
 
 .text-block {
@@ -333,6 +343,7 @@ a {
   font-family: 'Eina 01', sans-serif;
   font-size: 15px;
   line-height: 21px;
+  color:white;
 }
 
 .grid-3a {
@@ -365,6 +376,7 @@ a {
   margin: 50px 200px 19px;
   font-family: 'Eina 01', sans-serif;
   text-align: left;
+  color:white;
 }
 
 .aboutlink {
