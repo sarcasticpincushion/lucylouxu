@@ -1,3 +1,28 @@
+.parallax{
+  height:100vh;
+  background-attachment: fixed;
+  z-index: 0;
+}
+
+.div-block-3 {
+  position:fixed;
+  height: 92vh;
+  max-height: none;
+  min-height: 0px;
+  background-color: #171717;
+  color: #181818;
+}
+
+
+.bottompiece {
+  overflow: visible;
+  height: 263vh;
+  background-color: white;
+  z-index: 1;
+  position:relative;
+}
+
+
 .w-layout-grid {
   display: -ms-grid;
   display: grid;
@@ -75,7 +100,7 @@ a {
   margin-left: 0px;
   font-family: 'Eina 01', sans-serif;
   color: #fff;
-  font-size: 14px;
+  font-size: 18px;
   line-height: 29px;
 }
 
@@ -917,19 +942,8 @@ a {
   margin-top: 100px;
 }
 
-.div-block-3 {
-  height: 92vh;
-  max-height: none;
-  min-height: 0px;
-  background-color: #171717;
-  color: #181818;
-}
 
-.bottompiece {
-  overflow: visible;
-  height: 254vh;
-  background-color: #fff;
-}
+
 
 @media (max-width: 991px) {
   .desc {
@@ -1093,7 +1107,9 @@ a {
     margin-right: 100px;
     margin-left: 100px;
   }
-  .bottompiece {
+  .
+
+  ce {
     height: 230vh;
   }
 }
