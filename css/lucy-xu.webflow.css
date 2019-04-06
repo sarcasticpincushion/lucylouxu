@@ -166,13 +166,13 @@ a {
   font-size: 14px;
 }
 
-.holds-links:hover {
+/*.holds-links:hover {
   border-style: none none solid;
   border-width: 1px 1px 4px;
   border-color: #000;
   border-radius: 0px;
   text-decoration: none;
-}
+}*/
 
 .holds-links.active {
   text-decoration: overline;
@@ -382,7 +382,7 @@ a {
   display: -ms-flexbox;
   display: flex;
   width: 100vw;
-  height: 100vh;
+  height: 53vh;
   max-height: 100%;
   max-width: 100%;
   -webkit-box-pack: center;
@@ -492,6 +492,7 @@ a {
 }
 
 .homegridtext {
+  overflow: hidden;
   margin-top: 7px;
 }
 
@@ -591,6 +592,7 @@ a {
   margin-left: 200px;
   font-family: 'Eina 01', sans-serif;
   font-size: 14px;
+  line-height: 25px;
 }
 
 .columns-3 {
@@ -768,6 +770,14 @@ a {
   color: hsla(22.823529411764703, 100.00%, 50.00%, 1.00);
 }
 
+.bold-text.goog {
+  color: hsla(144.7674418604651, 100.00%, 33.73%, 1.00);
+}
+
+.bold-text.acaihouse {
+  color: hsla(258.6206896551724, 29.85%, 55.33%, 1.00);
+}
+
 .div-block {
   position: fixed;
   width: 100%;
@@ -833,6 +843,63 @@ a {
   line-height: 51px;
   font-weight: 500;
   text-align: left;
+}
+
+.p3caption {
+  margin-right: 200px;
+  margin-bottom: -2px;
+  margin-left: 200px;
+  font-family: 'Eina 01', sans-serif;
+  font-size: 14px;
+}
+
+.p3cap {
+  margin-right: 200px;
+  margin-bottom: -2px;
+  margin-left: 200px;
+  padding-top: 0px;
+  font-family: 'Eina 01', sans-serif;
+  color: #8c8c8c;
+  font-size: 12px;
+  text-align: center;
+}
+
+.gallery {
+  margin-top: 93px;
+  margin-right: 200px;
+  margin-left: 200px;
+}
+
+.galleryafter {
+  margin-top: 20px;
+  margin-right: 200px;
+  margin-left: 200px;
+}
+
+.galcap {
+  margin-top: 6px;
+  font-family: 'Eina 01', sans-serif;
+  color: #919191;
+  font-size: 12px;
+}
+
+.galcon {
+  margin-right: 200px;
+  margin-left: 200px;
+}
+
+.image-15 {
+  margin-top: 20px;
+}
+
+.gallerylast {
+  margin-top: 20px;
+  margin-right: 200px;
+  margin-left: 200px;
+}
+
+.image-16 {
+  margin-top: 20px;
 }
 
 @media (max-width: 991px) {
@@ -961,6 +1028,30 @@ a {
     margin-right: 100px;
     margin-left: 100px;
   }
+  .p3caption {
+    margin-right: 100px;
+    margin-left: 100px;
+  }
+  .p3cap {
+    margin-right: 100px;
+    margin-left: 100px;
+  }
+  .gallery {
+    margin-right: 100px;
+    margin-left: 100px;
+  }
+  .galleryafter {
+    margin-right: 100px;
+    margin-left: 100px;
+  }
+  .galcon {
+    margin-right: 100px;
+    margin-left: 100px;
+  }
+  .gallerylast {
+    margin-right: 100px;
+    margin-left: 100px;
+  }
 }
 
 @media (max-width: 767px) {
@@ -1075,6 +1166,10 @@ a {
   }
   .div-block-2 {
     position: fixed;
+    left: 0%;
+    top: 0%;
+    right: 0%;
+    bottom: auto;
     width: 100%;
     height: 60px;
     min-width: auto;
@@ -1119,6 +1214,28 @@ a {
   .column-10 {
     padding-right: 0px;
     padding-left: 0px;
+  }
+  .p3caption {
+    margin-right: 40px;
+    margin-left: 40px;
+  }
+  .p3cap {
+    margin-right: 40px;
+    margin-left: 40px;
+  }
+  .gallery {
+    margin-right: 40px;
+    margin-left: 40px;
+  }
+  .galleryafter {
+    margin: 0px 40px 20px;
+  }
+  .galcon {
+    margin-right: 50px;
+    margin-left: 50px;
+  }
+  .gallerylast {
+    margin: 0px 40px 20px;
   }
 }
 
@@ -1290,6 +1407,22 @@ a {
   .column-10 {
     padding-right: 0px;
     padding-left: 0px;
+  }
+  .p3caption {
+    margin-right: 30px;
+    margin-left: 30px;
+  }
+  .p3cap {
+    margin-right: 30px;
+    margin-left: 30px;
+  }
+  .galleryafter {
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+  .gallerylast {
+    margin-top: 0px;
+    margin-bottom: 20px;
   }
 }
 
