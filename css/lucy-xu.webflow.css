@@ -16,7 +16,6 @@
 
 .bottompiece {
   overflow: visible;
-  height: 263vh;
   background-color: white;
   z-index: 1;
   position:relative;
@@ -404,7 +403,7 @@ a {
 }
 
 .moreaboutlinks {
-  max-height: 0px;
+  height: 10vh;
   margin: 0px 200px 15px;
   font-family: 'Eina 01', sans-serif;
 }
@@ -1337,7 +1336,6 @@ a {
     margin: 0px 40px 20px;
   }
   .bottompiece {
-    height: 650vh;
   }
 }
 
@@ -1549,7 +1547,6 @@ a {
     margin-bottom: 20px;
   }
   .bottompiece {
-    height: 450vh;
   }
 }
 
