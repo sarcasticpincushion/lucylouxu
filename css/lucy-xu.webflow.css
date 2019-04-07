@@ -376,6 +376,11 @@ a {
   margin: 50px 200px 19px;
   font-family: 'Eina 01', sans-serif;
   text-align: left;
+}
+.moreabout-copy{
+  margin: 50px 200px 19px;
+  font-family: 'Eina 01', sans-serif;
+  text-align: left;
   color:white;
 }
 
@@ -1357,6 +1362,7 @@ a {
     font-size: 13px;
   }
   .holds-links.active.w--current {
+    color: #7f69ff;
     font-size: 13px;
   }
   .grid-3 {
