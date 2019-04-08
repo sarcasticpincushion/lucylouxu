@@ -563,7 +563,7 @@ a {
 .homegridtitle {
   color: #f36f24;
   font-size: 21px;
-  line-height: 30px;
+  line-height: 22px;
 }
 
 .homegridtitle.snap {
@@ -1018,6 +1018,11 @@ a {
     margin-right: 100px;
     margin-left: 100px;
   }
+  .moreabout-copy {
+    margin-right: 100px;
+    margin-left: 100px;
+    color:white;
+  }
   .moreaboutlinks {
     margin-right: 100px;
     margin-left: 100px;
@@ -1187,6 +1192,11 @@ a {
   .moreabout {
     margin-right: 40px;
     margin-left: 40px;
+  }
+  .moreabout-copy {
+    margin-right: 40px;
+    margin-left: 40px;
+    color:white;
   }
   .moreaboutlinks {
     margin-right: 40px;
@@ -1408,6 +1418,11 @@ a {
   .moreabout {
     margin-right: 30px;
     margin-left: 30px;
+  }
+  .moreabout-copy {
+    margin-right: 30px;
+    margin-left: 30px;
+    color:white;
   }
   .moreaboutlinks {
     margin-right: 30px;
