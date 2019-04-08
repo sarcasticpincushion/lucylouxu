@@ -357,7 +357,7 @@ a {
   margin-top: 0px;
   margin-right: 200px;
   margin-left: 200px;
-  padding-top: 149px;
+  padding-top: 19vh;
   grid-column-gap: 10px;
   grid-row-gap: 24px;
   grid-template-areas: ".";
@@ -1002,7 +1002,7 @@ a {
     margin-top: 0px;
     margin-right: 100px;
     margin-left: 100px;
-    padding-top: 171px;
+    padding-top: 26vh;
     grid-template-areas: ".";
     -ms-grid-rows: minmax(auto, 0.25fr) minmax(auto, 0.75fr) minmax(auto, 0.25fr);
     grid-template-rows: minmax(auto, 0.25fr) minmax(auto, 0.75fr) minmax(auto, 0.25fr);
@@ -1178,6 +1178,7 @@ a {
     margin-top: 0px;
     margin-right: 40px;
     margin-left: 40px;
+    padding-top:14vh;
     grid-column-gap: 11px;
     grid-template-areas: ".";
     -ms-grid-columns: 7.5vw 11px 2fr;
@@ -1406,7 +1407,7 @@ a {
     margin-top: 0px;
     margin-right: 33px;
     margin-left: 33px;
-    padding-top: 191px;
+    padding-top: 30vh;
     grid-column-gap: 15px;
     grid-row-gap: 11px;
     grid-template-areas: ".";
