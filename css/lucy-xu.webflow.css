@@ -14,6 +14,7 @@
 }
 
 
+
 .bottompiece {
   overflow: visible;
   background-color: white;
@@ -110,6 +111,13 @@ a {
   color: #fff;
   font-size: 18px;
   line-height: 29px;
+}
+
+.desc a{
+  color:#7f69ff;
+  float: none;
+    display: inline;
+    font-size: 18px;
 }
 
 .name {
@@ -971,7 +979,7 @@ a {
 
 @media (max-width: 991px) {
   .desc {
-    line-height: 21px;
+    line-height: 29px;
   }
   .heading {
     line-height: 54px;
@@ -1146,7 +1154,7 @@ a {
 @media (max-width: 767px) {
   .desc {
     width: 100%;
-    line-height: 21px;
+    line-height: 29px;
   }
   .heading {
     font-size: 49px;
@@ -1358,6 +1366,9 @@ a {
     width: auto;
     font-size: 13px;
     line-height: 21px;
+  }
+  .desc a{
+    font-size: 13px;
   }
   .subtitle {
     font-size: 11px;

@@ -548,7 +548,7 @@ textarea.w-select {
   margin-right: 0;
 }
 .w-col {
-  position: relative;
+  /* position: relative; */
   float: left;
   width: 100%;
   min-height: 1px;
