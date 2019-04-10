@@ -133,6 +133,24 @@ a {
     font-size: 18px;
 }
 
+.desc a:hover{
+  font-style: italic;
+  /* transition: color 0.5s;
+  transition-timing-function: 0.25s; */
+}
+
+
+.about a{
+  color:#7f69ff;
+  float: none;
+    display: inline;
+    font-size: 15px;
+}
+.about a:hover{
+  font-style: italic;
+}
+
+
 .name {
   margin-top: 273px;
   margin-right: 100px;
