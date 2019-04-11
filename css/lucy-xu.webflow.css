@@ -150,6 +150,17 @@ a {
   font-style: italic;
 }
 
+.paragraph-3 a{
+  color:#7f69ff;
+  float: none;
+    display: inline;
+    font-size: 14px;
+}
+
+.paragraph-3 a:hover{
+  font-style: italic;
+}
+
 
 .name {
   margin-top: 273px;
