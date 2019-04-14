@@ -695,9 +695,9 @@ a {
 }
 
 .paragraph-3 {
-  margin-right: 200px;
+  margin-right: 350px;
   margin-bottom: -2px;
-  margin-left: 200px;
+  margin-left: 350px;
   font-family: 'Eina 01', sans-serif;
   font-size: 14px;
   line-height: 25px;
@@ -732,8 +732,8 @@ a {
 
 .writeuphead {
   margin-top: 30px;
-  margin-right: 200px;
-  margin-left: 200px;
+  margin-right: 350px;
+  margin-left: 350px;
   font-family: 'Eina 01', sans-serif;
   font-size: 32px;
   line-height: 35px;
@@ -859,8 +859,8 @@ a {
 
 .writeuptitle {
   margin-top: 0px;
-  margin-right: 200px;
-  margin-left: 200px;
+  margin-right: 350px;
+  margin-left: 350px;
   font-family: 'Eina 01', sans-serif;
   color: hsla(22.823529411764703, 0.00%, 0.00%, 1.00);
   font-size: 40px;
