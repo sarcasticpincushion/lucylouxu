@@ -1494,6 +1494,10 @@ a {
   .holds-links {
     font-size: 13px;
   }
+
+  .holds-links :hover{
+    font-style:italic;
+  }
   .holds-links.active.w--current {
     color: #7f69ff;
     font-size: 13px;
