@@ -263,7 +263,6 @@ a {
 }
 
 .holds-links {
-  font-size: 13px;
   transition: opacity 0.3s;
   -webkit-transition: opacity 0.3s;
   opacity: 1;
