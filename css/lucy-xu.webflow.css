@@ -268,7 +268,7 @@ a {
   opacity: 1;
 }
 
-.holds-links :hover{
+.holds-links a:hover{
   font-style:italic;
   opacity: 66;}
 
