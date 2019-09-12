@@ -284,6 +284,12 @@ a {
   font-size: 21px;
   line-height: 30px;
   font-weight: 500;
+  transition:all .4s ease-in-out;
+}
+
+.homegridtitle:hover{
+color:#0df;
+font-weight: 900;
 }
 
 .homegridtitle.snap {
@@ -714,6 +720,17 @@ a {
   font-family: 'IBM Plex Mono', sans-serif;
   color: #fff;
   text-align: right;
+
+  transition:all .4s ease-in-out;
+
+}
+.leftnav:hover{
+  color:#0df;
+  text-decoration: overline;
+  font-weight: 800;
+
+
+
 }
 
 .leftnav.bottom {
@@ -740,6 +757,8 @@ a {
   -ms-flex-pack: justify;
   justify-content: space-between;
 }
+
+
 
 .right {
   position: absolute;
@@ -809,10 +828,14 @@ a {
   color: #0df;
   font-size: 12px;
   text-align: right;
+  transition:all .4s ease-in-out;
+
 }
+
 
 .newfoot:hover {
   text-decoration: overline;
+  font-weight: 800;
 }
 
 .newfoot.twitter {
