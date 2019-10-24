@@ -10,6 +10,9 @@
   grid-column-gap: 16px;
 }
 
+
+
+
 a {
   display: block;
   margin-top: 41px;
@@ -720,14 +723,18 @@ font-weight: 900;
   font-family: 'IBM Plex Mono', sans-serif;
   color: #fff;
   text-align: right;
-
+  display:block;
   transition:all .4s ease-in-out;
 
 }
+
+
+
 .leftnav:hover{
   color:#0df;
   text-decoration: overline;
   font-weight: 800;
+
 
 
 
