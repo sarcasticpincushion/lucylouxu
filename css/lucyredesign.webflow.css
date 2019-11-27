@@ -317,11 +317,164 @@ a {
 
 .body {
   overflow: visible;
+  background-color: #000;
+  margin: 7vh 7vw;
+
+}
+
+.myname {
+  font-family: Raisonne, sans-serif;
   color: #fff;
-  background-color: #121212;
-  margin-left:7vw;
-  /* margin-right:7vw; */
-  margin-bottom:7vh;
+  font-size: 2em;
+  text-decoration: none;
+}
+
+.nav {
+  margin-left: 4vw;
+  padding-left: 0vw;
+  float: none;
+  font-family: Raisonne, sans-serif;
+  color: #fff;
+  font-size: 2em;
+  line-height: 0.7em;
+  text-align: right;
+  text-decoration: none;
+}
+
+.navs {
+  position: static;
+  left: 0%;
+  top: 0%;
+  right: auto;
+  bottom: auto;
+  display: inline;
+  float: right;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+}
+
+.paragraph {
+  font-family: Raisonne, sans-serif;
+  color: #fff;
+  font-size: 2em;
+  line-height: 20px;
+}
+
+.social {
+  position: absolute;
+  left: 7vw;
+  top: auto;
+  right: 7vw;
+  bottom: 7vh;
+  margin-bottom: 0px;
+  float: none;
+  clear: none;
+  font-family: Raisonne, sans-serif;
+  color: #fff;
+  font-size: 2em;
+}
+
+.mydesc {
+  position: static;
+  left: 0%;
+  top: 0%;
+  right: auto;
+  bottom: 0%;
+  margin-bottom: 0px;
+  -webkit-align-self: center;
+  -ms-flex-item-align: center;
+  -ms-grid-row-align: center;
+  align-self: center;
+  -webkit-box-ordinal-group: 0;
+  -webkit-order: -1;
+  -ms-flex-order: -1;
+  order: -1;
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 auto;
+  -ms-flex: 0 auto;
+  flex: 0 auto;
+  font-family: Raisonne, sans-serif;
+  color: #fff;
+  font-size: 5.6em;
+  line-height: 1.2em;
+}
+
+.mydescbox {
+  position: fixed;
+  left: 7vw;
+  top: 15vh;
+  right: auto;
+  bottom: 15vh;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 86vw;
+  padding-right: 20vw;
+  float: none;
+  clear: none;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+@media (max-width: 991px) {
+  .mydescbox {
+    width: 86vw;
+  }
+}
+
+@media (max-width: 767px) {
+  .myname {
+    font-size: 1.6em;
+  }
+  .nav {
+    font-size: 1.6em;
+  }
+  .social {
+    font-size: 1.6em;
+  }
+  .mydescbox {
+    width: 86vw;
+    padding-right: 9vw;
+  }
+}
+
+@media (max-width: 479px) {
+  .myname {
+    font-size: 1.6em;
+  }
+  .nav {
+    font-size: 1.6em;
+  }
+  .social {
+    font-size: 1.6em;
+  }
+  .mydesc {
+    font-size: 3.6em;
+  }
+  .mydescbox {
+    padding-right: 0vw;
+  }
+}
+
+@font-face {
+  font-family: 'Raisonne';
+  src: url('../fonts/Raisonne.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
 }
 
 .desc {
@@ -567,12 +720,12 @@ a {
   font-family: 'IBM Plex Mono', sans-serif;
 }
 
-.paragraph {
+/* .paragraph {
   margin-bottom: 25px;
   font-family: 'IBM Plex Mono', sans-serif;
   color: hsla(0, 0%, 100%, 0.6);
   font-size: 16px;
-}
+} */
 
 .homegridtitle {
   color: #fff;
@@ -1886,9 +2039,9 @@ font-weight: 900;
   .headerimage {
     margin-top: 60px;
   }
-  .paragraph {
+  /* .paragraph {
     font-size: 14px;
-  }
+  } */
   .homegridtitle {
     font-size: 15px;
     line-height: 20px;
