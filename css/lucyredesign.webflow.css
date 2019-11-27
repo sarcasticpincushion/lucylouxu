@@ -318,7 +318,7 @@ a {
 .body {
   overflow: visible;
   background-color: #000;
-  margin: 7vh 7vw;
+  padding: 7vh 7vw;
 
 }
 
@@ -327,32 +327,21 @@ a {
   color: #fff;
   font-size: 2em;
   text-decoration: none;
+  position:fixed;
 }
 
 .nav {
-  margin-left: 4vw;
-  padding-left: 0vw;
-  float: none;
   font-family: Raisonne, sans-serif;
   color: #fff;
   font-size: 2em;
   line-height: 0.7em;
   text-align: right;
   text-decoration: none;
+  margin-left:2vw;
 }
 
 .navs {
-  position: static;
-  left: 0%;
-  top: 0%;
-  right: auto;
-  bottom: auto;
-  display: inline;
   float: right;
-  -webkit-box-pack: end;
-  -webkit-justify-content: flex-end;
-  -ms-flex-pack: end;
-  justify-content: flex-end;
 }
 
 .paragraph {
@@ -360,10 +349,12 @@ a {
   color: #fff;
   font-size: 2em;
   line-height: 20px;
+  position:fixed;
+
 }
 
 .social {
-  position: absolute;
+  position:fixed;
   left: 7vw;
   top: auto;
   right: 7vw;
