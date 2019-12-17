@@ -133,7 +133,7 @@
 .blinking-cursor {
   font-family: 'Eina 01', sans-serif;
   font-weight: 100;
-  font-size: 1.3em;
+  font-size: .7em;
   color: #fff;
   -webkit-animation: 1s blink step-end infinite;
   -moz-animation: 1s blink step-end infinite;
@@ -340,6 +340,10 @@ a {
   margin-left:2vw;
 }
 
+.nav.active{
+  color: #fff;
+}
+
 .navs {
   float: right;
 }
@@ -419,6 +423,86 @@ a {
   -webkit-align-items: center;
   -ms-flex-align: center;
   align-items: center;
+}
+
+.myaboutbox{
+  position: fixed;
+  top: 15vh;
+  bottom: 15vh;
+  width:86vw;
+  height:65vh;
+  overflow:auto;
+  padding:5px;
+}
+.myabout{
+  font-family: Raisonne, sans-serif;
+  color: #fff;
+  font-size: 2em;
+  line-height: 1em;
+  }
+
+  .aboutimg{
+    height:400px;
+
+  }
+
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity 500ms;
+  visibility: hidden;
+  opacity: 0;
+}
+.overlay:target {
+  visibility: visible;
+  opacity: 1;
+}
+
+.popup {
+  background: #000;
+  border: 2px white solid;
+  font-family:Raisonne;
+  color:white;
+  transition: all 5s ease-in-out;
+  overflow:auto;
+  position: fixed;
+  top: 15vh;
+  bottom: 15vh;
+  width:86vw;
+  margin: 7vw;
+  overflow:auto;
+  padding:5px;
+
+}
+
+.popup .close {
+  position: fixed;
+  top: 20px;
+  right: 30px;
+  transition: all 200ms;
+  font-size: 2em;
+  text-decoration: none;
+  color: #fff;
+}
+.popup .close:hover {
+  color: purple;
+}
+.popup .content {
+  /* max-height: 30%; */
+  overflow: auto;
+}
+
+@media screen and (max-width: 700px){
+  .box{
+    width: 70%;
+  }
+  .popup{
+    width: 70%;
+  }
 }
 
 @media (max-width: 991px) {
