@@ -1,3 +1,13 @@
 The following files failed to download during site export. Please check them in the designer assets view (images) or dashboard (fonts).
 
-icons/favicon.png
+images/DCO_548-p-1080.jpeg
+images/DCO_548-p-1600.jpeg
+images/DCO_548-p-500.jpeg
+images/DSC_0617web.jpg
+images/WonderWoman_FNL.jpg
+images/and-p-1080.png
+images/biomes-04.png
+images/biomes-05-p-2000.png
+images/biomes-05.png
+images/favicon.ico
+images/webclip.png
