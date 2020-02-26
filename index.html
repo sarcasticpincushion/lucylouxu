@@ -47,8 +47,10 @@
         <br><strong>find me on <br></strong>
         <a class="findmelink" id="ig" href="http://www.instagram.com/lucylouxu">instagram</a>
         <br><a class="findmelink" id="tw" href="https://twitter.com/lucylouxu">twitter</a>
+        <br><a class="findmelink" id="in" href="https://www.linkedin.com/in/lucylouxu/">linkedin</a>
         <br>
         <a class="findmelink" id="dr" href="https://dribbble.com/lucylouxu">dribbble</a>
+        <br>
         <br>
         <br>or email me at lucylouxu@yahoo.com<br></p>
     </div>
@@ -131,17 +133,19 @@ $(document).ready(function(e) {
 
   var synoWord = {
     'ig': '@lucylouxu',
-    'tw': '/lucylouxu',
+    'tw': '@lucylouxu',
+    'in': '/lucylouxu',
     'dr': '/lucylouxu'
   };
 
   var maintext = {
     'ig': 'instagram',
     'tw': 'twitter',
+    'in': 'linkedin',
     'dr': 'dribbble'
   }
 
-      $('#ig, #tw, #dr').hover(function(){
+      $('#ig, #tw, #in, #dr').hover(function(){
       $(this).text(synoWord[this.id]);
     },function(){
       $(this).text(maintext[this.id]);
