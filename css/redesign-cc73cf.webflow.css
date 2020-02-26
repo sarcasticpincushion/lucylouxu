@@ -20,6 +20,17 @@
 }
 /* find mehover end */
 
+.homelink {
+  color: #3a3d7c;
+  text-decoration: underline;
+  transition: all .2s ease-in-out;
+}
+
+.homelink:hover {
+  color:#fbf5fb;
+  box-shadow: inset 0 -34px 0 0 #3a3d7c;
+}
+
 /* holy fuckk test?? emoji rain */
 
 #container {
@@ -775,10 +786,6 @@
   object-fit: cover;
 }
 
-.homelink {
-  color: #3a3d7c;
-  text-decoration: underline;
-}
 
 .grid {
   position: absolute;
