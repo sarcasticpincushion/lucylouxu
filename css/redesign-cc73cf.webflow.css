@@ -2,9 +2,6 @@
 .findmelink {
   color: #3a3d7c;
   text-decoration: underline;
-}
-
-p .findmelink{
   /* box-shadow: inset 0 -2px 0 0 lightgrey; */
   /* display: inline-block; */
   transition: all .2s ease-in-out;
@@ -14,7 +11,8 @@ p .findmelink{
   box-sizing: border-box;
 }
 
-p .findmelink:hover{
+
+ .findmelink:hover{
  border: none;
  /* opacity: 0.5; */
  color:#fbf5fb;
