@@ -1,5 +1,10 @@
-/* hover effect */
-a .findmelink{
+/* find mehover effect */
+.findmelink {
+  color: #3a3d7c;
+  text-decoration: underline;
+}
+
+p .findmelink{
   /* box-shadow: inset 0 -2px 0 0 lightgrey; */
   /* display: inline-block; */
   transition: all .2s ease-in-out;
@@ -9,15 +14,15 @@ a .findmelink{
   box-sizing: border-box;
 }
 
-a .findmelink:hover{
+p .findmelink:hover{
  border: none;
  /* opacity: 0.5; */
  color:#fbf5fb;
  box-shadow: inset 0 -25px 0 0 #3a3d7c;
 }
-/* hover end */
+/* find mehover end */
 
-/* holy fuckk test?? */
+/* holy fuckk test?? emoji rain */
 
 #container {
   left: 0px;
@@ -41,7 +46,7 @@ a .findmelink:hover{
   position: fixed;
 }
 
-/* end */
+/* emoji rainend */
 
 .blinking-cursor {
   font-family: Raisonne, sans-serif;
