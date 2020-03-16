@@ -12,6 +12,7 @@
 }
 
 
+
  .findmelink:hover{
  border: none;
  /* opacity: 0.5; */
@@ -19,6 +20,14 @@
  box-shadow: inset 0 -25px 0 0 #3a3d7c;
 }
 /* find mehover end */
+
+::selection {
+  background: #FFEBEE; /* WebKit/Blink Browsers */
+}
+::-moz-selection {
+  background: #FFEBEE; /* Gecko Browsers */
+}
+
 
 /* homelink tooltip */
 .tooltip {
