@@ -99,6 +99,9 @@
   top: 500px;
   display:block;
   padding-bottom:10px;
+  user-select:none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 }
 /* end comingsoon */
 
