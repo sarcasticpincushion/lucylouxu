@@ -1,0 +1,117 @@
+@font-face {
+  font-family: 'PPNeueBit';
+  src:
+    url('/src/resources/fonts/PPNeueBit-Regular.woff') format('woff'),
+    url('/src/resources/fonts/PPNeueBit-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PPNeueBit';
+  src: url('/src/resources/fonts/PPNeueBit-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'CallingCode';
+  src:
+    url('/src/resources/fonts/CallingCode-Regular.ttf') format('truetype'),
+    url('/src/resources/fonts/CallingCode-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  font-size: 14px;
+}
+
+body {
+  font-family: 'CallingCode', sans-serif;
+  line-height: 1.5;
+}
+
+h1 {
+  font-family: 'PPNeueBit';
+  font-weight: 400;
+  font-size: 71px;
+  line-height: 51px;
+}
+
+.main {
+  // header
+  header nav li {
+    font-family: 'PPNeueBit';
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 21px;
+
+    &.selected {
+      font-weight: 700;
+    }
+  }
+
+  // work
+  .work-container {
+    line-height: 18px;
+
+    .project-item-header {
+      font-family: 'PPNeueBit';
+      font-size: 34px;
+      line-height: 24px;
+    }
+
+    .project-type {
+      font-family: 'PPNeueBit';
+      font-size: 20px;
+      line-height: 14px;
+    }
+
+    .project-item-thumbnail-details {
+      h4 {
+        font-family: 'PPNeueBit';
+        font-size: 20px;
+        line-height: 16px;
+      }
+
+      aside {
+        font-size: 10px;
+        line-height: 13px;
+      }
+    }
+  }
+
+  // more
+  .more-container {
+    .more-item {
+      a {
+        font-family: 'PPNeueBit';
+        font-size: 34px;
+        line-height: 24px;
+      }
+    }
+  }
+
+  // footer
+  footer {
+    font-size: 14px;
+
+    li {
+      line-height: 18px;
+
+      a {
+        font-size: 14px;
+        text-decoration-thickness: 1px;
+      }
+    }
+  }
+}

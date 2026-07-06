@@ -1,0 +1,312 @@
+@charset "UTF-8";
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: "";
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+@font-face {
+  font-family: "PPNeueBit";
+  src: url("/src/resources/fonts/PPNeueBit-Regular.woff") format("woff"), url("/src/resources/fonts/PPNeueBit-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "PPNeueBit";
+  src: url("/src/resources/fonts/PPNeueBit-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "CallingCode";
+  src: url("/src/resources/fonts/CallingCode-Regular.ttf") format("truetype"), url("/src/resources/fonts/CallingCode-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  font-size: 14px;
+}
+
+body {
+  font-family: "CallingCode", sans-serif;
+  line-height: 1.5;
+}
+
+h1 {
+  font-family: "PPNeueBit";
+  font-weight: 400;
+  font-size: 71px;
+  line-height: 51px;
+}
+
+.main header nav li {
+  font-family: "PPNeueBit";
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 21px;
+}
+.main header nav li.selected {
+  font-weight: 700;
+}
+.main .work-container {
+  line-height: 18px;
+}
+.main .work-container .project-item-header {
+  font-family: "PPNeueBit";
+  font-size: 34px;
+  line-height: 24px;
+}
+.main .work-container .project-type {
+  font-family: "PPNeueBit";
+  font-size: 20px;
+  line-height: 14px;
+}
+.main .work-container .project-item-thumbnail-details h4 {
+  font-family: "PPNeueBit";
+  font-size: 20px;
+  line-height: 16px;
+}
+.main .work-container .project-item-thumbnail-details aside {
+  font-size: 10px;
+  line-height: 13px;
+}
+.main .more-container .more-item a {
+  font-family: "PPNeueBit";
+  font-size: 34px;
+  line-height: 24px;
+}
+.main footer {
+  font-size: 14px;
+}
+.main footer li {
+  line-height: 18px;
+}
+.main footer li a {
+  font-size: 14px;
+  text-decoration-thickness: 1px;
+}
+
+@keyframes horizontalBob {
+  0%, 100% {
+    transform: translateX(2px);
+  }
+  50% {
+    transform: translateX(-4px);
+  }
+}
+body {
+  height: 100%;
+  position: relative;
+}
+
+.main {
+  position: relative;
+  max-width: 1440px;
+  min-height: 100vh;
+  margin: auto;
+  padding: 35px;
+  box-sizing: border-box;
+}
+.main header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 18px;
+}
+.main header h1 a {
+  text-decoration: none;
+  color: #000;
+}
+.main header nav ul {
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
+}
+.main header nav ul li a {
+  color: #000;
+  text-decoration: none;
+}
+.main header nav ul li.selected::after {
+  content: "←";
+  position: absolute;
+  margin-left: 5px;
+}
+.main .intro {
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
+  width: 37%;
+}
+.main .intro p:nth-child(2) {
+  margin-bottom: 25px;
+}
+.main .portrait-container img {
+  width: 146px;
+  height: auto;
+  pointer-events: none;
+}
+.main .work-container {
+  display: flex;
+  flex-direction: column;
+  gap: 156px;
+  margin-bottom: 165px;
+}
+.main .work-container .project-container {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+.main .work-container .project-container .project-item {
+  display: grid;
+  grid-template-columns: 37% 1fr;
+  column-gap: 68px;
+}
+.main .work-container .project-container .project-item .project-item-details {
+  display: flex;
+  flex-direction: column;
+  gap: 21px;
+}
+.main .work-container .project-container .project-item .project-item-details .project-item-header {
+  display: flex;
+  justify-content: space-between;
+}
+.main .work-container .project-container .project-item .project-item-details .project-type {
+  color: #363e68;
+  margin-bottom: 6px;
+}
+.main .work-container .project-container .project-item .project-item-details .project-type::before {
+  content: ">";
+}
+.main .work-container .project-container .project-item .project-item-thumbnail {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  border: 1px solid #000;
+  padding: 36px 39px 23px;
+}
+.main .work-container .project-container .project-item .project-item-thumbnail video {
+  height: 300px;
+}
+.main .work-container .project-container .project-item .project-item-thumbnail .project-item-thumbnail-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 20px;
+}
+.main .work-container .project-container .project-item .project-item-thumbnail .project-item-thumbnail-details h4 {
+  margin-bottom: 4px;
+}
+.main .work-container .project-container .project-item .project-item-thumbnail .project-item-thumbnail-details ul {
+  position: relative;
+}
+.main .work-container .project-container .project-item .project-item-thumbnail .project-item-thumbnail-details ul li {
+  cursor: pointer;
+}
+.main .work-container .project-container .project-item .project-item-thumbnail .project-item-thumbnail-details ul li.active::before {
+  content: "→";
+  position: absolute;
+  left: -12px;
+  animation: horizontalBob 1.5s ease-in-out infinite;
+  pointer-events: none;
+}
+.main .work-container .project-container .project-item .project-item-thumbnail .project-item-thumbnail-details aside {
+  text-align: right;
+}
+.main .more-container {
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+  align-items: center;
+  padding-top: 67px;
+}
+.main .more-container .more-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-align: center;
+  width: 332px;
+}
+.main .more-container .more-item a {
+  text-decoration-thickness: 1.5px;
+}
+.main footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 35px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+.link {
+  color: #000;
+}
+
+.link-group .link {
+  display: block;
+}
+
+/*# sourceMappingURL=index.css.map */
