@@ -1,21 +1,26 @@
+import { Link } from 'react-router-dom';
+
 function More() {
   return (
     <div className="more-container">
       <div className="more-item">
-        <a
-          href="https://symbolsoup.lucylouxu.com/"
-          rel="noopener"
+        <Link
+          to="https://symbolsoup.lucylouxu.com/"
           target="_blank"
           className="link"
         >
           symbol soup↗
-        </a>
+        </Link>
         <p>accessories for memories in the form of digital sprinkles</p>
       </div>
       <div className="more-item">
-        <a href="#" className="link">
+        <Link
+          to="https://archive.lucylouxu.com/"
+          target="_blank"
+          className="link"
+        >
           portfolio archive↗
-        </a>
+        </Link>
       </div>
     </div>
   );

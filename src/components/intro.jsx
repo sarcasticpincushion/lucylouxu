@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import me from './../resources/images/me.png';
 
 function Intro() {
@@ -14,23 +15,22 @@ function Intro() {
       <p>
         I enjoy eating, reading, and taking pictures in my spare time Best way
         to contact me for my Goodreads or Flickr is via{' '}
-        <a href="mailto:lucylouxu@yahoo.com" target="_blank" className="link">
+        <Link to="mailto:lucylouxu@yahoo.com" target="_blank" className="link">
           email↗
-        </a>
+        </Link>
         .
       </p>
       <div className="link-group">
-        <a
-          href="https://www.linkedin.com/in/lucylouxu/"
-          rel="noopener noreferrer"
+        <Link
+          to="https://www.linkedin.com/in/lucylouxu/"
           target="_blank"
           className="link"
         >
           Linkedin↗
-        </a>
-        <a href="#" className="link">
+        </Link>
+        <Link to="" target="_blank" className="link">
           Resume↗
-        </a>
+        </Link>
       </div>
       <img src={me} alt="me" />
     </div>

@@ -1,38 +1,38 @@
+import { Link } from 'react-router-dom';
+
 function Footer() {
   return (
     <footer>
       <ul>
         <li>
-          <a href="mailto:lucylouxu@yahoo.com" target="_blank" className="link">
+          <Link
+            to="mailto:lucylouxu@yahoo.com"
+            target="_blank"
+            className="link"
+          >
             Email↗
-          </a>
+          </Link>
         </li>
         <li>
-          <a
+          <Link
             href="https://www.linkedin.com/in/lucylouxu/"
-            rel="noopener noreferrer"
             target="_blank"
             className="link"
           >
             Linkedin↗
-          </a>
+          </Link>
         </li>
         <li>
-          <a href="#" className="link">
+          <Link to="" target="_blank" className="link">
             Resume↗
-          </a>
+          </Link>
         </li>
       </ul>
       <p>
         site made by lu, built by{' '}
-        <a
-          href="https://ajzhen.com/"
-          rel="noopener"
-          target="_blank"
-          className="link"
-        >
+        <Link to="https://ajzhen.com/" target="_blank" className="link">
           drew↗
-        </a>
+        </Link>
       </p>
     </footer>
   );

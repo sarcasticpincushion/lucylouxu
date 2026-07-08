@@ -1,5 +1,6 @@
-import Intro from './../components/intro';
+import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import Intro from './../components/intro';
 import projects from './../resources/projects.json';
 import image1 from './../resources/images/1.svg';
 import image2 from './../resources/images/2.svg';
@@ -49,15 +50,9 @@ function Work() {
                   </div>
                 ))}
                 {project.links?.map((link, id) => (
-                  <a
-                    key={id}
-                    href={link.url}
-                    rel="noopener noreferrer"
-                    target="_blank"
-                    className="link"
-                  >
+                  <Link key={id} to={link.url} target="_blank" className="link">
                     {link.text}
-                  </a>
+                  </Link>
                 ))}
               </div>
             </div>
@@ -84,15 +79,13 @@ function Work() {
                       >
                         {item.text}
                         {item.linkText && (
-                          <a
-                            href={item.linkUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
+                          <Link
+                            to={item.linkUrl}
                             onClick={(e) => e.stopPropagation()}
                             className="link"
                           >
                             {item.linkText}
-                          </a>
+                          </Link>
                         )}
                         {item.suffix}
                       </li>
