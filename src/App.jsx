@@ -10,8 +10,8 @@ function App() {
   const location = useLocation();
   const host =
     typeof window !== 'undefined' ? window.location.hostname.toLowerCase() : '';
-  // const isArchiveSubdomain = host.startsWith('archive.');
-  const isArchiveSubdomain = true;
+  const isArchiveSubdomain = host.startsWith('archive.');
+  // const isArchiveSubdomain = true;
   const isWorkPage = location.pathname === '/' || location.pathname === '/work';
 
   return (
