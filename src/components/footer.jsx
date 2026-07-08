@@ -10,6 +10,7 @@ function Footer() {
         <li>
           <a
             href="https://www.linkedin.com/in/lucylouxu/"
+            rel="noopener noreferrer"
             target="_blank"
             className="link"
           >
@@ -22,7 +23,17 @@ function Footer() {
           </a>
         </li>
       </ul>
-      <p>site made by lu</p>
+      <p>
+        site made by lu, built by{' '}
+        <a
+          href="https://ajzhen.com/"
+          rel="noopener"
+          target="_blank"
+          className="link"
+        >
+          drew↗
+        </a>
+      </p>
     </footer>
   );
 }

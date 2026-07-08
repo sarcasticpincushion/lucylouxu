@@ -1,6 +1,15 @@
 import Intro from './../components/intro';
-import projects from './../resources/projects.json';
 import { useState } from 'react';
+import projects from './../resources/projects.json';
+import image1 from './../resources/images/1.svg';
+import image2 from './../resources/images/2.svg';
+import image3 from './../resources/images/3.svg';
+
+const imageMap = {
+  image1,
+  image2,
+  image3,
+};
 
 function Work() {
   const [selectedItems, setSelectedItems] = useState(() => {
@@ -34,17 +43,17 @@ function Work() {
               <div className="project-item-body">
                 <h3 className="project-type">{project.type}</h3>
                 {project.description.map((para, i) => (
-                  <>
-                    <p key={i}>{para}</p>
+                  <div key={i}>
+                    <p>{para}</p>
                     <br />
-                  </>
+                  </div>
                 ))}
                 {project.links?.map((link, id) => (
                   <a
                     key={id}
                     href={link.url}
-                    target="_blank"
                     rel="noopener noreferrer"
+                    target="_blank"
                     className="link"
                   >
                     {link.text}
@@ -60,7 +69,7 @@ function Work() {
                 />
                 Your browser does not support the video tag.
               </video> */}
-              <img src={project.image} width="100%" />
+              <img src={imageMap[project.image]} width="100%" />
               <div className="project-item-thumbnail-details">
                 <div>
                   <h4>notable projects</h4>

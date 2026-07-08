@@ -1,5 +1,6 @@
 @import './reset.scss';
 @import './typography.scss';
+@import './mixins.scss';
 @import './constants.scss';
 
 @keyframes horizontalBob {
@@ -15,11 +16,16 @@
 body {
   height: 100%;
   position: relative;
+  cursor: url('./../images/mycursor.svg'), auto;
+}
+
+a {
+  cursor: url('./../images/hovercursor.svg'), pointer;
 }
 
 .main {
   position: relative;
-  max-width: 1440px;
+  max-width: $xxl;
   min-height: 100vh;
   margin: auto;
   padding: 35px;
@@ -64,12 +70,14 @@ body {
     gap: 17px;
     width: 37%;
 
+    @include lg {
+      width: 100%;
+    }
+
     p:nth-child(2) {
       margin-bottom: 25px;
     }
-  }
 
-  .portrait-container {
     img {
       width: 146px;
       height: auto;
@@ -91,7 +99,15 @@ body {
       .project-item {
         display: grid;
         grid-template-columns: 37% 1fr;
-        column-gap: 68px;
+        gap: 20px 68px;
+
+        @include lg {
+          grid-template-columns: 1fr;
+        }
+
+        &:nth-child(1) li:nth-child(3) {
+          color: rgba(0, 0, 0, 0.5);
+        }
 
         .project-item-details {
           display: flex;
@@ -130,6 +146,11 @@ body {
             align-items: flex-end;
             gap: 20px;
 
+            @include sm {
+              flex-direction: column;
+              align-items: flex-start;
+            }
+
             h4 {
               margin-bottom: 4px;
             }
@@ -138,7 +159,7 @@ body {
               position: relative;
 
               li {
-                cursor: pointer;
+                cursor: url('./../images/hovercursor.svg'), pointer;
 
                 &.active::before {
                   content: '→';
@@ -146,6 +167,7 @@ body {
                   left: -12px;
                   animation: horizontalBob 1.5s ease-in-out infinite;
                   pointer-events: none;
+                  // color: $default-text-color;
                 }
               }
             }
@@ -204,4 +226,5 @@ body {
 
 .link-group .link {
   display: block;
+  width: fit-content;
 }

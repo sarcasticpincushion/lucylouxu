@@ -4,6 +4,7 @@ function More() {
       <div className="more-item">
         <a
           href="https://symbolsoup.lucylouxu.com/"
+          rel="noopener"
           target="_blank"
           className="link"
         >

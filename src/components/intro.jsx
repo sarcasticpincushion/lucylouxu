@@ -1,3 +1,5 @@
+import me from './../resources/images/me.png';
+
 function Intro() {
   return (
     <div className="intro">
@@ -20,6 +22,7 @@ function Intro() {
       <div className="link-group">
         <a
           href="https://www.linkedin.com/in/lucylouxu/"
+          rel="noopener noreferrer"
           target="_blank"
           className="link"
         >
@@ -29,9 +32,7 @@ function Intro() {
           Resume↗
         </a>
       </div>
-      <div className="portrait-container">
-        <img src="/src/resources/images/me.png" alt="me" />
-      </div>
+      <img src={me} alt="me" />
     </div>
   );
 }
