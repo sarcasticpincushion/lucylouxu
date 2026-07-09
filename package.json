@@ -1,7 +1,7 @@
 {
   "name": "lucylouxu",
   "private": true,
-  "homepage": "https://sarcasticpincushion.github.io/lucylouxu",
+  "homepage": "https://sarcasticpincushion.github.io/lucylouxu/",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
@@ -10,10 +10,11 @@
     "preview": "vite preview",
     "sass:watch": "sass --watch src:src",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist -b gh-pages"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^4.2.1",
+    "gh-pages": "^6.3.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "sass": "^1.62.1",
