@@ -4,7 +4,7 @@ import Work from './pages/work';
 import More from './pages/more';
 import Header from './components/header';
 import Footer from './components/footer';
-import ExternalRedirect from './components/redirect';
+import ExternalRedirect from './utils/redirect';
 
 function App() {
   const location = useLocation();

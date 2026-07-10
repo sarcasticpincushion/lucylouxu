@@ -5,11 +5,13 @@ import projects from './../resources/projects.json';
 import image1 from './../resources/images/1.svg';
 import image2 from './../resources/images/2.svg';
 import image3 from './../resources/images/3.svg';
+import image4 from './../resources/images/4.svg';
 
 const imageMap = {
   image1,
   image2,
   image3,
+  image4,
 };
 
 function Work() {
@@ -66,32 +68,29 @@ function Work() {
               </video> */}
               <img src={imageMap[project.image]} width="100%" />
               <div className="project-item-thumbnail-details">
-                <div>
-                  <h4>notable projects</h4>
-                  <ul>
-                    {project.items.map((item, itemId) => (
-                      <li
-                        key={itemId}
-                        className={
-                          selectedItems[projectId] === itemId ? 'active' : ''
-                        }
-                        onClick={() => handleSelectItem(projectId, itemId)}
-                      >
-                        {item.text}
-                        {item.linkText && (
-                          <Link
-                            to={item.linkUrl}
-                            onClick={(e) => e.stopPropagation()}
-                            className="link"
-                          >
-                            {item.linkText}
-                          </Link>
-                        )}
-                        {item.suffix}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+                <ul>
+                  {project.items.map((item, itemId) => (
+                    <li
+                      key={itemId}
+                      className={
+                        selectedItems[projectId] === itemId ? 'active' : ''
+                      }
+                      onClick={() => handleSelectItem(projectId, itemId)}
+                    >
+                      {item.text}
+                      {item.linkText && (
+                        <Link
+                          to={item.linkUrl}
+                          onClick={(e) => e.stopPropagation()}
+                          className="link"
+                        >
+                          {item.linkText}
+                        </Link>
+                      )}
+                      {item.suffix}
+                    </li>
+                  ))}
+                </ul>
                 {project.items.some(
                   (item) =>
                     item.text?.includes('*') || item.suffix?.includes('*')

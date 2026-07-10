@@ -13,7 +13,7 @@ function Intro() {
         making/animating icons and illustrations at ServiceNow.
       </p>
       <p>
-        I enjoy eating, reading, and taking pictures in my spare time Best way
+        I enjoy eating, reading, and taking pictures in my spare time. Best way
         to contact me for my Goodreads or Flickr is via{' '}
         <Link to="mailto:lucylouxu@yahoo.com" target="_blank" className="link">
           email↗

@@ -1,63 +1,93 @@
 [
   {
-    "title": "Horizon Design System",
+    "title": "Horizon Design System refresh",
     "status": "Ongoing",
-    "type": "icons & illustration",
+    "type": "design systems, iconography, illustration, motion",
     "description": [
-      "Led unification of 200+ multi-colored icons across ServiceNow's Service Portal.",
-      "Delivered 800+ utility icons, 100+ illustrations, and established design guidelines for Horizon, ServiceNow's refreshed design system, launched 2024.",
-      "Shaped brand strategy through collaborative brainstorming sessions, designed empty state illustrations that shipped in [newest AI product that idt i can name?] MVP"
+      "Led unification of 200+ multi-colored icons across ServiceNow's Service Portal. This initiative involved an audit across ServiceNow's Service Portal product teams, working cross-functionally to understand icon use cases and creating a Figma library to promote consistency and efficiency for teams to uptake their respective icons.",
+      "Redesigned 800+ utility icons for the refreshed design system. This initiative required months of iterating on different designs, shapes, and forms. A new size of icon, 20px, was added in order to provide our design system with an intermediate size between our existing 16px and 24px to give our designers greater flexibility with our system.",
+      "100+ illustrations, and established design guidelines for Horizon, ServiceNow's refreshed design system, launched 2024."
     ],
     "links": [],
     "image": "image1",
     "items": [
       {
-        "text": "Horizon.com ",
-        "linkText": "thumbnails↗",
-        "linkUrl": "https://horizon.servicenow.com/workspace/components",
-        "suffix": " and banners"
-      },
-      {
-        "text": "Utility icon library refresh*",
-        "linkText": null,
-        "linkUrl": null,
+        "text": "Service Portal icon unification*",
+        "linkText": "",
+        "linkUrl": "",
         "suffix": ""
       },
       {
-        "text": "Service Portal icon unification*",
-        "linkText": null,
-        "linkUrl": null,
+        "text": "Redesigning 800+ utility icons",
+        "linkText": "",
+        "linkUrl": "",
+        "suffix": ""
+      },
+      {
+        "text": "Product illustration animations",
+        "linkText": "",
+        "linkUrl": "",
         "suffix": ""
       }
     ]
   },
   {
-    "title": "Horizon Design System",
+    "title": "ServiceNow's newest AI product",
     "status": "Ongoing",
-    "type": "motion",
+    "type": "design systems, iconography, illustration, motion",
     "description": [
-      "Defined and delivered icon and illustration motion, established guidelines for Horizon and ServiceNow's newest AI product.",
-      "Participated in icon and motion design research to deliver creative and unique experiences that enhanced usability."
+      "Established icon animation patterns for ServiceNow's newest AI product through iterative rounds of design exploration. I defined a precedent for an appropriate expression levels by working cross-functionally with researchers to ensure each animation served a functional purpose to advance usability.",
+      "Delivered illustrations and design guidelines for ServiceNow's newest AI product."
     ],
     "links": [],
     "image": "image2",
     "items": [
       {
-        "text": "Horizon.com motion patterns",
-        "linkText": null,
-        "linkUrl": null,
+        "text": "Top and main navigation icon animations",
+        "linkText": "",
+        "linkUrl": "",
         "suffix": ""
       },
       {
-        "text": "Horizon.com page headers",
-        "linkText": null,
-        "linkUrl": null,
+        "text": "Empty states illustrations*",
+        "linkText": "",
+        "linkUrl": "",
         "suffix": ""
       },
       {
-        "text": "[new AI product] animated menu*",
-        "linkText": null,
-        "linkUrl": null,
+        "text": "Creative direction and concepts for ServiceNow's AI product*",
+        "linkText": "",
+        "linkUrl": "",
+        "suffix": ""
+      }
+    ]
+  },
+  {
+    "title": "Horizon.servicenow.com",
+    "status": "Ongoing",
+    "type": "design systems, illustration, motion",
+    "description": [
+      "Updated our refreshed design system with the launch of a new website. Designed visual guidelines and created reusable components for Horizon.com's “component”'s thumbnail and banner images to enable designers to reproduce and scale visual assets consistently across the website."
+    ],
+    "links": [],
+    "image": "image3",
+    "items": [
+      {
+        "text": "Motion interaction and transition patterns animations",
+        "linkText": "",
+        "linkUrl": "",
+        "suffix": ""
+      },
+      {
+        "text": "",
+        "linkText": "Thumbnails↗",
+        "linkUrl": "https://horizon.servicenow.com/workspace/components",
+        "suffix": " and banners illustrations"
+      },
+      {
+        "text": "Page header animations*",
+        "linkText": "",
+        "linkUrl": "",
         "suffix": ""
       }
     ]
@@ -65,10 +95,12 @@
   {
     "title": "Lightstep Incident Response",
     "status": "",
-    "type": "design systems",
+    "type": "ux design, design systems",
     "description": [
-      "Spearheaded visual experience as 1 of 2 founding design system focused product designers on Lightstep Incident Response, an all-in-one DevOps/SRE platform, reaching 40+ clients following MVP launch in March 2022.",
-      "Defined unique design system components, maintaining alignment with ServiceNow's broader suite."
+      "Spearheaded visual experience as 1 of 2 design system focused product designers within the billion dollar ITSM portfolio, helping shape Lightstep Incident Response, an all-in-one DevOps/SRE platform that my team built 0→1.",
+      "Designed and owned design libraries for core product workflows that helped users manage their teams, onboard team members, and connect services and integrations. Due to this product requiring a different approach than existing ServiceNow solutions, I built a comprehensive system of unique custom components and detailed design specifications to enable teams to adopt consistent and reusable patterns across the platform while maintaining alignment with ServiceNow's broader design ecosystem.",
+      "Collaborated cross-functionally and externally with stakeholders such as PM's, accessibility, researchers, developers, and other product designers to make sure we were delivering experiences optimized for our target customer needs.",
+      "Lightstep reached 40+ clients following MVP launch in March 2022."
     ],
     "links": [
       {
@@ -76,24 +108,24 @@
         "url": "https://newsroom.servicenow.com/press-releases/details/2022/ServiceNow-Broadens-Lightstep-Portfolio-with-Introduction-of-Incident-Response-Product-for-More-Predictive-Efficient-Incident-Resolution-03-14-2022-12-00-AM/default.aspx"
       }
     ],
-    "image": "image3",
+    "image": "image4",
     "items": [
       {
-        "text": "Landing page and Homepage design",
-        "linkText": null,
-        "linkUrl": null,
+        "text": "Lightstep custom component library",
+        "linkText": "",
+        "linkUrl": "",
         "suffix": ""
       },
       {
-        "text": "Themeable componentry",
-        "linkText": null,
-        "linkUrl": null,
+        "text": "Landing page and Homepage design",
+        "linkText": "",
+        "linkUrl": "",
         "suffix": ""
       },
       {
         "text": "Teams, Integrations, Services, Onboarding enhancements",
-        "linkText": null,
-        "linkUrl": null,
+        "linkText": "",
+        "linkUrl": "",
         "suffix": ""
       }
     ]
