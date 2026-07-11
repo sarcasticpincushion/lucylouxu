@@ -13,14 +13,32 @@
   }
 }
 
+html,
+body {
+  cursor:
+    url('./../images/mycursor.svg') 10 8,
+    auto;
+}
+
 body {
   height: 100%;
   position: relative;
-  cursor: url('./../images/mycursor.svg'), auto;
 }
 
 a {
-  cursor: url('./../images/hovercursor.svg'), pointer;
+  cursor:
+    url('./../images/hovercursor.svg') 20 6,
+    auto;
+}
+
+.custom-js-cursor {
+  width: 50px;
+  height: 50px;
+  background-image: url('./../images/mycursor.svg');
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
 }
 
 .main {
@@ -136,9 +154,10 @@ a {
           gap: 25px;
           border: 1px solid $default-text-color;
           padding: 36px 40px 23px;
+          height: fit-content;
 
-          video {
-            height: 300px;
+          canvas {
+            height: auto !important;
           }
 
           .project-item-thumbnail-details {
@@ -160,7 +179,9 @@ a {
               position: relative;
 
               li {
-                cursor: url('./../images/hovercursor.svg'), pointer;
+                cursor:
+                  url('./../images/hovercursor.svg') 20 6,
+                  auto;
 
                 &.active::before {
                   content: '→';

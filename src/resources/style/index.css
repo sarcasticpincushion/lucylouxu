@@ -150,14 +150,28 @@ h1 {
     transform: translateX(-4px);
   }
 }
+html,
+body {
+  cursor: url("./../images/mycursor.svg") 10 8, auto;
+}
+
 body {
   height: 100%;
   position: relative;
-  cursor: url("./../images/mycursor.svg"), auto;
 }
 
 a {
-  cursor: url("./../images/hovercursor.svg"), pointer;
+  cursor: url("./../images/hovercursor.svg") 20 6, auto;
+}
+
+.custom-js-cursor {
+  width: 50px;
+  height: 50px;
+  background-image: url("./../images/mycursor.svg");
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
 }
 
 .main {
@@ -256,9 +270,10 @@ a {
   gap: 25px;
   border: 1px solid #000;
   padding: 36px 40px 23px;
+  height: fit-content;
 }
-.main .work-container .project-container .project-item .project-item-thumbnail video {
-  height: 300px;
+.main .work-container .project-container .project-item .project-item-thumbnail canvas {
+  height: auto !important;
 }
 .main .work-container .project-container .project-item .project-item-thumbnail .project-item-thumbnail-details {
   display: flex;
@@ -279,7 +294,7 @@ a {
   position: relative;
 }
 .main .work-container .project-container .project-item .project-item-thumbnail .project-item-thumbnail-details ul li {
-  cursor: url("./../images/hovercursor.svg"), pointer;
+  cursor: url("./../images/hovercursor.svg") 20 6, auto;
 }
 .main .work-container .project-container .project-item .project-item-thumbnail .project-item-thumbnail-details ul li.active::before {
   content: "→";

@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 import Intro from './../components/intro';
 import projects from './../resources/projects.json';
 import image1 from './../resources/images/1.svg';
@@ -14,19 +15,24 @@ const imageMap = {
   image4,
 };
 
+const getSelectionValue = (projectId, itemId) => {
+  return `${projectId}${String.fromCharCode(65 + itemId)}`;
+};
+
 function Work() {
   const [selectedItems, setSelectedItems] = useState(() => {
     return projects.reduce((acc, _, projectId) => {
-      acc[projectId] = 0;
+      const projectNumber = projectId + 1;
+      acc[projectNumber] = getSelectionValue(projectNumber, 0);
       return acc;
     }, {});
   });
 
   const handleSelectItem = (projectId, itemId) => {
-    setSelectedItems({
-      ...selectedItems,
-      [projectId]: itemId,
-    });
+    setSelectedItems((prevSelectedItems) => ({
+      ...prevSelectedItems,
+      [projectId]: getSelectionValue(projectId, itemId),
+    }));
   };
 
   return (
@@ -59,23 +65,33 @@ function Work() {
               </div>
             </div>
             <div className="project-item-thumbnail">
-              {/* <video controls>
-                <source
-                  src='/src/resources/images/placeholder.mov'
-                  type='video/quicktime'
+              {/* <div>{selectedItems[projectId + 1]}</div> */}
+
+              {['1A', '1B'].includes(selectedItems[projectId + 1]) ? (
+                <DotLottieReact
+                  src={`/animations/${selectedItems[projectId + 1]}.lottie`}
+                  loop
+                  autoplay
+                  layout={{
+                    fit: 'contain',
+                    align: [0.5, 0],
+                  }}
                 />
-                Your browser does not support the video tag.
-              </video> */}
-              <img src={imageMap[project.image]} width="100%" />
+              ) : (
+                <img src={imageMap[project.image]} width="100%" />
+              )}
               <div className="project-item-thumbnail-details">
                 <ul>
                   {project.items.map((item, itemId) => (
                     <li
                       key={itemId}
                       className={
-                        selectedItems[projectId] === itemId ? 'active' : ''
+                        selectedItems[projectId + 1] ===
+                        getSelectionValue(projectId + 1, itemId)
+                          ? 'active'
+                          : ''
                       }
-                      onClick={() => handleSelectItem(projectId, itemId)}
+                      onClick={() => handleSelectItem(projectId + 1, itemId)}
                     >
                       {item.text}
                       {item.linkText && (

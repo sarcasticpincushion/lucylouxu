@@ -21,6 +21,7 @@
     "vite": "^4.5.13"
   },
   "dependencies": {
+    "@lottiefiles/dotlottie-react": "^0.19.9",
     "react-router-dom": "^7.18.1"
   }
 }

@@ -15,19 +15,22 @@
         "text": "Service Portal icon unification*",
         "linkText": "",
         "linkUrl": "",
-        "suffix": ""
+        "suffix": "",
+        "assetName": "1A.json"
       },
       {
         "text": "Redesigning 800+ utility icons",
         "linkText": "",
         "linkUrl": "",
-        "suffix": ""
+        "suffix": "",
+        "assetName": "1B.json"
       },
       {
         "text": "Product illustration animations",
         "linkText": "",
         "linkUrl": "",
-        "suffix": ""
+        "suffix": "",
+        "assetName": ""
       }
     ]
   },
@@ -46,19 +49,22 @@
         "text": "Top and main navigation icon animations",
         "linkText": "",
         "linkUrl": "",
-        "suffix": ""
+        "suffix": "",
+        "assetName": ""
       },
       {
         "text": "Empty states illustrations*",
         "linkText": "",
         "linkUrl": "",
-        "suffix": ""
+        "suffix": "",
+        "assetName": ""
       },
       {
         "text": "Creative direction and concepts for ServiceNow's AI product*",
         "linkText": "",
         "linkUrl": "",
-        "suffix": ""
+        "suffix": "",
+        "assetName": ""
       }
     ]
   },
@@ -76,19 +82,22 @@
         "text": "Motion interaction and transition patterns animations",
         "linkText": "",
         "linkUrl": "",
-        "suffix": ""
+        "suffix": "",
+        "assetName": ""
       },
       {
         "text": "",
         "linkText": "Thumbnails↗",
         "linkUrl": "https://horizon.servicenow.com/workspace/components",
-        "suffix": " and banners illustrations"
+        "suffix": " and banners illustrations",
+        "assetName": ""
       },
       {
         "text": "Page header animations*",
         "linkText": "",
         "linkUrl": "",
-        "suffix": ""
+        "suffix": "",
+        "assetName": ""
       }
     ]
   },
@@ -114,19 +123,22 @@
         "text": "Lightstep custom component library",
         "linkText": "",
         "linkUrl": "",
-        "suffix": ""
+        "suffix": "",
+        "assetName": ""
       },
       {
         "text": "Landing page and Homepage design",
         "linkText": "",
         "linkUrl": "",
-        "suffix": ""
+        "suffix": "",
+        "assetName": ""
       },
       {
         "text": "Teams, Integrations, Services, Onboarding enhancements",
         "linkText": "",
         "linkUrl": "",
-        "suffix": ""
+        "suffix": "",
+        "assetName": ""
       }
     ]
   }
