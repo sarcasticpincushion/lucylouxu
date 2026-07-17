@@ -32,7 +32,7 @@
 }
 
 html {
-  font-size: 14px;
+  font-size: 13px;
 }
 
 body {
@@ -43,8 +43,8 @@ body {
 h1 {
   font-family: 'PPNeueBit';
   font-weight: 400;
-  font-size: 71px;
-  line-height: 51px;
+  font-size: 48px;
+  line-height: 34px;
 }
 
 .main {
@@ -66,8 +66,8 @@ h1 {
 
     .project-item-header {
       font-family: 'PPNeueBit';
-      font-size: 34px;
-      line-height: 24px;
+      font-size: 32px;
+      line-height: 23px;
     }
 
     .project-type {
@@ -82,17 +82,19 @@ h1 {
         font-size: 20px;
         line-height: 16px;
       }
-
-      aside {
-        font-size: 14px;
-        line-height: 18px;
-      }
     }
   }
 
   // more
   .more-container {
-    .more-item {
+    .more-blurb {
+      h2 {
+        font-family: 'PPNeueBit';
+        font-size: 34px;
+        line-height: 24px;
+      }
+    }
+    .side-quest-item {
       a {
         font-family: 'PPNeueBit';
         font-size: 34px;

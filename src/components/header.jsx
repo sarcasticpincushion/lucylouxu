@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 function Header({ isWorkPage }) {
   return (
     <header>
-      <h1>
+      <h1 className={!isWorkPage ? 'visible' : ''}>
         <Link to="/">Lucy Xu</Link>
       </h1>
       <nav>

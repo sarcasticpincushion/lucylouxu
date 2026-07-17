@@ -80,7 +80,7 @@ table {
 }
 
 html {
-  font-size: 14px;
+  font-size: 13px;
 }
 
 body {
@@ -91,8 +91,8 @@ body {
 h1 {
   font-family: "PPNeueBit";
   font-weight: 400;
-  font-size: 71px;
-  line-height: 51px;
+  font-size: 48px;
+  line-height: 34px;
 }
 
 .main header nav li {
@@ -109,8 +109,8 @@ h1 {
 }
 .main .work-container .project-item-header {
   font-family: "PPNeueBit";
-  font-size: 34px;
-  line-height: 24px;
+  font-size: 32px;
+  line-height: 23px;
 }
 .main .work-container .project-type {
   font-family: "PPNeueBit";
@@ -122,11 +122,12 @@ h1 {
   font-size: 20px;
   line-height: 16px;
 }
-.main .work-container .project-item-thumbnail-details aside {
-  font-size: 14px;
-  line-height: 18px;
+.main .more-container .more-blurb h2 {
+  font-family: "PPNeueBit";
+  font-size: 34px;
+  line-height: 24px;
 }
-.main .more-container .more-item a {
+.main .more-container .side-quest-item a {
   font-family: "PPNeueBit";
   font-size: 34px;
   line-height: 24px;
@@ -142,36 +143,10 @@ h1 {
   text-decoration-thickness: 1px;
 }
 
-@keyframes horizontalBob {
-  0%, 100% {
-    transform: translateX(2px);
-  }
-  50% {
-    transform: translateX(-4px);
-  }
-}
-html,
-body {
-  cursor: url("./../images/mycursor.svg") 10 8, auto;
-}
-
 body {
   height: 100%;
   position: relative;
-}
-
-a {
-  cursor: url("./../images/hovercursor.svg") 20 6, auto;
-}
-
-.custom-js-cursor {
-  width: 50px;
-  height: 50px;
-  background-image: url("./../images/mycursor.svg");
-  position: fixed;
-  pointer-events: none;
-  z-index: 9999;
-  transform: translate(-50%, -50%);
+  overflow-x: hidden;
 }
 
 .main {
@@ -183,53 +158,73 @@ a {
   box-sizing: border-box;
 }
 .main header {
+  position: sticky;
+  top: 35px;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 18px;
 }
-.main header h1 a {
-  text-decoration: none;
+.main header h1 {
+  visibility: hidden;
+}
+.main header h1.visible {
+  visibility: visible;
+}
+.main header a {
   color: #000;
+  text-decoration: none;
 }
 .main header nav ul {
   display: flex;
   flex-direction: column;
   gap: 17px;
 }
-.main header nav ul li a {
-  color: #000;
-  text-decoration: none;
-}
 .main header nav ul li.selected::after {
   content: "←";
   position: absolute;
   margin-left: 5px;
 }
-.main .intro {
+.main .intro-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: calc(100dvh - 35px - 59px);
+}
+.main .intro-container .intro-container-inner {
+  display: flex;
+  flex: 1;
+  justify-content: space-between;
+  align-items: center;
+}
+.main .intro-container .intro-container-inner .intro {
   display: flex;
   flex-direction: column;
   gap: 17px;
-  width: 37%;
+  width: 40%;
 }
 @media (max-width: 992px) {
-  .main .intro {
+  .main .intro-container .intro-container-inner .intro {
     width: 100%;
   }
 }
-.main .intro p:nth-child(2) {
-  margin-bottom: 25px;
+.main .intro-container .intro-container-inner .intro a {
+  text-decoration: none;
+  color: #000;
 }
-.main .intro img {
+.main .intro-container .intro-container-inner .intro img {
   width: 146px;
   height: auto;
   pointer-events: none;
+}
+.main .intro-container .separator {
+  border-top: 1px solid #000;
+  padding: 14px 0;
 }
 .main .work-container {
   display: flex;
   flex-direction: column;
   gap: 156px;
-  margin-bottom: 165px;
+  margin-bottom: 150px;
 }
 .main .work-container .project-container {
   display: flex;
@@ -239,21 +234,17 @@ a {
 .main .work-container .project-container .project-item {
   display: grid;
   grid-template-columns: 37% 1fr;
-  gap: 20px 68px;
+  gap: 20px 60px;
 }
 @media (max-width: 992px) {
   .main .work-container .project-container .project-item {
     grid-template-columns: 1fr;
   }
 }
-.main .work-container .project-container .project-item:nth-child(1) li:nth-child(1), .main .work-container .project-container .project-item:nth-child(2) li:nth-child(2), .main .work-container .project-container .project-item:nth-child(2) li:nth-child(3), .main .work-container .project-container .project-item:nth-child(3) li:nth-child(3),
-.main .work-container .project-container .project-item aside {
-  color: rgba(0, 0, 0, 0.5);
-}
 .main .work-container .project-container .project-item .project-item-details {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 16px;
 }
 .main .work-container .project-container .project-item .project-item-details .project-item-header {
   display: flex;
@@ -261,15 +252,13 @@ a {
 }
 .main .work-container .project-container .project-item .project-item-details .project-type {
   color: #363e68;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
 }
 .main .work-container .project-container .project-item .project-item-thumbnail {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 25px;
-  border: 1px solid #000;
-  padding: 36px 40px 23px;
+  gap: 8px;
   height: fit-content;
 }
 .main .work-container .project-container .project-item .project-item-thumbnail canvas {
@@ -293,34 +282,33 @@ a {
 .main .work-container .project-container .project-item .project-item-thumbnail .project-item-thumbnail-details ul {
   position: relative;
 }
-.main .work-container .project-container .project-item .project-item-thumbnail .project-item-thumbnail-details ul li {
-  cursor: url("./../images/hovercursor.svg") 20 6, auto;
-}
-.main .work-container .project-container .project-item .project-item-thumbnail .project-item-thumbnail-details ul li.active::before {
-  content: "→";
-  position: absolute;
-  left: -12px;
-  animation: horizontalBob 1.5s ease-in-out infinite;
-  pointer-events: none;
-}
-.main .work-container .project-container .project-item .project-item-thumbnail .project-item-thumbnail-details aside {
-  text-align: right;
-}
 .main .more-container {
   display: flex;
-  flex-direction: column;
-  gap: 64px;
-  align-items: center;
-  padding-top: 67px;
+  justify-content: center;
+  gap: 130px;
+  padding-top: 150px;
 }
-.main .more-container .more-item {
+.main .more-container .more-blurb {
+  width: 35%;
+}
+.main .more-container .more-blurb h2 {
+  margin-bottom: 20px;
+}
+.main .more-container .side-quest-container h4 {
+  margin-bottom: 40px;
+}
+.main .more-container .side-quest-container .side-quest-list {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+.main .more-container .side-quest-container .side-quest-list .side-quest-item {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  text-align: center;
   width: 332px;
 }
-.main .more-container .more-item a {
+.main .more-container .side-quest-container .side-quest-list .side-quest-item a {
   text-decoration-thickness: 1.5px;
 }
 .main footer {

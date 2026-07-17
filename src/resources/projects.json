@@ -4,22 +4,22 @@
     "status": "Ongoing",
     "type": "design systems, iconography, illustration, motion",
     "description": [
-      "Led unification of 200+ multi-colored icons across ServiceNow's Service Portal. This initiative involved an audit across ServiceNow's Service Portal product teams, working cross-functionally to understand icon use cases and creating a Figma library to promote consistency and efficiency for teams to uptake their respective icons.",
-      "Redesigned 800+ utility icons for the refreshed design system. This initiative required months of iterating on different designs, shapes, and forms. A new size of icon, 20px, was added in order to provide our design system with an intermediate size between our existing 16px and 24px to give our designers greater flexibility with our system.",
-      "100+ illustrations, and established design guidelines for Horizon, ServiceNow's refreshed design system, launched 2024."
+      "Redesigned 800+ utility icons for our design system refresh. Introduced a 20px to bridge the gap between our existing 16px and 24px to provide our designers with greater flexibility within our system.",
+      "Led unification of 200+ multi-colored icons across ServiceNow's Service Portal. Auditing use cases cross-functionally and built a design library to standardize patterns for further adoption.",
+      "My day to day involves managing ongoing icon production requests from cross-functional teams, maintaining design libraries for utility and colored tile icons, and executing animation requests to support product teams."
     ],
     "links": [],
     "image": "image1",
     "items": [
       {
-        "text": "Service Portal icon unification*",
+        "text": "Redesigning 800+ utility icons",
         "linkText": "",
         "linkUrl": "",
         "suffix": "",
         "assetName": "1A.json"
       },
       {
-        "text": "Redesigning 800+ utility icons",
+        "text": "Service Portal icon unification*",
         "linkText": "",
         "linkUrl": "",
         "suffix": "",
@@ -35,12 +35,13 @@
     ]
   },
   {
-    "title": "ServiceNow's newest AI product",
+    "title": "Employee Slate",
     "status": "Ongoing",
     "type": "design systems, iconography, illustration, motion",
     "description": [
-      "Established icon animation patterns for ServiceNow's newest AI product through iterative rounds of design exploration. I defined a precedent for an appropriate expression levels by working cross-functionally with researchers to ensure each animation served a functional purpose to advance usability.",
-      "Delivered illustrations and design guidelines for ServiceNow's newest AI product."
+      "Established icon animation patterns for ServiceNow's AI product. Defined expression level standards by working with research to ensure each animation served a functional purpose to advance usability.",
+      "Delivered illustrations and design guidelines for ServiceNow's newest AI product. Explored and developed visual concepts to expand our visual language in the second phase of our design system refresh.",
+      "Contact for more details on this project"
     ],
     "links": [],
     "image": "image2",
@@ -69,17 +70,22 @@
     ]
   },
   {
-    "title": "Horizon.servicenow.com",
+    "title": "horizon.servicenow.com",
     "status": "Ongoing",
     "type": "design systems, illustration, motion",
     "description": [
-      "Updated our refreshed design system with the launch of a new website. Designed visual guidelines and created reusable components for Horizon.com's “component”'s thumbnail and banner images to enable designers to reproduce and scale visual assets consistently across the website."
+      "Designed reusable illustration patterns, created animations for motion patterns and page headers, and set visual guidelines for our new design system site to enable consistent asset reproduction and implementation."
     ],
-    "links": [],
+    "links": [
+      {
+        "text": "Site↗",
+        "url": "https://horizon.servicenow.com/"
+      }
+    ],
     "image": "image3",
     "items": [
       {
-        "text": "Motion interaction and transition patterns animations",
+        "text": "'Motion interaction and transition' patterns animations",
         "linkText": "",
         "linkUrl": "",
         "suffix": "",
@@ -107,7 +113,6 @@
     "type": "ux design, design systems",
     "description": [
       "Spearheaded visual experience as 1 of 2 design system focused product designers within the billion dollar ITSM portfolio, helping shape Lightstep Incident Response, an all-in-one DevOps/SRE platform that my team built 0→1.",
-      "Designed and owned design libraries for core product workflows that helped users manage their teams, onboard team members, and connect services and integrations. Due to this product requiring a different approach than existing ServiceNow solutions, I built a comprehensive system of unique custom components and detailed design specifications to enable teams to adopt consistent and reusable patterns across the platform while maintaining alignment with ServiceNow's broader design ecosystem.",
       "Collaborated cross-functionally and externally with stakeholders such as PM's, accessibility, researchers, developers, and other product designers to make sure we were delivering experiences optimized for our target customer needs.",
       "Lightstep reached 40+ clients following MVP launch in March 2022."
     ],

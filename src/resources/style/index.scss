@@ -3,43 +3,24 @@
 @import './mixins.scss';
 @import './constants.scss';
 
-@keyframes horizontalBob {
-  0%,
-  100% {
-    transform: translateX(2px);
-  }
-  50% {
-    transform: translateX(-4px);
-  }
-}
-
-html,
-body {
-  cursor:
-    url('./../images/mycursor.svg') 10 8,
-    auto;
-}
+// html,
+// body {
+//   cursor:
+//     url('./../images/mycursor.svg') 10 8,
+//     auto;
+// }
 
 body {
   height: 100%;
   position: relative;
+  overflow-x: hidden;
 }
 
-a {
-  cursor:
-    url('./../images/hovercursor.svg') 20 6,
-    auto;
-}
-
-.custom-js-cursor {
-  width: 50px;
-  height: 50px;
-  background-image: url('./../images/mycursor.svg');
-  position: fixed;
-  pointer-events: none;
-  z-index: 9999;
-  transform: translate(-50%, -50%);
-}
+// a {
+//   cursor:
+//     url('./../images/hovercursor.svg') 20 6,
+//     auto;
+// }
 
 .main {
   position: relative;
@@ -51,14 +32,27 @@ a {
 
   // header
   header {
+    position: sticky;
+    // position: fixed;
+    top: 35px;
+    // left: calc(50% + 35px);
+    // transform: translateX(calc(-50% - 35px));
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    margin-bottom: 18px;
+    // width: calc(1440px - 70px);
 
-    h1 a {
-      text-decoration: none;
+    h1 {
+      visibility: hidden;
+
+      &.visible {
+        visibility: visible;
+      }
+    }
+
+    a {
       color: $default-text-color;
+      text-decoration: none;
     }
 
     nav ul {
@@ -67,11 +61,6 @@ a {
       gap: 17px;
 
       li {
-        a {
-          color: $default-text-color;
-          text-decoration: none;
-        }
-
         &.selected::after {
           content: '←';
           position: absolute;
@@ -81,33 +70,55 @@ a {
     }
   }
 
-  // work
-  .intro {
+  // intro
+  .intro-container {
     display: flex;
     flex-direction: column;
-    gap: 17px;
-    width: 37%;
+    justify-content: space-between;
+    height: calc(100dvh - 35px - 59px);
+    // background-color: lightgrey;
 
-    @include lg {
-      width: 100%;
+    .intro-container-inner {
+      display: flex;
+      flex: 1;
+      justify-content: space-between;
+      align-items: center;
+
+      .intro {
+        display: flex;
+        flex-direction: column;
+        gap: 17px;
+        width: 40%;
+
+        @include lg {
+          width: 100%;
+        }
+
+        a {
+          text-decoration: none;
+          color: $default-text-color;
+        }
+
+        img {
+          width: 146px;
+          height: auto;
+          pointer-events: none;
+        }
+      }
     }
 
-    p:nth-child(2) {
-      margin-bottom: 25px;
-    }
-
-    img {
-      width: 146px;
-      height: auto;
-      pointer-events: none;
+    .separator {
+      border-top: 1px solid #000;
+      padding: 14px 0;
     }
   }
 
+  // work
   .work-container {
     display: flex;
     flex-direction: column;
     gap: 156px;
-    margin-bottom: 165px;
+    margin-bottom: 150px;
 
     .project-container {
       display: flex;
@@ -117,24 +128,16 @@ a {
       .project-item {
         display: grid;
         grid-template-columns: 37% 1fr;
-        gap: 20px 68px;
+        gap: 20px 60px;
 
         @include lg {
           grid-template-columns: 1fr;
         }
 
-        &:nth-child(1) li:nth-child(1),
-        &:nth-child(2) li:nth-child(2),
-        &:nth-child(2) li:nth-child(3),
-        &:nth-child(3) li:nth-child(3),
-        aside {
-          color: rgba(0, 0, 0, 0.5);
-        }
-
         .project-item-details {
           display: flex;
           flex-direction: column;
-          gap: 15px;
+          gap: 16px;
 
           .project-item-header {
             display: flex;
@@ -143,7 +146,7 @@ a {
 
           .project-type {
             color: $subheader-text-color;
-            margin-bottom: 12px;
+            margin-bottom: 16px;
           }
         }
 
@@ -151,9 +154,7 @@ a {
           display: flex;
           flex-direction: column;
           justify-content: space-between;
-          gap: 25px;
-          border: 1px solid $default-text-color;
-          padding: 36px 40px 23px;
+          gap: 8px;
           height: fit-content;
 
           canvas {
@@ -179,22 +180,10 @@ a {
               position: relative;
 
               li {
-                cursor:
-                  url('./../images/hovercursor.svg') 20 6,
-                  auto;
-
-                &.active::before {
-                  content: '→';
-                  position: absolute;
-                  left: -12px;
-                  animation: horizontalBob 1.5s ease-in-out infinite;
-                  pointer-events: none;
-                }
+                // cursor:
+                //   url('./../images/hovercursor.svg') 20 6,
+                //   auto;
               }
-            }
-
-            aside {
-              text-align: right;
             }
           }
         }
@@ -205,20 +194,38 @@ a {
   // more
   .more-container {
     display: flex;
-    flex-direction: column;
-    gap: 64px;
-    align-items: center;
-    padding-top: 67px;
+    justify-content: center;
+    gap: 130px;
+    padding-top: 150px;
 
-    .more-item {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      text-align: center;
-      width: 332px;
+    .more-blurb {
+      width: 35%;
 
-      a {
-        text-decoration-thickness: 1.5px;
+      h2 {
+        margin-bottom: 20px;
+      }
+    }
+
+    .side-quest-container {
+      h4 {
+        margin-bottom: 40px;
+      }
+
+      .side-quest-list {
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+
+        .side-quest-item {
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+          width: 332px;
+
+          a {
+            text-decoration-thickness: 1.5px;
+          }
+        }
       }
     }
   }

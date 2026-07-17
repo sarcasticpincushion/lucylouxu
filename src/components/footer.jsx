@@ -23,7 +23,7 @@ function Footer() {
           </Link>
         </li>
         <li>
-          <Link to="" target="_blank" className="link">
+          <Link to="/resume.pdf" target="_blank" className="link">
             Resume↗
           </Link>
         </li>

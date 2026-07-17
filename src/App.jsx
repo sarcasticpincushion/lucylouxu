@@ -14,19 +14,9 @@ function App() {
   const isArchiveSubdomain = host.startsWith('archive.');
   // const isArchiveSubdomain = true;
   const isWorkPage = location.pathname === '/' || location.pathname === '/work';
-  // const cursorRef = useRef(null);
-
-  // useEffect(() => {
-  //   window.addEventListener('mousemove', (e) => {
-  //     cursorRef.current.style.left = `${e.clientX}px`;
-  //     cursorRef.current.style.top = `${e.clientY}px`;
-  //   });
-  // }, [cursorRef]);
 
   return (
     <main className="main">
-      {/* <div ref={cursorRef} className="custom-js-cursor"></div> */}
-
       {isArchiveSubdomain ? (
         <Routes>
           <Route path="/" element={<ExternalRedirect url="/work.html" />} />

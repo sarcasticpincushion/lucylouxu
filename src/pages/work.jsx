@@ -45,9 +45,6 @@ function Work() {
             <div className="project-item-details">
               <div className="project-item-header">
                 <h2>{project.title}</h2>
-                {project.status && (
-                  <p className="project-status">{project.status}</p>
-                )}
               </div>
               <div className="project-item-body">
                 <h3 className="project-type">{project.type}</h3>
@@ -107,10 +104,6 @@ function Work() {
                     </li>
                   ))}
                 </ul>
-                {project.items.some(
-                  (item) =>
-                    item.text?.includes('*') || item.suffix?.includes('*')
-                ) && <aside>*contact for more details</aside>}
               </div>
             </div>
           </div>
