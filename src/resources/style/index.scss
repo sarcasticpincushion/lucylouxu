@@ -118,26 +118,47 @@ body {
     display: flex;
     flex-direction: column;
     gap: 156px;
-    margin-bottom: 150px;
+    margin-bottom: 165px;
+
+    $details-width: 37%;
+    $thumbnail-gap: 36px;
+
+    // In pinned mode the footer lives inside the last project, so no trailing
+    // margin is needed below the gallery.
+    &.work-container--pinned {
+      margin-bottom: 0;
+    }
 
     .project-container {
       display: flex;
       flex-direction: column;
-      gap: 40px;
+      gap: 165px;
+      padding-left: 115px;
 
       .project-item {
+        // Details and the thumbnail strip share a single grid cell so they
+        // overlap, yet the row still grows to fit whichever is taller (grid
+        // sizes the track to the max of both) — preventing rows from colliding.
         display: grid;
-        grid-template-columns: 37% 1fr;
-        gap: 20px 60px;
-
-        @include lg {
-          grid-template-columns: 1fr;
-        }
+        grid-template-columns: 1fr;
 
         .project-item-details {
+          grid-area: 1 / 1;
+          z-index: 2;
+          width: $details-width;
+          padding-right: $thumbnail-gap;
+          box-sizing: border-box;
+          background: #fff;
           display: flex;
           flex-direction: column;
           gap: 16px;
+
+          @include lg {
+            grid-area: auto;
+            width: 100%;
+            padding-right: 0;
+            margin-bottom: 24px;
+          }
 
           .project-item-header {
             display: flex;
@@ -150,41 +171,134 @@ body {
           }
         }
 
-        .project-item-thumbnail {
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
-          gap: 8px;
-          height: fit-content;
+        .project-thumbnails {
+          grid-area: 1 / 1;
+          z-index: 1;
+          min-width: 0; // allow the scroll container to shrink within the grid cell
+          overflow-x: auto;
+          scroll-snap-type: x mandatory;
+          scroll-padding-left: $details-width;
+          scrollbar-width: none;
 
-          canvas {
-            height: auto !important;
+          &::-webkit-scrollbar {
+            display: none;
           }
 
-          .project-item-thumbnail-details {
+          @include lg {
+            grid-area: auto;
+            scroll-padding-left: 0;
+          }
+
+          .project-thumbnails-track {
             display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            gap: 20px;
+            flex-wrap: nowrap;
+            gap: $thumbnail-gap;
+          }
 
-            @include xl {
-              flex-direction: column;
-              align-items: flex-start;
+          .project-thumbnail {
+            flex: 0 0 55%;
+            scroll-snap-align: start;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+
+            @include lg {
+              flex-basis: 85%;
             }
 
-            h4 {
-              margin-bottom: 4px;
-            }
+            // Offset the opening thumbnail so its artwork sits to the right of
+            // the details column; scrolling slides later thumbnails underneath.
+            &:first-child {
+              margin-left: $details-width;
 
-            ul {
-              position: relative;
-
-              li {
-                // cursor:
-                //   url('./../images/hovercursor.svg') 20 6,
-                //   auto;
+              @include lg {
+                margin-left: 0;
               }
             }
+
+            .project-thumbnail-media {
+              canvas {
+                height: auto !important;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    // Scroll-driven horizontal gallery (desktop, motion-OK). Each project pins
+    // to the viewport and its thumbnails translate horizontally as the user
+    // scrolls; between projects the page scrolls vertically to the next one.
+    // Each wrapper is made tall by JS to supply that project's scroll distance.
+    .gallery-list {
+      display: flex;
+      flex-direction: column;
+      gap: 165px; // spacing between one project and the next
+    }
+
+    .gallery-project {
+      position: relative;
+    }
+
+    .gallery-viewport {
+      position: sticky;
+      top: 94px; // overwritten inline with the measured header offset
+      // height set inline by JS to the content height (details vs thumbnails)
+      overflow: hidden;
+    }
+
+    // This project's details, pinned on the left while its thumbnails pass.
+    .gallery-details-layer {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 2;
+      width: $details-width;
+      height: 100%;
+      padding-right: $thumbnail-gap;
+      box-sizing: border-box;
+      background: #fff;
+
+      .project-item-details {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .project-item-header {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .project-type {
+        color: $subheader-text-color;
+        margin-bottom: 16px;
+      }
+    }
+
+    .gallery-track {
+      display: flex;
+      flex-wrap: nowrap;
+      align-items: flex-start;
+      gap: $thumbnail-gap;
+      z-index: 1;
+      will-change: transform;
+
+      .project-thumbnail {
+        flex: 0 0 55%;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+
+        // Offset the opening thumbnail so it sits to the right of the pinned
+        // details overlay; later thumbnails slide underneath as they exit.
+        &:first-child {
+          margin-left: $details-width;
+        }
+
+        .project-thumbnail-media {
+          canvas {
+            height: auto !important;
           }
         }
       }

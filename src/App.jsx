@@ -9,6 +9,7 @@ import ExternalRedirect from './utils/redirect';
 
 function App() {
   const location = useLocation();
+  const introHeadingRef = useRef(null);
   const host =
     typeof window !== 'undefined' ? window.location.hostname.toLowerCase() : '';
   const isArchiveSubdomain = host.startsWith('archive.');
@@ -27,10 +28,13 @@ function App() {
         </Routes>
       ) : (
         <>
-          <Header isWorkPage={isWorkPage} />
+          <Header isWorkPage={isWorkPage} introHeadingRef={introHeadingRef} />
           <Routes>
-            <Route path="/" element={<Work />} />
-            <Route path="/work" element={<Work />} />
+            <Route path="/" element={<Work introHeadingRef={introHeadingRef} />} />
+            <Route
+              path="/work"
+              element={<Work introHeadingRef={introHeadingRef} />}
+            />
             <Route path="/more" element={<More />} />
           </Routes>
           <Footer />

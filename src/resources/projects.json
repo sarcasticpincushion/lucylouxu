@@ -47,21 +47,14 @@
     "image": "image2",
     "items": [
       {
-        "text": "Top and main navigation icon animations",
+        "text": "Top nav icon animations",
         "linkText": "",
         "linkUrl": "",
         "suffix": "",
         "assetName": ""
       },
       {
-        "text": "Empty states illustrations*",
-        "linkText": "",
-        "linkUrl": "",
-        "suffix": "",
-        "assetName": ""
-      },
-      {
-        "text": "Creative direction and concepts for ServiceNow's AI product*",
+        "text": "Menu icon illustrations*",
         "linkText": "",
         "linkUrl": "",
         "suffix": "",
@@ -97,13 +90,6 @@
         "linkUrl": "https://horizon.servicenow.com/workspace/components",
         "suffix": " and banners illustrations",
         "assetName": ""
-      },
-      {
-        "text": "Page header animations*",
-        "linkText": "",
-        "linkUrl": "",
-        "suffix": "",
-        "assetName": ""
       }
     ]
   },
@@ -125,7 +111,7 @@
     "image": "image4",
     "items": [
       {
-        "text": "Lightstep custom component library",
+        "text": "On-call flow custom components and specifications",
         "linkText": "",
         "linkUrl": "",
         "suffix": "",
@@ -133,13 +119,6 @@
       },
       {
         "text": "Landing page and Homepage design",
-        "linkText": "",
-        "linkUrl": "",
-        "suffix": "",
-        "assetName": ""
-      },
-      {
-        "text": "Teams, Integrations, Services, Onboarding enhancements",
         "linkText": "",
         "linkUrl": "",
         "suffix": "",

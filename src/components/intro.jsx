@@ -2,12 +2,12 @@ import { Link } from 'react-router-dom';
 import me from './../resources/images/me.png';
 import Star from './../components/star';
 
-function Intro() {
+function Intro({ introHeadingRef }) {
   return (
     <div className="intro-container">
       <div className="intro-container-inner">
         <div className="intro">
-          <h1>
+          <h1 ref={introHeadingRef}>
             <Link to="/">Lucy Xu</Link>
           </h1>
           <p>
@@ -17,6 +17,9 @@ function Intro() {
           <p>
             6 years of design systems & curating visual experiences. Currently
             making/animating icons and illustrations at ServiceNow.
+          </p>
+          <p>
+            Contact me for more detailed work samples.
           </p>
           {/* <p>
             I enjoy eating, reading, and taking pictures in my spare time. Best

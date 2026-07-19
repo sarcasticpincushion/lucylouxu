@@ -286,7 +286,10 @@ const styles = {
     margin: 0,
     cursor: 'pointer',
     // width: '50vw',
-    transform: 'scale(1.5)',
+    transform: 'scale(1.5) translateY(-50px)',
+    position: 'absolute',
+    left: '50%'
+
   },
   info: {
     position: 'fixed',
