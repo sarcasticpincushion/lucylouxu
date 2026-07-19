@@ -32,12 +32,12 @@
 }
 
 html {
-  font-size: 13px;
+  font-size: 14px;
 }
 
 body {
   font-family: 'CallingCode', sans-serif;
-  line-height: 1.5;
+  line-height: 18px;
 }
 
 h1 {
@@ -95,6 +95,12 @@ h1 {
     }
   }
 
+  // citation
+  .citation-number {
+    font-size: 0.7em;
+    line-height: 0;
+  }
+
   // footer
   footer {
     font-size: 14px;
@@ -108,4 +114,15 @@ h1 {
       }
     }
   }
+}
+
+.citation-number {
+  font-weight: 600;
+}
+
+.citation-popover-close {
+  font-family: 'PPNeueBit';
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 18px;
 }

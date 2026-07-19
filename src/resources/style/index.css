@@ -80,12 +80,12 @@ table {
 }
 
 html {
-  font-size: 13px;
+  font-size: 14px;
 }
 
 body {
   font-family: "CallingCode", sans-serif;
-  line-height: 1.5;
+  line-height: 18px;
 }
 
 h1 {
@@ -127,6 +127,10 @@ h1 {
   font-size: 34px;
   line-height: 24px;
 }
+.main .citation-number {
+  font-size: 0.7em;
+  line-height: 0;
+}
 .main footer {
   font-size: 14px;
 }
@@ -136,6 +140,17 @@ h1 {
 .main footer li a {
   font-size: 14px;
   text-decoration-thickness: 1px;
+}
+
+.citation-number {
+  font-weight: 600;
+}
+
+.citation-popover-close {
+  font-family: "PPNeueBit";
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 18px;
 }
 
 body {
@@ -154,6 +169,7 @@ body {
 }
 .main header {
   position: sticky;
+  z-index: 1;
   top: 35px;
   display: flex;
   justify-content: space-between;
@@ -205,11 +221,6 @@ body {
 .main .intro-container .intro-container-inner .intro a {
   text-decoration: none;
   color: #000;
-}
-.main .intro-container .intro-container-inner .intro img {
-  width: 146px;
-  height: auto;
-  pointer-events: none;
 }
 .main .intro-container .separator {
   border-top: 1px solid #000;
@@ -318,7 +329,7 @@ body {
 .main .work-container .gallery-viewport {
   position: sticky;
   top: 94px;
-  overflow: hidden;
+  clip-path: polygon(0% -1000%, 1000% -1000%, 1000% 1000%, 0% 1000%);
 }
 .main .work-container .gallery-details-layer {
   position: absolute;
@@ -366,23 +377,32 @@ body {
 }
 .main .more-container {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   gap: 130px;
-  padding-top: 150px;
+  margin: 80px auto 120px;
+  width: 980px;
 }
-.main .more-container .more-blurb {
-  width: 35%;
+.main .more-container .more-main-container {
+  display: flex;
+  gap: 70px;
 }
-.main .more-container .more-blurb h2 {
+.main .more-container .more-main-container img {
+  width: 460px;
+  pointer-events: none;
+}
+.main .more-container .more-main-container .more-blurb:has(.citation-phrase[aria-expanded=true]) p {
+  opacity: 0.6;
+  pointer-events: none;
+}
+.main .more-container .more-main-container .more-blurb h2 {
   margin-bottom: 20px;
 }
 .main .more-container .side-quest-container h4 {
-  margin-bottom: 40px;
+  margin-bottom: 14px;
 }
 .main .more-container .side-quest-container .side-quest-list {
   display: flex;
-  flex-direction: column;
-  gap: 40px;
+  gap: 70px;
 }
 .main .more-container .side-quest-container .side-quest-list .side-quest-item {
   display: flex;
@@ -403,6 +423,63 @@ body {
   padding: 35px;
   width: 100%;
   box-sizing: border-box;
+}
+
+.citation .citation-phrase {
+  cursor: pointer;
+  transition: color 0.12s ease;
+}
+.citation .citation-phrase:hover, .citation .citation-phrase:focus-visible, .citation .citation-phrase[aria-expanded=true] {
+  color: #ff00ff;
+}
+.citation .citation-number {
+  color: #ff00ff;
+  vertical-align: super;
+  padding-left: 1px;
+}
+
+.citation-popover {
+  position: fixed;
+  z-index: 100;
+  box-sizing: border-box;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  width: 250px;
+  max-width: calc(100vw - 32px);
+  padding: 10px;
+  background: #fff;
+  border: 1px solid #000;
+}
+.citation-popover .citation-popover-number {
+  flex: 0 0 auto;
+  color: #ff00ff;
+}
+.citation-popover .citation-popover-note {
+  flex: 1 1 auto;
+  min-width: 0;
+  white-space: pre-line;
+}
+.citation-popover .citation-popover-note img {
+  display: block;
+  max-width: 100%;
+  margin-bottom: 4px;
+}
+.citation-popover .citation-popover-note a {
+  color: inherit;
+  text-decoration: underline;
+}
+.citation-popover .citation-popover-note > * + * {
+  margin-top: 10px;
+}
+.citation-popover .citation-popover-close {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: #ff00ff;
+  cursor: pointer;
+  width: 8px;
+  height: 8px;
 }
 
 .underline {

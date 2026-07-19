@@ -15,7 +15,7 @@ const imageMap = {
   image4,
 };
 
-const videoAssets = new Set(['1A', '1B', '1C', '2A', '2B', '3A', '3B']);
+const videoAssets = new Set(['1A', '1B', '1C', '2A', '2B', '3A', '3B', '4A', '4B']);
 
 const getSelectionValue = (projectId, itemId) => {
   return `${projectId}${String.fromCharCode(65 + itemId)}`;

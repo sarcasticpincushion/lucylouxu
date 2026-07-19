@@ -25,12 +25,12 @@
 }
 
 html {
-  font-size: 13px;
+  font-size: 14px;
 }
 
 body {
   font-family: "CallingCode", sans-serif;
-  line-height: 1.5;
+  line-height: 18px;
 }
 
 h1 {
@@ -72,6 +72,10 @@ h1 {
   font-size: 34px;
   line-height: 24px;
 }
+.main .citation-number {
+  font-size: 0.7em;
+  line-height: 0;
+}
 .main footer {
   font-size: 14px;
 }
@@ -81,6 +85,17 @@ h1 {
 .main footer li a {
   font-size: 14px;
   text-decoration-thickness: 1px;
+}
+
+.citation-number {
+  font-weight: 600;
+}
+
+.citation-popover-close {
+  font-family: "PPNeueBit";
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 18px;
 }
 
 /*# sourceMappingURL=typography.css.map */

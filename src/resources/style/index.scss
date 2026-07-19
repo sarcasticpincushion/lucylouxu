@@ -33,6 +33,7 @@ body {
   // header
   header {
     position: sticky;
+    z-index: 1;
     // position: fixed;
     top: 35px;
     // left: calc(50% + 35px);
@@ -97,12 +98,6 @@ body {
         a {
           text-decoration: none;
           color: $default-text-color;
-        }
-
-        img {
-          width: 146px;
-          height: auto;
-          pointer-events: none;
         }
       }
     }
@@ -244,7 +239,7 @@ body {
       position: sticky;
       top: 94px; // overwritten inline with the measured header offset
       // height set inline by JS to the content height (details vs thumbnails)
-      overflow: hidden;
+      clip-path: polygon(0% -1000%, 1000% -1000%, 1000% 1000%, 0% 1000%);
     }
 
     // This project's details, pinned on the left while its thumbnails pass.
@@ -308,27 +303,40 @@ body {
   // more
   .more-container {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     gap: 130px;
-    padding-top: 150px;
+    margin: 80px auto 120px;
+    width: 980px;
 
-    .more-blurb {
-      width: 35%;
+    .more-main-container {
+      display: flex;
+      gap: 70px;
 
-      h2 {
-        margin-bottom: 20px;
+      img {
+        width: 460px;
+        pointer-events: none;
+      }
+
+      .more-blurb {
+        &:has(.citation-phrase[aria-expanded=true]) p {
+          opacity: 0.6;
+          pointer-events: none;
+        }
+
+        h2 {
+          margin-bottom: 20px;
+        }
       }
     }
 
     .side-quest-container {
       h4 {
-        margin-bottom: 40px;
+        margin-bottom: 14px;
       }
 
       .side-quest-list {
         display: flex;
-        flex-direction: column;
-        gap: 40px;
+        gap: 70px;
 
         .side-quest-item {
           display: flex;
@@ -355,6 +363,84 @@ body {
     padding: 35px;
     width: 100%;
     box-sizing: border-box;
+  }
+}
+
+// citation
+$citation-color: #ff00ff;
+
+.citation {
+  .citation-phrase {
+    cursor: pointer;
+    transition: color 0.12s ease;
+
+    &:hover,
+    &:focus-visible,
+    &[aria-expanded=true] {
+      color: $citation-color;
+    }
+  }
+
+  .citation-number {
+    color: $citation-color;
+    // Sits at the top right of the phrase, always tinted.
+    vertical-align: super;
+    padding-left: 1px;
+  }
+}
+
+.citation-popover {
+  position: fixed;
+  z-index: 100;
+  box-sizing: border-box;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  width: 250px;
+  max-width: calc(100vw - #{2 * 16px});
+  padding: 10px;
+  background: #fff;
+  border: 1px solid $default-text-color;
+
+  .citation-popover-number {
+    flex: 0 0 auto;
+    color: $citation-color;
+  }
+
+  .citation-popover-note {
+    flex: 1 1 auto;
+    min-width: 0; // let images/long words shrink instead of overflowing
+    // Honor literal "\n" line breaks in plain-string notes. JSX notes are
+    // unaffected (source newlines are collapsed at build time) and can add
+    // their own breaks with <br /> or block elements.
+    white-space: pre-line;
+
+    // Rich content authored in a note:
+    img {
+      display: block;
+      max-width: 100%;
+      margin-bottom: 4px;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: underline;
+    }
+
+    // Spacing between stacked block-level notes (multiple paragraphs, etc.).
+    > * + * {
+      margin-top: 10px;
+    }
+  }
+
+  .citation-popover-close {
+    padding: 0;
+    border: 0;
+    background: none;
+    color: $citation-color;
+    cursor: pointer;
+    width: 8px;
+    height: 8px;
   }
 }
 

@@ -35,6 +35,39 @@
     ]
   },
   {
+    "title": "Lightstep Incident Response",
+    "status": "",
+    "type": "ux design, design systems",
+    "description": [
+      "Spearheaded visual experience as 1 of 2 design system focused product designers within the billion dollar ITSM portfolio, helping shape Lightstep Incident Response, an all-in-one DevOps/SRE platform that my team built 0→1.",
+      "Collaborated cross-functionally and externally with stakeholders such as PM's, accessibility, researchers, developers, and other product designers to make sure we were delivering experiences optimized for our target customer needs.",
+      "Lightstep reached 40+ clients following MVP launch in March 2022."
+    ],
+    "links": [
+      {
+        "text": "Press↗",
+        "url": "https://newsroom.servicenow.com/press-releases/details/2022/ServiceNow-Broadens-Lightstep-Portfolio-with-Introduction-of-Incident-Response-Product-for-More-Predictive-Efficient-Incident-Resolution-03-14-2022-12-00-AM/default.aspx"
+      }
+    ],
+    "image": "image4",
+    "items": [
+      {
+        "text": "On-call flow custom components and specifications",
+        "linkText": "",
+        "linkUrl": "",
+        "suffix": "",
+        "assetName": ""
+      },
+      {
+        "text": "Landing page and Homepage design",
+        "linkText": "",
+        "linkUrl": "",
+        "suffix": "",
+        "assetName": ""
+      }
+    ]
+  },
+  {
     "title": "Employee Slate",
     "status": "Ongoing",
     "type": "design systems, iconography, illustration, motion",
@@ -89,39 +122,6 @@
         "linkText": "Thumbnails↗",
         "linkUrl": "https://horizon.servicenow.com/workspace/components",
         "suffix": " and banners illustrations",
-        "assetName": ""
-      }
-    ]
-  },
-  {
-    "title": "Lightstep Incident Response",
-    "status": "",
-    "type": "ux design, design systems",
-    "description": [
-      "Spearheaded visual experience as 1 of 2 design system focused product designers within the billion dollar ITSM portfolio, helping shape Lightstep Incident Response, an all-in-one DevOps/SRE platform that my team built 0→1.",
-      "Collaborated cross-functionally and externally with stakeholders such as PM's, accessibility, researchers, developers, and other product designers to make sure we were delivering experiences optimized for our target customer needs.",
-      "Lightstep reached 40+ clients following MVP launch in March 2022."
-    ],
-    "links": [
-      {
-        "text": "Press↗",
-        "url": "https://newsroom.servicenow.com/press-releases/details/2022/ServiceNow-Broadens-Lightstep-Portfolio-with-Introduction-of-Incident-Response-Product-for-More-Predictive-Efficient-Incident-Resolution-03-14-2022-12-00-AM/default.aspx"
-      }
-    ],
-    "image": "image4",
-    "items": [
-      {
-        "text": "On-call flow custom components and specifications",
-        "linkText": "",
-        "linkUrl": "",
-        "suffix": "",
-        "assetName": ""
-      },
-      {
-        "text": "Landing page and Homepage design",
-        "linkText": "",
-        "linkUrl": "",
-        "suffix": "",
         "assetName": ""
       }
     ]
