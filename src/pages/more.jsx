@@ -9,12 +9,13 @@ function More() {
       <div className="more-main-container">
         <div className="more-blurb">
           <h2>
-            I make things with meticulous attention to detail, on screens and off
+            I make things with meticulous attention to detail, on screens and
+            off
           </h2>
           <p>
-            Currently I'm building icons, illustrations, and
-            animations at ServiceNow on the Visual Experience team. Previously
-            I helped build Lightstep 0→1 as 1 of 2 product designers.
+            Currently I'm building icons, illustrations, and animations at
+            ServiceNow on the Visual Experience team. Previously I helped build
+            Lightstep 0→1 as 1 of 2 product designers.
           </p>
           <br />
           <p>
@@ -59,7 +60,12 @@ function More() {
         </div>
         <div className="portrait-container">
           <img src={me} alt="me" />
-          <p><Citation number={6} note={notes[6]}>Lucy</Citation> Xu</p>
+          <p>
+            <Citation number={6} note={notes[6]}>
+              Lucy
+            </Citation>{' '}
+            Xu
+          </p>
         </div>
       </div>
       <div className="side-quest-container">
@@ -73,7 +79,10 @@ function More() {
             >
               symbol soup↗
             </Link>
-            <p>accessories for memories in the form of digital sprinkles</p>
+            <p>
+              I built a webapp: accessories for your memories in the form of
+              digital sprinkles
+            </p>
           </div>
           <div className="side-quest-item">
             <Link

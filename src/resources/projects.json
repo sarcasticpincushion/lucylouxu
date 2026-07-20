@@ -1,32 +1,58 @@
 [
   {
     "title": "Horizon Design System refresh",
-    "status": "Ongoing",
     "type": "design systems, iconography, illustration, motion",
     "description": [
-      "Redesigned 800+ utility icons for our design system refresh. Introduced a 20px to bridge the gap between our existing 16px and 24px to provide our designers with greater flexibility within our system.",
-      "Led unification of 200+ multi-colored icons across ServiceNow's Service Portal. Auditing use cases cross-functionally and built a design library to standardize patterns for further adoption.",
-      "My day to day involves managing ongoing icon production requests from cross-functional teams, maintaining design libraries for utility and colored tile icons, and executing animation requests to support product teams."
+      "Built and evolved a scalable iconography and illustration system for our design system refresh, including 800+ utility icons and 100+ illustrations. Introduced a 20px size to bridge the gap between our existing 16px and 24px, enabling our designers with greater flexibility and increasing adoption across product teams by 21%.",
+      "Led end to end unification strategy of 200+ multi-colored icons across ServiceNow’s Service Portal. Collaborated cross-functionally with PMs, designers, and engineers to audit >90 use cases to standardize icon usage and theming patterns and built a design library to standardize patterns for further adoption.",
+      "Maintained shared icon libraries using Figma plugins for organization and validation, supporting cross-functional teams with efficient handoff of icon and animation requests, and ensuring consistent implementation of design system standards across product experiences."
     ],
     "links": [],
     "image": "image1",
     "items": [
       {
-        "text": "Redesigning 800+ utility icons",
+        "text": "Iconography evolution, introduction of 20px icon size",
         "linkText": "",
         "linkUrl": "",
         "suffix": "",
         "assetName": "1A.json"
       },
       {
-        "text": "Service Portal icon unification*",
+        "text": "Service Portal icon unification",
         "linkText": "",
         "linkUrl": "",
         "suffix": "",
         "assetName": "1B.json"
       },
       {
-        "text": "Product illustration animations",
+        "text": "Product illustration animations sample",
+        "linkText": "",
+        "linkUrl": "",
+        "suffix": "",
+        "assetName": ""
+      }
+    ]
+  },
+  {
+    "title": "ServiceNow EmployeeWorks",
+    "type": "design systems, iconography, illustration, motion",
+    "description": [
+      "Established an icon animation strategy through cross-functional collaboration with researchers, designers, and stakeholders, defining interaction patterns that improved product usability and clarity.",
+      "Defined icon and illustration animations for ServiceNow's design system, establishing scalable animation behaviors across core product experiences and emerging AI offerings.",
+      "Explored and developed visual concepts to expand our visual language in the second phase of our design system refresh."
+    ],
+    "links": [],
+    "image": "image2",
+    "items": [
+      {
+        "text": "Navigation icon animation levels determined through research",
+        "linkText": "",
+        "linkUrl": "",
+        "suffix": "",
+        "assetName": ""
+      },
+      {
+        "text": "Scalable menu icon illustrations across core product experiences",
         "linkText": "",
         "linkUrl": "",
         "suffix": "",
@@ -39,8 +65,8 @@
     "status": "",
     "type": "ux design, design systems",
     "description": [
-      "Spearheaded visual experience as 1 of 2 design system focused product designers within the billion dollar ITSM portfolio, helping shape Lightstep Incident Response, an all-in-one DevOps/SRE platform that my team built 0→1.",
-      "Collaborated cross-functionally and externally with stakeholders such as PM's, accessibility, researchers, developers, and other product designers to make sure we were delivering experiences optimized for our target customer needs.",
+      "Owned the visual design of key Lightstep workflows within a 0→1 DevOps/SRE platform in ServiceNow's billion dollar ITSM portfolio, as 1 of 2 design system focused product designers, applying systems thinking to create scalable components and reusable patterns across enterprise-scale experiences.",
+      "Established custom component foundations for Lightstep's unique use cases, developing detailed design specifications that enabled scalable adoption while maintaining alignment with ServiceNow's broader design ecosystem.",
       "Lightstep reached 40+ clients following MVP launch in March 2022."
     ],
     "links": [
@@ -52,42 +78,14 @@
     "image": "image4",
     "items": [
       {
+        "text": "Defining and managing the system library, ensuring consistent design strategy",
+        "linkText": "",
+        "linkUrl": "",
+        "suffix": "",
+        "assetName": ""
+      },
+      {
         "text": "On-call flow custom components and specifications",
-        "linkText": "",
-        "linkUrl": "",
-        "suffix": "",
-        "assetName": ""
-      },
-      {
-        "text": "Landing page and Homepage design",
-        "linkText": "",
-        "linkUrl": "",
-        "suffix": "",
-        "assetName": ""
-      }
-    ]
-  },
-  {
-    "title": "Employee Slate",
-    "status": "Ongoing",
-    "type": "design systems, iconography, illustration, motion",
-    "description": [
-      "Established icon animation patterns for ServiceNow's AI product. Defined expression level standards by working with research to ensure each animation served a functional purpose to advance usability.",
-      "Delivered illustrations and design guidelines for ServiceNow's newest AI product. Explored and developed visual concepts to expand our visual language in the second phase of our design system refresh.",
-      "Contact for more details on this project"
-    ],
-    "links": [],
-    "image": "image2",
-    "items": [
-      {
-        "text": "Top nav icon animations",
-        "linkText": "",
-        "linkUrl": "",
-        "suffix": "",
-        "assetName": ""
-      },
-      {
-        "text": "Menu icon illustrations*",
         "linkText": "",
         "linkUrl": "",
         "suffix": "",

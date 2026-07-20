@@ -61,9 +61,20 @@ function Citation({ number, note, children }) {
     reposition();
     window.addEventListener('resize', reposition);
     window.addEventListener('scroll', reposition, true);
+
+    // Images inside a note load after the popover mounts; each one that
+    // arrives changes the popover height. Without re-measuring, the initial
+    // (too-short) height leaves the popover sitting on top of the phrase it
+    // points at, so reposition once each image finishes loading.
+    const imgs = Array.from(popoverRef.current?.querySelectorAll('img') ?? []);
+    imgs.forEach((img) => {
+      if (!img.complete) img.addEventListener('load', reposition);
+    });
+
     return () => {
       window.removeEventListener('resize', reposition);
       window.removeEventListener('scroll', reposition, true);
+      imgs.forEach((img) => img.removeEventListener('load', reposition));
     };
   }, [open, reposition]);
 

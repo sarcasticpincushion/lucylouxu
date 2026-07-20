@@ -29,26 +29,21 @@ body {
   margin: auto;
   padding: 35px;
   box-sizing: border-box;
+  container-type: inline-size;
+  container-name: main-container;
 
   // header
   header {
     position: sticky;
-    z-index: 1;
-    // position: fixed;
+    // Above the pinned gallery so its thumbnails/details never paint over the nav.
+    z-index: 10;
     top: 35px;
-    // left: calc(50% + 35px);
-    // transform: translateX(calc(-50% - 35px));
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: flex-start;
-    // width: calc(1440px - 70px);
 
-    h1 {
-      visibility: hidden;
-
-      &.visible {
-        visibility: visible;
-      }
+    &:has(h1) {
+      justify-content: space-between;
     }
 
     a {
@@ -76,14 +71,18 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: calc(100dvh - 35px - 59px);
-    // background-color: lightgrey;
+    min-height: calc(100dvh - 35px - 59px);
 
     .intro-container-inner {
+      position: relative;
       display: flex;
       flex: 1;
       justify-content: space-between;
       align-items: center;
+
+      @include lg {
+        flex-direction: column;
+      }
 
       .intro {
         display: flex;
@@ -95,9 +94,37 @@ body {
           width: 100%;
         }
 
+        @include md {
+          margin-top: 100px;
+        }
+
         a {
           text-decoration: none;
           color: $default-text-color;
+        }
+      }
+
+      .star {
+        position: absolute;
+        left: 50%;
+        margin: 0;
+        font-family: 'Courier New', monospace;
+        font-size: 6.5px;
+        line-height: 1;
+        letter-spacing: 0;
+        white-space: pre;
+        color: #000;
+        cursor: pointer;
+        user-select: none;
+        transform: scale(1.75) translateY(-20px);
+
+        @include lg {
+          top: 50%;
+          transform: translate(-50%, -35%) scale(1.35);
+        }
+
+        @include md {
+          transform: translate(-50%, -25%) scale(1);
         }
       }
     }
@@ -105,6 +132,7 @@ body {
     .separator {
       border-top: 1px solid #000;
       padding: 14px 0;
+      margin-top: 14px;
     }
   }
 
@@ -112,189 +140,126 @@ body {
   .work-container {
     display: flex;
     flex-direction: column;
-    gap: 156px;
-    margin-bottom: 165px;
+    gap: 165px;
 
-    $details-width: 37%;
+    $details-width: 34%;
     $thumbnail-gap: 36px;
+    $thumbnail-gap-sm: 6vw;
 
-    // In pinned mode the footer lives inside the last project, so no trailing
-    // margin is needed below the gallery.
-    &.work-container--pinned {
-      margin-bottom: 0;
+    .project-item-header {
+      display: flex;
+      justify-content: space-between;
     }
 
-    .project-container {
+    .project-type {
+      color: $subheader-text-color;
+      margin-bottom: 16px;
+    }
+
+    .project-thumbnail {
       display: flex;
       flex-direction: column;
-      gap: 165px;
-      padding-left: 115px;
+      gap: 8px;
 
-      .project-item {
-        // Details and the thumbnail strip share a single grid cell so they
-        // overlap, yet the row still grows to fit whichever is taller (grid
-        // sizes the track to the max of both) — preventing rows from colliding.
-        display: grid;
-        grid-template-columns: 1fr;
-
-        .project-item-details {
-          grid-area: 1 / 1;
-          z-index: 2;
-          width: $details-width;
-          padding-right: $thumbnail-gap;
-          box-sizing: border-box;
-          background: #fff;
-          display: flex;
-          flex-direction: column;
-          gap: 16px;
-
-          @include lg {
-            grid-area: auto;
-            width: 100%;
-            padding-right: 0;
-            margin-bottom: 24px;
-          }
-
-          .project-item-header {
-            display: flex;
-            justify-content: space-between;
-          }
-
-          .project-type {
-            color: $subheader-text-color;
-            margin-bottom: 16px;
-          }
+      &:first-child {
+        @include xxl {
+          margin-left: 0;
         }
 
-        .project-thumbnails {
-          grid-area: 1 / 1;
-          z-index: 1;
-          min-width: 0; // allow the scroll container to shrink within the grid cell
-          overflow-x: auto;
-          scroll-snap-type: x mandatory;
-          scroll-padding-left: $details-width;
-          scrollbar-width: none;
+        margin-left: $details-width;
+      }
 
-          &::-webkit-scrollbar {
-            display: none;
-          }
+      .project-thumbnail-media {
+        width: 800px;
+        // width: 40vw;
+        // height: 30vw;
+        // min-width: 700px;
+        // max-width: 800px;
 
-          @include lg {
-            grid-area: auto;
-            scroll-padding-left: 0;
-          }
-
-          .project-thumbnails-track {
-            display: flex;
-            flex-wrap: nowrap;
-            gap: $thumbnail-gap;
-          }
-
-          .project-thumbnail {
-            flex: 0 0 55%;
-            scroll-snap-align: start;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-
-            @include lg {
-              flex-basis: 85%;
-            }
-
-            // Offset the opening thumbnail so its artwork sits to the right of
-            // the details column; scrolling slides later thumbnails underneath.
-            &:first-child {
-              margin-left: $details-width;
-
-              @include lg {
-                margin-left: 0;
-              }
-            }
-
-            .project-thumbnail-media {
-              canvas {
-                height: auto !important;
-              }
-            }
-          }
+        @include lg {
+          width: calc(100vw - 70px - 30px);
         }
       }
     }
 
-    // Scroll-driven horizontal gallery (desktop, motion-OK). Each project pins
-    // to the viewport and its thumbnails translate horizontally as the user
-    // scrolls; between projects the page scrolls vertically to the next one.
-    // Each wrapper is made tall by JS to supply that project's scroll distance.
-    .gallery-list {
+    // Sticky-scroll horizontal gallery: the only work-page layout. Each project
+    // is a tall section; work.jsx sets its min-height so scrolling through it
+    // maps to horizontal travel of the thumbnail track (motion's useScroll +
+    // useTransform) while the pinned viewport holds the details.
+    .gallery {
       display: flex;
       flex-direction: column;
-      gap: 165px; // spacing between one project and the next
+      gap: 100px;
+      margin-bottom: 120px;
     }
 
+    // Tall section: its inline min-height (set in work.jsx) is the scroll runway.
+    // No overflow here — an overflow ancestor would break the sticky child below.
     .gallery-project {
       position: relative;
     }
 
-    .gallery-viewport {
+    // The pinned viewport: stays fixed below the nav while the section scrolls
+    // past. overflow:hidden (on the sticky box itself, not an ancestor) clips the
+    // track's off-screen right so the page never gains a horizontal scrollbar.
+    .gallery-pin {
       position: sticky;
-      top: 94px; // overwritten inline with the measured header offset
-      // height set inline by JS to the content height (details vs thumbnails)
+      top: var(--nav-clear);
+      height: calc(100vh - var(--nav-clear));
       clip-path: polygon(0% -1000%, 1000% -1000%, 1000% 1000%, 0% 1000%);
     }
 
-    // This project's details, pinned on the left while its thumbnails pass.
-    .gallery-details-layer {
-      position: absolute;
-      top: 0;
-      left: 0;
-      z-index: 2;
-      width: $details-width;
+    // Details and the track share one grid cell so they overlap; the row is
+    // centered vertically within the pinned viewport.
+    .gallery-stage {
+      display: grid;
+      grid-template-columns: 1fr;
+      align-content: center;
       height: 100%;
-      padding-right: $thumbnail-gap;
-      box-sizing: border-box;
-      background: #fff;
+      gap: 24px;
 
-      .project-item-details {
-        display: flex;
-        flex-direction: column;
-        gap: 16px;
+      @include xxl {
+        grid-template-rows: auto 1fr;
       }
 
-      .project-item-header {
-        display: flex;
-        justify-content: space-between;
-      }
+      // This project's details, pinned on the left while its thumbnails pass behind.
+      .gallery-details-layer {
+        grid-area: 1 / 1;
+        z-index: 2;
+        width: $details-width;
+        padding-right: 60px;
+        box-sizing: border-box;
+        background: #fff;
 
-      .project-type {
-        color: $subheader-text-color;
-        margin-bottom: 16px;
-      }
-    }
-
-    .gallery-track {
-      display: flex;
-      flex-wrap: nowrap;
-      align-items: flex-start;
-      gap: $thumbnail-gap;
-      z-index: 1;
-      will-change: transform;
-
-      .project-thumbnail {
-        flex: 0 0 55%;
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-
-        // Offset the opening thumbnail so it sits to the right of the pinned
-        // details overlay; later thumbnails slide underneath as they exit.
-        &:first-child {
-          margin-left: $details-width;
+        @include xxl {
+          width: 100%;
+          padding-right: 0;
         }
 
-        .project-thumbnail-media {
-          canvas {
-            height: auto !important;
-          }
+        .project-item-details {
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+        }
+      }
+
+      .gallery-track {
+        grid-area: 1 / 1;
+        z-index: 1;
+        min-width: 0; // let the track shrink to the cell; content overflows & clips
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: flex-start;
+        gap: $thumbnail-gap;
+        will-change: transform;
+        // .project-thumbnail rules (including the first-child offset) are shared above.
+
+        @include sm {
+          gap: $thumbnail-gap-sm;
+        }
+
+        @include xxl {
+          grid-area: 2 / 1;
         }
       }
     }
@@ -304,25 +269,42 @@ body {
   .more-container {
     display: flex;
     flex-direction: column;
-    gap: 130px;
-    margin: 80px auto 120px;
+    gap: 60px;
+    margin: 60px auto 150px;
     width: 980px;
+
+    @container main-container (max-width: 1060px) {
+      width: $more-content-width;
+    }
+
+    @container main-container (max-width: 530px) {
+      width: $more-content-width-sm;
+    }
 
     .more-main-container {
       display: flex;
-      gap: 70px;
+      gap: 80px;
 
-      img {
-        width: 460px;
+      @container main-container (max-width: 1060px) {
+        flex-direction: column;
+        gap: 24px;
+      }
+
+      &:has(.citation-phrase[aria-expanded='true']) p {
+        opacity: 0.6;
         pointer-events: none;
       }
 
-      .more-blurb {
-        &:has(.citation-phrase[aria-expanded=true]) p {
-          opacity: 0.6;
-          pointer-events: none;
-        }
+      img {
+        width: $more-content-width;
+        pointer-events: none;
 
+        @container main-container (max-width: 530px) {
+          width: $more-content-width-sm;
+        }
+      }
+
+      .more-blurb {
         h2 {
           margin-bottom: 20px;
         }
@@ -336,13 +318,18 @@ body {
 
       .side-quest-list {
         display: flex;
-        gap: 70px;
+        flex-direction: column;
+        gap: 16px;
 
         .side-quest-item {
           display: flex;
           flex-direction: column;
-          gap: 8px;
+          gap: 4px;
           width: 332px;
+
+          @container main-container (max-width: 530px) {
+            width: $more-content-width-sm;
+          }
 
           a {
             text-decoration-thickness: 1.5px;
@@ -360,9 +347,14 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
+    gap: 50px;
     padding: 35px;
     width: 100%;
     box-sizing: border-box;
+
+    p {
+      text-align: right;
+    }
   }
 }
 
@@ -372,11 +364,10 @@ $citation-color: #ff00ff;
 .citation {
   .citation-phrase {
     cursor: pointer;
-    transition: color 0.12s ease;
 
     &:hover,
     &:focus-visible,
-    &[aria-expanded=true] {
+    &[aria-expanded='true'] {
       color: $citation-color;
     }
   }

@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { motion, useScroll, useTransform } from 'motion/react';
 import Intro from './../components/intro';
-import Footer from './../components/footer';
 import projects from './../resources/projects.json';
 import image1 from './../resources/images/1.svg';
 import image2 from './../resources/images/2.svg';
@@ -15,25 +15,28 @@ const imageMap = {
   image4,
 };
 
-const videoAssets = new Set(['1A', '1B', '1C', '2A', '2B', '3A', '3B', '4A', '4B']);
+const videoAssets = new Set([
+  '1A',
+  '1B',
+  '1C',
+  '2A',
+  '2B',
+  '3A',
+  '3B',
+  '4A',
+  '4B',
+]);
 
 const getSelectionValue = (projectId, itemId) => {
   return `${projectId}${String.fromCharCode(65 + itemId)}`;
 };
 
-const DESKTOP_QUERY = '(min-width: 993px)'; // $lg (992px) + 1
-const REDUCED_MOTION_QUERY = '(prefers-reduced-motion: reduce)';
-const SPEED = 1; // vertical-scroll : horizontal-travel ratio (raise to shorten)
-
-const clamp = (value, lo, hi) => Math.max(lo, Math.min(hi, value));
-
-function computeEnabled() {
-  if (typeof window === 'undefined' || !window.matchMedia) return false;
-  return (
-    window.matchMedia(DESKTOP_QUERY).matches &&
-    !window.matchMedia(REDUCED_MOTION_QUERY).matches
-  );
-}
+// Sticky-scroll gallery tuning.
+const NAV_GAP = 24; // extra clearance below the sticky nav where a project pins
+const SCROLL_RATIO = 1; // vertical scroll px per horizontal travel px (>1 = longer, slower runway)
+// Optional "buttery" smoothing: wrap scrollYProgress in useSpring(…, SPRING) in
+// GalleryProject for a lagged feel. Left off by default for a tight 1:1 track.
+// const SPRING = { stiffness: 300, damping: 40, restDelta: 0.001 };
 
 function ThumbnailMedia({ project, projectId, itemId }) {
   const assetKey = getSelectionValue(projectId + 1, itemId);
@@ -58,7 +61,7 @@ function ThumbnailMedia({ project, projectId, itemId }) {
 
 function ThumbnailTitle({ item }) {
   return (
-    <div className="project-thumbnail-title">
+    <p className="project-thumbnail-title">
       {item.text}
       {item.linkText && (
         <Link to={item.linkUrl} className="link">
@@ -66,7 +69,7 @@ function ThumbnailTitle({ item }) {
         </Link>
       )}
       {item.suffix}
-    </div>
+    </p>
   );
 }
 
@@ -103,115 +106,39 @@ function Thumbnails({ project, projectId }) {
   ));
 }
 
-// Fallback: the original stacked layout with per-project native horizontal
-// scroll. Used on narrow viewports and when the user prefers reduced motion.
-function StackedGallery() {
-  return (
-    <div className="project-container">
-      {projects.map((project, projectId) => (
-        <div key={projectId} className="project-item">
-          <ProjectDetails project={project} />
-          <div className="project-thumbnails">
-            <ul className="project-thumbnails-track">
-              {project.items.map((item, itemId) => (
-                <li key={itemId} className="project-thumbnail">
-                  <ThumbnailMedia
-                    project={project}
-                    projectId={projectId}
-                    itemId={itemId}
-                  />
-                  <ThumbnailTitle item={item} />
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      ))}
-    </div>
-  );
-}
-
-// One project, pinned to the viewport while vertical scroll drives its
-// thumbnails horizontally. When its last thumbnail is reached the section
-// unpins and normal vertical scrolling continues to the next project, which
-// then pins and scrolls its own thumbnails — an alternating motion.
-function PinnedProject({ project, projectId }) {
-  const wrapperRef = useRef(null);
-  const viewportRef = useRef(null);
+// One project of the sticky-scroll gallery.
+//
+// The section is TALL; inside it a viewport (.gallery-pin) is `position: sticky`
+// and pins below the nav. Motion's useScroll reports how far the page has
+// scrolled through this section (0 at its top, 1 at its bottom); useTransform
+// maps that progress to horizontal travel of the thumbnail track while the
+// project's details stay pinned on the left. The section's height is sized so
+// the pinned scroll distance equals the track's horizontal travel (×
+// SCROLL_RATIO) — this keeps scroll speed consistent across projects with
+// different thumbnail counts. When the strip finishes, the section unpins and
+// normal vertical scrolling continues to the next project; scrolling up
+// reverses it. Because the horizontal position is derived from real scroll,
+// wheel / trackpad / keyboard all drive it natively — no input interception.
+function GalleryProject({ project, projectId, navClear }) {
+  const sectionRef = useRef(null);
   const trackRef = useRef(null);
-  const detailsRef = useRef(null);
-  const metrics = useRef({
-    stickyTop: 0,
-    viewportH: 0,
-    horizontalTravel: 0,
-    wrapperH: 0,
+  const [travel, setTravel] = useState(0);
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start start', 'end end'],
   });
-  const ticking = useRef(false);
-  const rafId = useRef(0);
+  const x = useTransform(scrollYProgress, [0, 1], [0, -travel]);
 
+  // Measure how far the track can travel (content width beyond the viewport).
+  // Widths shift as media/layout settle, so re-measure on resize + media load.
   useLayoutEffect(() => {
-    const wrapper = wrapperRef.current;
-    const viewport = viewportRef.current;
     const track = trackRef.current;
-    if (!wrapper || !viewport || !track) return;
-
-    const update = () => {
-      const { stickyTop, viewportH, horizontalTravel, wrapperH } =
-        metrics.current;
-      const denom = wrapperH - viewportH;
-      const rectTop = wrapper.getBoundingClientRect().top;
-
-      if (denom <= 0 || horizontalTravel <= 0) {
-        track.style.transform = 'translate3d(0,0,0)';
-        return;
-      }
-      const progress = clamp((stickyTop - rectTop) / denom, 0, 1);
-      track.style.transform = `translate3d(${-(progress * horizontalTravel)}px,0,0)`;
-    };
-
-    const measure = () => {
-      // Height follows the content — the taller of the details card and the
-      // thumbnails — so the pinned viewport keeps the original row height
-      // rather than filling the screen.
-      viewport.style.height = 'auto';
-      const detailsH = detailsRef.current
-        ? detailsRef.current.getBoundingClientRect().height
-        : 0;
-      const trackH = track.getBoundingClientRect().height;
-      const viewportH = Math.max(detailsH, trackH);
-      viewport.style.height = `${viewportH}px`;
-
-      // Pin the project centered vertically in the screen.
-      const stickyTop = Math.max(0, (window.innerHeight - viewportH) / 2);
-      viewport.style.top = `${stickyTop}px`;
-
-      const horizontalTravel = Math.max(
-        0,
-        track.scrollWidth - viewport.clientWidth
-      );
-      const wrapperH = viewportH + horizontalTravel / SPEED;
-      wrapper.style.height = `${wrapperH}px`;
-
-      metrics.current = { stickyTop, viewportH, horizontalTravel, wrapperH };
-      update();
-    };
-
-    const onScroll = () => {
-      if (ticking.current) return;
-      ticking.current = true;
-      rafId.current = requestAnimationFrame(() => {
-        ticking.current = false;
-        update();
-      });
-    };
-
+    if (!track) return;
+    const measure = () =>
+      setTravel(Math.max(0, track.scrollWidth - track.clientWidth));
     measure();
 
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', measure);
-
-    // Track width shifts as media/layout settle; observe it (not the viewport,
-    // whose height we mutate in measure — that would loop).
     const resizeObserver = new ResizeObserver(measure);
     resizeObserver.observe(track);
 
@@ -222,72 +149,76 @@ function PinnedProject({ project, projectId }) {
     });
 
     return () => {
-      window.removeEventListener('scroll', onScroll);
-      window.removeEventListener('resize', measure);
       resizeObserver.disconnect();
       media.forEach((el) => {
         el.removeEventListener('loadeddata', measure);
         el.removeEventListener('load', measure);
       });
-      cancelAnimationFrame(rafId.current);
     };
   }, []);
 
+  // Runway = one pin-height (100vh minus nav clearance) plus the horizontal
+  // travel scaled by SCROLL_RATIO. With travel 0 it collapses to a single
+  // pin-height and the project simply renders statically (nothing to scroll).
+  const minHeight = `calc(100vh - ${navClear}px + ${travel * SCROLL_RATIO}px)`;
+
   return (
-    <div className="gallery-project" ref={wrapperRef}>
-      <div className="gallery-viewport" ref={viewportRef}>
-        <div className="gallery-details-layer">
-          <ProjectDetails project={project} innerRef={detailsRef} />
-        </div>
-        <div className="gallery-track" ref={trackRef}>
-          <Thumbnails project={project} projectId={projectId} />
+    <section className="gallery-project" ref={sectionRef} style={{ minHeight }}>
+      <div className="gallery-pin">
+        <div className="gallery-stage">
+          <div className="gallery-details-layer">
+            <ProjectDetails project={project} />
+          </div>
+          <motion.div className="gallery-track" ref={trackRef} style={{ x }}>
+            <Thumbnails project={project} projectId={projectId} />
+          </motion.div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
 
-function PinnedGallery() {
+// Sticky horizontal gallery controller — the work page's only layout.
+// Owns the nav clearance so every project pins at the same line below the nav.
+function FrozenGallery() {
+  // Exposed to CSS as --nav-clear (drives .gallery-pin's top/height) and reused
+  // in each section's min-height runway calc.
+  const [navClear, setNavClear] = useState(NAV_GAP);
+
+  useEffect(() => {
+    const measure = () => {
+      const header = document.querySelector('.main > header');
+      const clear = header
+        ? (parseFloat(getComputedStyle(header).top) || 0) +
+          header.offsetHeight +
+          NAV_GAP
+        : NAV_GAP;
+      setNavClear(clear);
+    };
+    measure();
+    window.addEventListener('resize', measure);
+    return () => window.removeEventListener('resize', measure);
+  }, []);
+
   return (
-    <div className="gallery-list">
+    <div className="gallery" style={{ '--nav-clear': `${navClear}px` }}>
       {projects.map((project, projectId) => (
-        <PinnedProject
+        <GalleryProject
           key={projectId}
           project={project}
           projectId={projectId}
+          navClear={navClear}
         />
       ))}
     </div>
   );
 }
 
-function Work({ introHeadingRef }) {
-  const [enabled, setEnabled] = useState(computeEnabled);
-
-  useEffect(() => {
-    if (typeof window === 'undefined' || !window.matchMedia) return;
-    const desktop = window.matchMedia(DESKTOP_QUERY);
-    const reduced = window.matchMedia(REDUCED_MOTION_QUERY);
-    const sync = () => setEnabled(computeEnabled());
-    desktop.addEventListener('change', sync);
-    reduced.addEventListener('change', sync);
-    return () => {
-      desktop.removeEventListener('change', sync);
-      reduced.removeEventListener('change', sync);
-    };
-  }, []);
-
+function Work() {
   return (
-    <div className={`work-container${enabled ? ' work-container--pinned' : ''}`}>
-      <Intro introHeadingRef={introHeadingRef} />
-      {enabled ? (
-        <PinnedGallery />
-      ) : (
-        <>
-          <StackedGallery />
-          <Footer />
-        </>
-      )}
+    <div className="work-container">
+      <Intro />
+      <FrozenGallery />
     </div>
   );
 }
