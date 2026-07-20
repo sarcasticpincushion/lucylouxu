@@ -5,10 +5,13 @@ import lucyVanPelt from './images/lucy-van-pelt.jpg';
 //   2: (
 //     <>
 //       See my <a href="https://..." target="_blank">portfolio↗</a>.
-//       <img src={someImage} alt="a nail set" />
+//       <img src={someImage} alt="a nail set" width={W} height={H} />
 //       <p>A second paragraph.</p>
 //     </>
 //   ),
+// Always give an <img> its intrinsic width/height (in px) so the popover
+// reserves the image's space before it loads; otherwise the popover measures
+// short and jumps when the image arrives on first open.
 const notes = {
   1: 'Think falling through the sky with an umbrella... in a surreal Magritte sort of way.',
   2: (
@@ -49,7 +52,7 @@ const notes = {
   5: 'I have a little chrome Nikon Coolpix S01, the Konica Minolta Dimage X1, and my beloved limited edition chrome Olympus Mju I film camera that I received as a gift (I accidentally made it a point to have all chrome cameras).',
   6: (
     <>
-      <img src={lucyVanPelt} alt="Lucy Van Pelt" />
+      <img src={lucyVanPelt} alt="Lucy Van Pelt" width={291} height={291} />
       Despite Lucy Van Pelt's iconic self, I was not named after her (I did grow
       up with the Peanuts collection of comics from Costco though).
       <br />

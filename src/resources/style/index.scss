@@ -1,4 +1,5 @@
 @import './reset.scss';
+@import './fonts.scss';
 @import './typography.scss';
 @import './mixins.scss';
 @import './constants.scss';
@@ -9,6 +10,19 @@
 //     url('./../images/mycursor.svg') 10 8,
 //     auto;
 // }
+
+// Force light mode everywhere: opt out of dark UA styling / auto-dark, and pin
+// an explicit light background + text color so the page never inherits a dark
+// canvas regardless of the visitor's OS/browser theme.
+:root {
+  color-scheme: only light;
+}
+
+html,
+body {
+  background-color: #fff;
+  color: $default-text-color;
+}
 
 body {
   height: 100%;
@@ -35,7 +49,6 @@ body {
   // header
   header {
     position: sticky;
-    // Above the pinned gallery so its thumbnails/details never paint over the nav.
     z-index: 10;
     top: 35px;
     display: flex;
@@ -108,9 +121,6 @@ body {
         position: absolute;
         left: 50%;
         margin: 0;
-        font-family: 'Courier New', monospace;
-        font-size: 6.5px;
-        line-height: 1;
         letter-spacing: 0;
         white-space: pre;
         color: #000;
@@ -171,13 +181,13 @@ body {
 
       .project-thumbnail-media {
         width: 800px;
-        // width: 40vw;
-        // height: 30vw;
-        // min-width: 700px;
-        // max-width: 800px;
 
         @include lg {
           width: calc(100vw - 70px - 30px);
+        }
+
+        @include md {
+          width: calc(100vw - 70px);
         }
       }
     }
@@ -207,6 +217,10 @@ body {
       top: var(--nav-clear);
       height: calc(100vh - var(--nav-clear));
       clip-path: polygon(0% -1000%, 1000% -1000%, 1000% 1000%, 0% 1000%);
+
+      @include md {
+        overflow: hidden;
+      }
     }
 
     // Details and the track share one grid cell so they overlap; the row is
@@ -410,7 +424,12 @@ $citation-color: #ff00ff;
     img {
       display: block;
       max-width: 100%;
+      height: auto; // scale height with width; aspect-ratio comes from the
+      // img's width/height attributes so its space is reserved before the
+      // file loads — otherwise the popover measures short and jumps up (it
+      // sits above the phrase) when the image arrives on first open.
       margin-bottom: 4px;
+      pointer-events: none;
     }
 
     a {
