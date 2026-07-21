@@ -51,33 +51,55 @@ body {
   }
 
   // header
+  //
+  // `display: contents` collapses the header box so its children lay out
+  // directly inside `.main` (a tall, position: relative scroll context). This
+  // lets the nav stick across the whole page while the h1 scrolls away with the
+  // content instead of being pinned along with it.
   header {
-    position: sticky;
-    z-index: 10;
-    top: 35px;
-    display: flex;
-    justify-content: flex-end;
-    align-items: flex-start;
-
-    &:has(h1) {
-      justify-content: space-between;
-    }
+    display: contents;
 
     a {
       color: $default-text-color;
       text-decoration: none;
     }
 
-    nav ul {
-      display: flex;
-      flex-direction: column;
-      gap: 17px;
+    // Site title: sits at the top-left but scrolls away with the page. Absolute
+    // positioning is relative to `.main`'s padding box, so top/left match the
+    // container padding (35px, 24px on md). top stays 35px to line up with the
+    // nav's stuck position.
+    h1 {
+      position: absolute;
+      z-index: 10;
+      top: 35px;
+      left: 35px;
 
-      li {
-        &.selected::after {
-          content: '←';
-          position: absolute;
-          margin-left: 5px;
+      @include md {
+        left: 24px;
+      }
+    }
+
+    // Nav: stays pinned. fit-content width + margin-left auto keeps the sticky
+    // box only as wide as the links (right-aligned) so it never overlays and
+    // blocks clicks on the content to its left.
+    nav {
+      position: sticky;
+      z-index: 10;
+      top: 35px;
+      width: fit-content;
+      margin-left: auto;
+
+      ul {
+        display: flex;
+        flex-direction: column;
+        gap: 17px;
+
+        li {
+          &.selected::after {
+            content: '←';
+            position: absolute;
+            margin-left: 5px;
+          }
         }
       }
     }
@@ -144,7 +166,7 @@ body {
         }
 
         @include sm {
-          transform: translate(-50%, -30%) scale(0.5);
+          transform: translate(-50%, -30%) scale(0.75);
         }
       }
     }
@@ -160,13 +182,18 @@ body {
   .work-container {
     display: flex;
     flex-direction: column;
-    gap: 156px;
+    gap: 150px;
     margin-bottom: 165px;
 
     $details-frac: 0.37; // details card takes this fraction of the content column
     $details-width: percentage($details-frac); // 37%
     $thumbnail-frac: 0.55; // each thumbnail's width as a fraction of the content column
+    $thumbnail-frac-lg: 0.85; // wider thumbnails once the layout stacks (below $lg)
     $thumbnail-gap: 36px;
+
+    @include md {
+      gap: 80px;
+    }
 
     // Stacked gallery: each project is its own row with a details card and a
     // horizontal strip of thumbnails the visitor scrolls/swipes manually.
@@ -174,6 +201,10 @@ body {
       display: flex;
       flex-direction: column;
       gap: 165px;
+
+      @include md {
+        gap: 100px;
+      }
 
       .project-item {
         // Details and the thumbnail strip share a single grid cell so they
@@ -219,17 +250,19 @@ body {
           scroll-snap-type: x mandatory;
           scrollbar-width: none;
 
-          // Full-bleed the right edge: the scroll box extends past the content
-          // column out to the viewport edge, so thumbnails scroll off toward the
-          // real screen edge instead of being clipped at the column. The left
-          // edge stays pinned to the column (under the details card). --edge
-          // mirrors .main's centering + 35px padding (padding is only ever 35px
-          // above $lg, the only range this full-bleed runs in); --col is the
-          // resulting content-column width, which drives the details-clearing
-          // offsets so they hold their place even though the scrollport is now
-          // wider. A scroll container clips both axes, so this widens the box
-          // rather than "un-clipping" it.
-          --edge: calc(max((100vw - #{$xxl}) / 2, 0px) + 35px);
+          // Full-bleed the right edge at every breakpoint: the scroll box extends
+          // past the content column out to the viewport edge, so thumbnails scroll
+          // off toward the real screen edge instead of being clipped at the
+          // column. The left edge stays pinned to the column (under the details
+          // card above $lg; under the stacked details text below it). --pad
+          // mirrors .main's page padding, --edge is the column's inset from the
+          // viewport (padding + any centering above $xxl), and --col is the
+          // resulting content-column width — used so the details-clearing offsets
+          // and thumbnail widths hold their place even though the scrollport is
+          // now wider. (A scroll container clips both axes, so this widens the box
+          // rather than "un-clipping" it.)
+          --pad: 35px;
+          --edge: calc(max((100vw - #{$xxl}) / 2, 0px) + var(--pad));
           --col: calc(100vw - 2 * var(--edge));
           margin-right: calc(50% - 50vw);
           scroll-padding-left: calc(#{$details-frac} * var(--col));
@@ -238,10 +271,20 @@ body {
             display: none;
           }
 
+          // Below $lg the details card stops overlapping and stacks above the
+          // strip, so the thumbnails no longer need to clear it — but the strip
+          // still spills to the viewport edge.
           @include lg {
             grid-area: auto;
-            margin-right: 0; // stacked layout already spans the column
             scroll-padding-left: 0;
+          }
+
+          @include md {
+            --pad: 24px; // .main's padding tightens here
+          }
+
+          @include sm {
+            margin-left: -12px;
           }
 
           .project-thumbnails-track {
@@ -266,7 +309,7 @@ body {
             gap: 8px;
 
             @include lg {
-              flex-basis: 85%;
+              flex-basis: calc(#{$thumbnail-frac-lg} * var(--col));
             }
 
             // Offset the opening thumbnail so its artwork sits to the right of
@@ -378,6 +421,10 @@ body {
     padding: 35px;
     width: 100%;
     box-sizing: border-box;
+
+    @include md {
+      padding: 24px;
+    }
 
     p {
       text-align: right;
