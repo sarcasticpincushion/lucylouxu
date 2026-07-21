@@ -46,6 +46,10 @@ body {
   container-type: inline-size;
   container-name: main-container;
 
+  @include md {
+    padding: 24px;
+  }
+
   // header
   header {
     position: sticky;
@@ -92,9 +96,15 @@ body {
       flex: 1;
       justify-content: space-between;
       align-items: center;
+      overflow: hidden;
 
       @include lg {
         flex-direction: column;
+        top: 60px;
+      }
+
+      @include md {
+        top: 30px;
       }
 
       .intro {
@@ -105,10 +115,6 @@ body {
 
         @include lg {
           width: 100%;
-        }
-
-        @include md {
-          margin-top: 100px;
         }
 
         a {
@@ -130,11 +136,15 @@ body {
 
         @include lg {
           top: 50%;
-          transform: translate(-50%, -35%) scale(1.35);
+          transform: translate(-50%, -40%) scale(1.25);
         }
 
         @include md {
-          transform: translate(-50%, -25%) scale(1);
+          transform: translate(-50%, -35%) scale(1);
+        }
+
+        @include sm {
+          transform: translate(-50%, -30%) scale(0.5);
         }
       }
     }
@@ -150,130 +160,133 @@ body {
   .work-container {
     display: flex;
     flex-direction: column;
-    gap: 165px;
+    gap: 156px;
+    margin-bottom: 165px;
 
-    $details-width: 34%;
+    $details-frac: 0.37; // details card takes this fraction of the content column
+    $details-width: percentage($details-frac); // 37%
+    $thumbnail-frac: 0.55; // each thumbnail's width as a fraction of the content column
     $thumbnail-gap: 36px;
-    $thumbnail-gap-sm: 6vw;
 
-    .project-item-header {
-      display: flex;
-      justify-content: space-between;
-    }
-
-    .project-type {
-      color: $subheader-text-color;
-      margin-bottom: 16px;
-    }
-
-    .project-thumbnail {
+    // Stacked gallery: each project is its own row with a details card and a
+    // horizontal strip of thumbnails the visitor scrolls/swipes manually.
+    .project-container {
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 165px;
 
-      &:first-child {
-        @include xxl {
-          margin-left: 0;
-        }
-
-        margin-left: $details-width;
-      }
-
-      .project-thumbnail-media {
-        width: 800px;
-
-        @include lg {
-          width: calc(100vw - 70px - 30px);
-        }
-
-        @include md {
-          width: calc(100vw - 70px);
-        }
-      }
-    }
-
-    // Sticky-scroll horizontal gallery: the only work-page layout. Each project
-    // is a tall section; work.jsx sets its min-height so scrolling through it
-    // maps to horizontal travel of the thumbnail track (motion's useScroll +
-    // useTransform) while the pinned viewport holds the details.
-    .gallery {
-      display: flex;
-      flex-direction: column;
-      gap: 100px;
-      margin-bottom: 120px;
-    }
-
-    // Tall section: its inline min-height (set in work.jsx) is the scroll runway.
-    // No overflow here — an overflow ancestor would break the sticky child below.
-    .gallery-project {
-      position: relative;
-    }
-
-    // The pinned viewport: stays fixed below the nav while the section scrolls
-    // past. overflow:hidden (on the sticky box itself, not an ancestor) clips the
-    // track's off-screen right so the page never gains a horizontal scrollbar.
-    .gallery-pin {
-      position: sticky;
-      top: var(--nav-clear);
-      height: calc(100vh - var(--nav-clear));
-      clip-path: polygon(0% -1000%, 1000% -1000%, 1000% 1000%, 0% 1000%);
-
-      @include md {
-        overflow: hidden;
-      }
-    }
-
-    // Details and the track share one grid cell so they overlap; the row is
-    // centered vertically within the pinned viewport.
-    .gallery-stage {
-      display: grid;
-      grid-template-columns: 1fr;
-      align-content: center;
-      height: 100%;
-      gap: 24px;
-
-      @include xxl {
-        grid-template-rows: auto 1fr;
-      }
-
-      // This project's details, pinned on the left while its thumbnails pass behind.
-      .gallery-details-layer {
-        grid-area: 1 / 1;
-        z-index: 2;
-        width: $details-width;
-        padding-right: 60px;
-        box-sizing: border-box;
-        background: #fff;
-
-        @include xxl {
-          width: 100%;
-          padding-right: 0;
-        }
+      .project-item {
+        // Details and the thumbnail strip share a single grid cell so they
+        // overlap, yet the row still grows to fit whichever is taller (grid
+        // sizes the track to the max of both) — preventing rows from colliding.
+        display: grid;
+        grid-template-columns: 1fr;
 
         .project-item-details {
+          grid-area: 1 / 1;
+          z-index: 2;
+          width: $details-width;
+          padding-right: $thumbnail-gap;
+          box-sizing: border-box;
+          background: #fff;
           display: flex;
           flex-direction: column;
-          gap: 8px;
+          gap: 16px;
+
+          @include lg {
+            grid-area: auto;
+            width: 100%;
+            padding-right: 0;
+            margin-bottom: 24px;
+          }
+
+          .project-item-header {
+            display: flex;
+            justify-content: space-between;
+          }
+
+          .project-type {
+            color: $subheader-text-color;
+            margin-bottom: 16px;
+          }
         }
-      }
 
-      .gallery-track {
-        grid-area: 1 / 1;
-        z-index: 1;
-        min-width: 0; // let the track shrink to the cell; content overflows & clips
-        display: flex;
-        flex-wrap: nowrap;
-        align-items: flex-start;
-        gap: $thumbnail-gap;
-        will-change: transform;
-        // .project-thumbnail rules (including the first-child offset) are shared above.
+        .project-thumbnails {
+          grid-area: 1 / 1;
+          z-index: 1;
+          min-width: 0; // allow the scroll container to shrink within the grid cell
+          overflow-x: auto;
+          scroll-snap-type: x mandatory;
+          scrollbar-width: none;
 
-        @include sm {
-          gap: $thumbnail-gap-sm;
-        }
+          // Full-bleed the right edge: the scroll box extends past the content
+          // column out to the viewport edge, so thumbnails scroll off toward the
+          // real screen edge instead of being clipped at the column. The left
+          // edge stays pinned to the column (under the details card). --edge
+          // mirrors .main's centering + 35px padding (padding is only ever 35px
+          // above $lg, the only range this full-bleed runs in); --col is the
+          // resulting content-column width, which drives the details-clearing
+          // offsets so they hold their place even though the scrollport is now
+          // wider. A scroll container clips both axes, so this widens the box
+          // rather than "un-clipping" it.
+          --edge: calc(max((100vw - #{$xxl}) / 2, 0px) + 35px);
+          --col: calc(100vw - 2 * var(--edge));
+          margin-right: calc(50% - 50vw);
+          scroll-padding-left: calc(#{$details-frac} * var(--col));
 
-        @include xxl {
-          grid-area: 2 / 1;
+          &::-webkit-scrollbar {
+            display: none;
+          }
+
+          @include lg {
+            grid-area: auto;
+            margin-right: 0; // stacked layout already spans the column
+            scroll-padding-left: 0;
+          }
+
+          .project-thumbnails-track {
+            display: flex;
+            flex-wrap: nowrap;
+            gap: $thumbnail-gap;
+
+            @include md {
+              gap: 5vw;
+            }
+          }
+
+          .project-thumbnail {
+            // Size relative to the content column (not the now-wider scrollport)
+            // so full-bleed doesn't inflate the thumbnails.
+            flex: 0 0 calc(#{$thumbnail-frac} * var(--col));
+            scroll-snap-align: start;
+            scroll-snap-stop: always; // land on each thumbnail; no fling-past
+            cursor: pointer; // click to slide this thumbnail into view
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+
+            @include lg {
+              flex-basis: 85%;
+            }
+
+            // Offset the opening thumbnail so its artwork sits to the right of
+            // the details column; scrolling slides later thumbnails underneath.
+            // Expressed as a length (details-fraction of the column) instead of a
+            // percentage, which would resolve against the widened scrollport.
+            &:first-child {
+              margin-left: calc(#{$details-frac} * var(--col));
+
+              @include lg {
+                margin-left: 0;
+              }
+            }
+
+            .project-thumbnail-media {
+              canvas {
+                height: auto !important;
+              }
+            }
+          }
         }
       }
     }

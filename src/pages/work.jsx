@@ -1,6 +1,4 @@
 import { Link } from 'react-router-dom';
-import { useEffect, useLayoutEffect, useRef, useState } from 'react';
-import { motion, useScroll, useTransform } from 'motion/react';
 import Intro from './../components/intro';
 import projects from './../resources/projects.json';
 import image1 from './../resources/images/1.svg';
@@ -30,13 +28,6 @@ const videoAssets = new Set([
 const getSelectionValue = (projectId, itemId) => {
   return `${projectId}${String.fromCharCode(65 + itemId)}`;
 };
-
-// Sticky-scroll gallery tuning.
-const NAV_GAP = 24; // extra clearance below the sticky nav where a project pins
-const SCROLL_RATIO = 1; // vertical scroll px per horizontal travel px (>1 = longer, slower runway)
-// Optional "buttery" smoothing: wrap scrollYProgress in useSpring(…, SPRING) in
-// GalleryProject for a lagged feel. Left off by default for a tight 1:1 track.
-// const SPRING = { stiffness: 300, damping: 40, restDelta: 0.001 };
 
 function ThumbnailMedia({ project, projectId, itemId }) {
   const assetKey = getSelectionValue(projectId + 1, itemId);
@@ -73,9 +64,9 @@ function ThumbnailTitle({ item }) {
   );
 }
 
-function ProjectDetails({ project, innerRef }) {
+function ProjectDetails({ project }) {
   return (
-    <div className="project-item-details" ref={innerRef}>
+    <div className="project-item-details">
       <div className="project-item-header">
         <h2>{project.title}</h2>
       </div>
@@ -97,118 +88,46 @@ function ProjectDetails({ project, innerRef }) {
   );
 }
 
-function Thumbnails({ project, projectId }) {
-  return project.items.map((item, itemId) => (
-    <div key={itemId} className="project-thumbnail">
-      <ThumbnailMedia project={project} projectId={projectId} itemId={itemId} />
-      <ThumbnailTitle item={item} />
-    </div>
-  ));
-}
-
-// One project of the sticky-scroll gallery.
-//
-// The section is TALL; inside it a viewport (.gallery-pin) is `position: sticky`
-// and pins below the nav. Motion's useScroll reports how far the page has
-// scrolled through this section (0 at its top, 1 at its bottom); useTransform
-// maps that progress to horizontal travel of the thumbnail track while the
-// project's details stay pinned on the left. The section's height is sized so
-// the pinned scroll distance equals the track's horizontal travel (×
-// SCROLL_RATIO) — this keeps scroll speed consistent across projects with
-// different thumbnail counts. When the strip finishes, the section unpins and
-// normal vertical scrolling continues to the next project; scrolling up
-// reverses it. Because the horizontal position is derived from real scroll,
-// wheel / trackpad / keyboard all drive it natively — no input interception.
-function GalleryProject({ project, projectId, navClear }) {
-  const sectionRef = useRef(null);
-  const trackRef = useRef(null);
-  const [travel, setTravel] = useState(0);
-
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ['start start', 'end end'],
+// Clicking a thumbnail slides it to the front of its strip. inline: 'start'
+// aligns it to the container's start (honoring scroll-padding-left, so it
+// clears the details column); block: 'nearest' keeps the page from scrolling
+// vertically. Snap points make the landing crisp.
+const scrollThumbnailIntoView = (event) => {
+  event.currentTarget.scrollIntoView({
+    behavior: 'smooth',
+    inline: 'start',
+    block: 'nearest',
   });
-  const x = useTransform(scrollYProgress, [0, 1], [0, -travel]);
+};
 
-  // Measure how far the track can travel (content width beyond the viewport).
-  // Widths shift as media/layout settle, so re-measure on resize + media load.
-  useLayoutEffect(() => {
-    const track = trackRef.current;
-    if (!track) return;
-    const measure = () =>
-      setTravel(Math.max(0, track.scrollWidth - track.clientWidth));
-    measure();
-
-    const resizeObserver = new ResizeObserver(measure);
-    resizeObserver.observe(track);
-
-    const media = track.querySelectorAll('video, img');
-    media.forEach((el) => {
-      el.addEventListener('loadeddata', measure);
-      el.addEventListener('load', measure);
-    });
-
-    return () => {
-      resizeObserver.disconnect();
-      media.forEach((el) => {
-        el.removeEventListener('loadeddata', measure);
-        el.removeEventListener('load', measure);
-      });
-    };
-  }, []);
-
-  // Runway = one pin-height (100vh minus nav clearance) plus the horizontal
-  // travel scaled by SCROLL_RATIO. With travel 0 it collapses to a single
-  // pin-height and the project simply renders statically (nothing to scroll).
-  const minHeight = `calc(100vh - ${navClear}px + ${travel * SCROLL_RATIO}px)`;
-
+// Stacked gallery: each project sits in its own row with a details card and a
+// horizontal strip of thumbnails you scroll/swipe through yourself. No
+// scroll-driven motion — the page just scrolls vertically project to project.
+function Gallery() {
   return (
-    <section className="gallery-project" ref={sectionRef} style={{ minHeight }}>
-      <div className="gallery-pin">
-        <div className="gallery-stage">
-          <div className="gallery-details-layer">
-            <ProjectDetails project={project} />
-          </div>
-          <motion.div className="gallery-track" ref={trackRef} style={{ x }}>
-            <Thumbnails project={project} projectId={projectId} />
-          </motion.div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-// Sticky horizontal gallery controller — the work page's only layout.
-// Owns the nav clearance so every project pins at the same line below the nav.
-function FrozenGallery() {
-  // Exposed to CSS as --nav-clear (drives .gallery-pin's top/height) and reused
-  // in each section's min-height runway calc.
-  const [navClear, setNavClear] = useState(NAV_GAP);
-
-  useEffect(() => {
-    const measure = () => {
-      const header = document.querySelector('.main > header');
-      const clear = header
-        ? (parseFloat(getComputedStyle(header).top) || 0) +
-          header.offsetHeight +
-          NAV_GAP
-        : NAV_GAP;
-      setNavClear(clear);
-    };
-    measure();
-    window.addEventListener('resize', measure);
-    return () => window.removeEventListener('resize', measure);
-  }, []);
-
-  return (
-    <div className="gallery" style={{ '--nav-clear': `${navClear}px` }}>
+    <div className="project-container">
       {projects.map((project, projectId) => (
-        <GalleryProject
-          key={projectId}
-          project={project}
-          projectId={projectId}
-          navClear={navClear}
-        />
+        <div key={projectId} className="project-item">
+          <ProjectDetails project={project} />
+          <div className="project-thumbnails">
+            <ul className="project-thumbnails-track">
+              {project.items.map((item, itemId) => (
+                <li
+                  key={itemId}
+                  className="project-thumbnail"
+                  onClick={scrollThumbnailIntoView}
+                >
+                  <ThumbnailMedia
+                    project={project}
+                    projectId={projectId}
+                    itemId={itemId}
+                  />
+                  <ThumbnailTitle item={item} />
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
       ))}
     </div>
   );
@@ -218,7 +137,7 @@ function Work() {
   return (
     <div className="work-container">
       <Intro />
-      <FrozenGallery />
+      <Gallery />
     </div>
   );
 }
