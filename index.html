@@ -52,8 +52,20 @@
     />
     <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
     <title>Lucy Xu</title>
-    <script type="module" crossorigin src="./assets/index-485cffb9.js"></script>
-    <link rel="stylesheet" href="./assets/index-cfa8cfea.css">
+    <script>
+      // Restore the deep-linked path saved by 404.html after a hard refresh on a
+      // client-side route (e.g. /more). Runs before the deferred module script,
+      // so React Router sees the correct path on first render.
+      (function () {
+        var redirect = sessionStorage.redirect;
+        delete sessionStorage.redirect;
+        if (redirect && redirect !== location.href) {
+          history.replaceState(null, '', redirect);
+        }
+      })();
+    </script>
+    <script type="module" crossorigin src="./assets/index-7284e0ed.js"></script>
+    <link rel="stylesheet" href="./assets/index-dd72c7e6.css">
   </head>
   <body>
     <div id="root"></div>

@@ -4,6 +4,9 @@
     <meta charset="utf-8" />
     <title>Redirecting...</title>
     <script>
+      // GitHub Pages serves this file for any unknown path (e.g. a hard refresh
+      // on /more, which has no real file). Stash the intended URL, then bounce
+      // to the app root where index.html restores it before React Router mounts.
       sessionStorage.redirect = location.href;
     </script>
     <meta http-equiv="refresh" content="0;URL='/'" />
