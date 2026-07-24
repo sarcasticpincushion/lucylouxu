@@ -61,19 +61,30 @@ h1 a {
 
   // more
   .more-container {
-    .more-blurb {
-      h2 {
-        font-family: 'PPNeueBit', Arial, Helvetica, sans-serif;
-        font-size: 34px;
-        line-height: 24px;
+    h2 {
+      font-family: 'PPNeueBit', Arial, Helvetica, sans-serif;
+      font-size: 34px;
+      line-height: 24px;
+    }
+
+    .more-container-list {
+      .more-container-list-item {
+        h4,
+        a {
+          font-family: 'PPNeueBit', Arial, Helvetica, sans-serif;
+          font-size: 27px;
+          line-height: 19px;
+        }
       }
     }
-    .side-quest-item {
-      a {
-        font-family: 'PPNeueBit', Arial, Helvetica, sans-serif;
-        font-size: 27px;
-        line-height: 19px;
-      }
+  }
+
+  // me
+  .me-container {
+    h2 {
+      font-family: 'PPNeueBit', Arial, Helvetica, sans-serif;
+      font-size: 34px;
+      line-height: 24px;
     }
   }
 

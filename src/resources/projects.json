@@ -4,32 +4,31 @@
     "type": "design systems, iconography, illustration, motion",
     "description": [
       "Built and evolved a scalable iconography and illustration system for our design system refresh, including 800+ utility icons and 100+ illustrations. Introduced a 20px size to bridge the gap between our existing 16px and 24px, enabling our designers with greater flexibility and increasing adoption across product teams by 21%.",
-      "Led end to end unification strategy of 200+ multi-colored icons across ServiceNow’s Service Portal. Collaborated cross-functionally with PMs, designers, and engineers to audit >90 use cases to standardize icon usage and theming patterns and built a design library to standardize patterns for further adoption.",
-      "Maintained shared icon libraries using Figma plugins for organization and validation, supporting cross-functional teams with efficient handoff of icon and animation requests, and ensuring consistent implementation of design system standards across product experiences."
+      "Led end to end unification strategy of 200+ multi-colored icons across ServiceNow's Service Portal. Collaborated cross-functionally with PMs, designers, and engineers to audit >90 use cases to standardize icon usage and theming patterns and built a design library to standardize patterns for further adoption.",
+      "Maintained shared icon libraries by using and vibe-coding Figma plugins for organization and validation, supporting cross-functional teams with efficient handoff of icon and animation requests, and ensuring consistent implementation of design system standards across product experiences."
     ],
     "links": [],
-    "image": "image1",
     "items": [
       {
         "text": "Iconography evolution, introduction of 20px icon size",
         "linkText": "",
         "linkUrl": "",
         "suffix": "",
-        "assetName": "1A.json"
+        "assetName": "1A.mp4"
       },
       {
         "text": "Service Portal icon unification",
         "linkText": "",
         "linkUrl": "",
         "suffix": "",
-        "assetName": "1B.json"
+        "assetName": "1B.mp4"
       },
       {
         "text": "Product illustration animations sample",
         "linkText": "",
         "linkUrl": "",
         "suffix": "",
-        "assetName": ""
+        "assetName": "1C.mp4"
       }
     ]
   },
@@ -37,26 +36,25 @@
     "title": "ServiceNow EmployeeWorks",
     "type": "design systems, iconography, illustration, motion",
     "description": [
-      "Established an icon animation strategy through cross-functional collaboration with researchers, designers, and stakeholders, defining interaction patterns that improved product usability and clarity.",
+      "Established icon motion strategy and motion specifications (Lottie + CSS via Claude Code) through cross-functional collaboration with researchers, designers, and stakeholders, improving product clarity and reducing animation → specification → delivery workflow time by 30%.",
       "Defined icon and illustration animations for ServiceNow's design system, establishing scalable animation behaviors across core product experiences and emerging AI offerings.",
       "Explored and developed visual concepts to expand our visual language in the second phase of our design system refresh."
     ],
     "links": [],
-    "image": "image2",
     "items": [
       {
-        "text": "Navigation icon animation levels determined through research",
+        "text": "Navigation icon animation levels determined in collaboration with research",
         "linkText": "",
         "linkUrl": "",
         "suffix": "",
-        "assetName": ""
+        "assetName": "2A.mp4"
       },
       {
         "text": "Scalable menu icon illustrations across core product experiences",
         "linkText": "",
         "linkUrl": "",
         "suffix": "",
-        "assetName": ""
+        "assetName": "2B.mp4"
       }
     ]
   },
@@ -75,21 +73,27 @@
         "url": "https://newsroom.servicenow.com/press-releases/details/2022/ServiceNow-Broadens-Lightstep-Portfolio-with-Introduction-of-Incident-Response-Product-for-More-Predictive-Efficient-Incident-Resolution-03-14-2022-12-00-AM/default.aspx"
       }
     ],
-    "image": "image4",
     "items": [
       {
         "text": "Defining and managing the system library, ensuring consistent design strategy",
         "linkText": "",
         "linkUrl": "",
         "suffix": "",
-        "assetName": ""
+        "assetName": "3A.mp4"
+      },
+      {
+        "text": "I vibe-coded a plugin that hooks into your library color variables to generate multiple color variants to optimize my design specification process",
+        "linkText": "",
+        "linkUrl": "",
+        "suffix": "",
+        "assetName": "3A_1.mp4"
       },
       {
         "text": "On-call flow custom components and specifications",
         "linkText": "",
         "linkUrl": "",
         "suffix": "",
-        "assetName": ""
+        "assetName": "3B.mp4"
       }
     ]
   },
@@ -106,21 +110,20 @@
         "url": "https://horizon.servicenow.com/"
       }
     ],
-    "image": "image3",
     "items": [
       {
         "text": "'Motion interaction and transition' patterns animations",
         "linkText": "",
         "linkUrl": "",
         "suffix": "",
-        "assetName": ""
+        "assetName": "4A.mp4"
       },
       {
         "text": "",
         "linkText": "Thumbnails↗",
         "linkUrl": "https://horizon.servicenow.com/workspace/components",
         "suffix": " and banners illustrations",
-        "assetName": ""
+        "assetName": "4B.mp4"
       }
     ]
   }

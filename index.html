@@ -52,6 +52,18 @@
     />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>Lucy Xu</title>
+    <script>
+      // Restore the deep-linked path saved by 404.html after a hard refresh on a
+      // client-side route (e.g. /more). Runs before the deferred module script,
+      // so React Router sees the correct path on first render.
+      (function () {
+        var redirect = sessionStorage.redirect;
+        delete sessionStorage.redirect;
+        if (redirect && redirect !== location.href) {
+          history.replaceState(null, '', redirect);
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

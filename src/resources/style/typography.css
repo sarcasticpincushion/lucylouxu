@@ -46,15 +46,21 @@ h1 a {
   font-size: 20px;
   line-height: 14px;
 }
-.main .more-container .more-blurb h2 {
+.main .more-container h2 {
   font-family: "PPNeueBit", Arial, Helvetica, sans-serif;
   font-size: 34px;
   line-height: 24px;
 }
-.main .more-container .side-quest-item a {
+.main .more-container .more-container-list .more-container-list-item h4,
+.main .more-container .more-container-list .more-container-list-item a {
   font-family: "PPNeueBit", Arial, Helvetica, sans-serif;
   font-size: 27px;
   line-height: 19px;
+}
+.main .me-container h2 {
+  font-family: "PPNeueBit", Arial, Helvetica, sans-serif;
+  font-size: 34px;
+  line-height: 24px;
 }
 .main .citation-number {
   font-size: 0.7em;

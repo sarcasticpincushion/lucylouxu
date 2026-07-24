@@ -1,51 +1,18 @@
 import { Link } from 'react-router-dom';
 import Intro from './../components/intro';
 import projects from './../resources/projects.json';
-import image1 from './../resources/images/1.svg';
-import image2 from './../resources/images/2.svg';
-import image3 from './../resources/images/3.svg';
-import image4 from './../resources/images/4.svg';
 
-const imageMap = {
-  image1,
-  image2,
-  image3,
-  image4,
-};
-
-const videoAssets = new Set([
-  '1A',
-  '1B',
-  '1C',
-  '2A',
-  '2B',
-  '3A',
-  '3B',
-  '4A',
-  '4B',
-]);
-
-const getSelectionValue = (projectId, itemId) => {
-  return `${projectId}${String.fromCharCode(65 + itemId)}`;
-};
-
-function ThumbnailMedia({ project, projectId, itemId }) {
-  const assetKey = getSelectionValue(projectId + 1, itemId);
-  const hasVideo = videoAssets.has(assetKey);
+function ThumbnailMedia({ item }) {
   return (
     <div className="project-thumbnail-media">
-      {hasVideo ? (
-        <video
-          src={`/animations/${assetKey}.mp4`}
-          width="100%"
-          autoPlay
-          loop
-          muted
-          playsInline
-        />
-      ) : (
-        <img src={imageMap[project.image]} width="100%" />
-      )}
+      <video
+        src={`/animations/${item.assetName}`}
+        width="100%"
+        autoPlay
+        loop
+        muted
+        playsInline
+      />
     </div>
   );
 }
@@ -117,11 +84,7 @@ function Gallery() {
                   className="project-thumbnail"
                   onClick={scrollThumbnailIntoView}
                 >
-                  <ThumbnailMedia
-                    project={project}
-                    projectId={projectId}
-                    itemId={itemId}
-                  />
+                  <ThumbnailMedia item={item} />
                   <ThumbnailTitle item={item} />
                 </li>
               ))}

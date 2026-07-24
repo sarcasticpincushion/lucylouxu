@@ -1,8 +1,9 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { Link, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import Work from './pages/work';
 import More from './pages/more';
+import Me from './pages/me';
 import Header from './components/header';
 import Footer from './components/footer';
 import ExternalRedirect from './utils/redirect';
@@ -17,33 +18,16 @@ function App() {
     window.scrollTo(0, 0);
   }, [location.pathname]);
 
-  const host =
-    typeof window !== 'undefined' ? window.location.hostname.toLowerCase() : '';
-  const isArchiveSubdomain = host.startsWith('archive.');
-  // const isArchiveSubdomain = true;
-  const isWorkPage = location.pathname === '/' || location.pathname === '/work';
-
   return (
     <main className="main">
-      {isArchiveSubdomain ? (
-        <Routes>
-          <Route path="/" element={<ExternalRedirect url="/work.html" />} />
-          <Route
-            path="/about"
-            element={<ExternalRedirect url="about.html" />}
-          />
-        </Routes>
-      ) : (
-        <>
-          <Header isWorkPage={isWorkPage} />
-          <Routes>
-            <Route path="/" element={<Work />} />
-            <Route path="/work" element={<Work />} />
-            <Route path="/more" element={<More />} />
-          </Routes>
-          <Footer />
-        </>
-      )}
+      <Header />
+      <Routes>
+        <Route path="/" element={<Work />} />
+        <Route path="/work" element={<Work />} />
+        <Route path="/more" element={<More />} />
+        <Route path="/me" element={<Me />} />
+      </Routes>
+      <Footer />
     </main>
   );
 }

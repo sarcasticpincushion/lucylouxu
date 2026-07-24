@@ -1,6 +1,11 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
-function Header({ isWorkPage }) {
+function Header() {
+  const { pathname } = useLocation();
+  const isWorkPage = pathname === '/' || pathname === '/work';
+  const isMorePage = pathname === '/more';
+  const isMePage = pathname === '/me';
+
   return (
     <header>
       {!isWorkPage && (
@@ -13,8 +18,11 @@ function Header({ isWorkPage }) {
           <li className={isWorkPage ? 'selected' : ''}>
             <Link to="/">Work</Link>
           </li>
-          <li className={!isWorkPage ? 'selected' : ''}>
+          <li className={isMorePage ? 'selected' : ''}>
             <Link to="/more">More</Link>
+          </li>
+          <li className={isMePage ? 'selected' : ''}>
+            <Link to="/me">Me</Link>
           </li>
         </ul>
       </nav>

@@ -122,15 +122,21 @@ h1 a {
   font-size: 20px;
   line-height: 14px;
 }
-.main .more-container .more-blurb h2 {
+.main .more-container h2 {
   font-family: "PPNeueBit", Arial, Helvetica, sans-serif;
   font-size: 34px;
   line-height: 24px;
 }
-.main .more-container .side-quest-item a {
+.main .more-container .more-container-list .more-container-list-item h4,
+.main .more-container .more-container-list .more-container-list-item a {
   font-family: "PPNeueBit", Arial, Helvetica, sans-serif;
   font-size: 27px;
   line-height: 19px;
+}
+.main .me-container h2 {
+  font-family: "PPNeueBit", Arial, Helvetica, sans-serif;
+  font-size: 34px;
+  line-height: 24px;
 }
 .main .citation-number {
   font-size: 0.7em;
@@ -160,6 +166,9 @@ h1 a {
 
 :root {
   color-scheme: only light;
+  --pad: 35px;
+  --edge: calc(max((100vw - 1440px) / 2, 0px) + var(--pad));
+  --col: calc(100vw - 2 * var(--edge));
 }
 
 html,
@@ -179,7 +188,7 @@ body {
   max-width: 1440px;
   min-height: 100vh;
   margin: auto;
-  padding: 35px;
+  padding: var(--pad);
   box-sizing: border-box;
   container-type: inline-size;
   container-name: main-container;
@@ -199,8 +208,8 @@ body {
 .main header h1 {
   position: absolute;
   z-index: 10;
-  top: 35px;
-  left: 35px;
+  top: var(--pad);
+  left: var(--pad);
 }
 @media (max-width: 768px) {
   .main header h1 {
@@ -210,7 +219,7 @@ body {
 .main header nav {
   position: sticky;
   z-index: 10;
-  top: 35px;
+  top: var(--pad);
   width: fit-content;
   margin-left: auto;
 }
@@ -218,6 +227,9 @@ body {
   display: flex;
   flex-direction: column;
   gap: 17px;
+}
+.main header nav ul li {
+  text-align: right;
 }
 .main header nav ul li.selected::after {
   content: "←";
@@ -228,7 +240,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: calc(100dvh - 35px - 59px);
+  min-height: calc(100dvh - var(--pad) - 59px);
 }
 .main .intro-container .intro-container-inner {
   position: relative;
@@ -355,9 +367,6 @@ body {
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
-  --pad: 35px;
-  --edge: calc(max((100vw - 1440px) / 2, 0px) + var(--pad));
-  --col: calc(100vw - 2 * var(--edge));
   margin-right: calc(50% - 50vw);
   scroll-padding-left: calc(0.37 * var(--col));
 }
@@ -412,73 +421,86 @@ body {
     margin-left: 0;
   }
 }
+.main .work-container .project-container .project-item .project-thumbnails .project-thumbnail:last-child {
+  padding-right: var(--pad);
+}
 .main .work-container .project-container .project-item .project-thumbnails .project-thumbnail .project-thumbnail-media canvas {
   height: auto !important;
 }
 .main .more-container {
   display: flex;
   flex-direction: column;
-  gap: 60px;
+  gap: 20px;
   margin: 60px auto 150px;
-  width: 980px;
+  width: 100%;
+  max-width: 980px;
 }
-@container main-container (max-width: 1060px) {
-  .main .more-container {
-    width: 450px;
-  }
+.main .more-container h2 {
+  width: 50%;
 }
-@container main-container (max-width: 530px) {
-  .main .more-container {
+@container main-container (max-width: 980px) {
+  .main .more-container h2 {
     width: 100%;
   }
 }
-.main .more-container .more-main-container {
+.main .more-container .more-container-list {
   display: flex;
   gap: 80px;
 }
-@container main-container (max-width: 1060px) {
-  .main .more-container .more-main-container {
+@container main-container (max-width: 980px) {
+  .main .more-container .more-container-list {
     flex-direction: column;
     gap: 24px;
   }
 }
-.main .more-container .more-main-container:has(.citation-phrase[aria-expanded=true]) p {
-  opacity: 0.6;
-  pointer-events: none;
-}
-.main .more-container .more-main-container img {
-  width: 450px;
-  pointer-events: none;
-}
-@container main-container (max-width: 530px) {
-  .main .more-container .more-main-container img {
-    width: 100%;
-  }
-}
-.main .more-container .more-main-container .more-blurb h2 {
-  margin-bottom: 20px;
-}
-.main .more-container .side-quest-container h4 {
-  margin-bottom: 14px;
-}
-.main .more-container .side-quest-container .side-quest-list {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-.main .more-container .side-quest-container .side-quest-list .side-quest-item {
+.main .more-container .more-container-list .more-container-list-item {
   display: flex;
   flex-direction: column;
   gap: 4px;
-  width: 332px;
+  flex: 1 1 50%;
+  min-width: 0;
 }
-@container main-container (max-width: 530px) {
-  .main .more-container .side-quest-container .side-quest-list .side-quest-item {
-    width: 100%;
+.main .more-container .more-container-list .more-container-list-item a {
+  text-decoration-thickness: 1.5px;
+}
+.main .more-container .more-container-list .more-container-list-item video {
+  margin-top: 12px;
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+}
+.main .me-container {
+  display: flex;
+  gap: 80px;
+  margin: 60px auto 150px;
+  width: 100%;
+  max-width: 980px;
+}
+.main .me-container:has(.citation-phrase[aria-expanded=true]) p {
+  opacity: 0.6;
+  pointer-events: none;
+}
+@container main-container (max-width: 980px) {
+  .main .me-container {
+    flex-direction: column;
+    max-width: 450px;
+    gap: 24px;
   }
 }
-.main .more-container .side-quest-container .side-quest-list .side-quest-item a {
-  text-decoration-thickness: 1.5px;
+.main .me-container h2 {
+  margin-bottom: 20px;
+}
+.main .me-container img {
+  width: 450px;
+  height: auto;
+  display: block;
+  pointer-events: none;
+}
+@container main-container (max-width: 980px) {
+  .main .me-container img {
+    width: 100%;
+  }
 }
 .main footer {
   position: absolute;
@@ -488,7 +510,7 @@ body {
   justify-content: space-between;
   align-items: flex-end;
   gap: 50px;
-  padding: 35px;
+  padding: var(--pad);
   width: 100%;
   box-sizing: border-box;
 }
