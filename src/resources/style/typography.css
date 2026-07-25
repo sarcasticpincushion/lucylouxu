@@ -22,6 +22,7 @@ h1 a {
 .main .star {
   font-family: "Courier New", monospace;
   font-size: 6.5px;
+  font-weight: 600;
   line-height: 1;
 }
 .main header nav li {
@@ -62,8 +63,9 @@ h1 a {
   font-size: 34px;
   line-height: 24px;
 }
-.main .citation-number {
+.main .me-container .citation-number {
   font-size: 0.7em;
+  font-weight: 600;
   line-height: 0;
 }
 .main footer {
@@ -76,12 +78,7 @@ h1 a {
   font-size: 14px;
   text-decoration-thickness: 1px;
 }
-
-.citation-number {
-  font-weight: 600;
-}
-
-.citation-popover-close {
+.main .citation-popover-close {
   font-family: "PPNeueBit", Arial, Helvetica, sans-serif;
   font-weight: 600;
   font-size: 22px;

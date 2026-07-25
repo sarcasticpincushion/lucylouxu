@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import Contact from './../components/contact';
+import Contact from '../components/contact';
 
 function Footer() {
   return (

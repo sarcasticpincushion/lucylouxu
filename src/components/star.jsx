@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { VERTICES, FACES } from './../resources/starData';
+import { VERTICES, FACES } from '../resources/data/star-data';
 
 // ASCII grid resolution. Phones render at a smaller grid (see the effect
 // below): fewer cells means far fewer triangles to rasterize and a much
@@ -83,7 +83,7 @@ function createRenderer(width, height) {
   const depthBuffer = new Float64Array(cellCount);
   const lightBuffer = new Float64Array(cellCount);
 
-  return function render(rotX, rotY, cameraDistance) {
+  function render(rotX, rotY, cameraDistance) {
     const cosY = Math.cos(rotY),
       sinY = Math.sin(rotY);
     const cosX = Math.cos(rotX),
@@ -184,6 +184,10 @@ function createRenderer(width, height) {
 
     let output = '';
     for (let y = 0; y < height; y++) {
+      // No trailing newline after the final row: that keeps the <pre> box
+      // exactly `height` rows tall, so pointer coordinates map straight onto
+      // the grid for hit-testing (see isCovered).
+      if (y > 0) output += '\n';
       const row = y * width;
       for (let x = 0; x < width; x++) {
         const idx = row + x;
@@ -200,10 +204,20 @@ function createRenderer(width, height) {
           output += ' ';
         }
       }
-      output += '\n';
     }
     return output;
-  };
+  }
+
+  // True when grid cell (col, row) was covered by the star in the last frame.
+  // The input layer uses this to grab only on the star, not the dead space
+  // around it. Reads the most recent frame's depth buffer, which render()
+  // leaves populated.
+  function isCovered(col, row) {
+    if (col < 0 || col >= width || row < 0 || row >= height) return false;
+    return depthBuffer[row * width + col] < 99;
+  }
+
+  return { render, isCovered };
 }
 
 export default function Asset6AsciiViewer() {
@@ -219,6 +233,10 @@ export default function Asset6AsciiViewer() {
   const animFrameRef = useRef(null);
   // Set by the animation effect; the input effect calls it to redraw on drag.
   const drawRef = useRef(null);
+  // Set by the animation effect; the input effect calls it to hit-test a
+  // pointer against the star silhouette so only the star grabs, not the blank
+  // space around it. Returns true when (clientX, clientY) is over a star cell.
+  const hitTestRef = useRef(null);
 
   // Tracks whether we're below the mobile breakpoint. Flipping this rebuilds
   // the animation effect (renderer, frame-rate cap, spin step) at the right
@@ -250,13 +268,26 @@ export default function Asset6AsciiViewer() {
 
     const width = isMobile ? MOBILE_WIDTH : DESKTOP_WIDTH;
     const height = isMobile ? MOBILE_HEIGHT : DESKTOP_HEIGHT;
-    const render = createRenderer(width, height);
+    const { render, isCovered } = createRenderer(width, height);
 
     const draw = () => {
       const { rotationX, rotationY, cameraDistance } = stateRef.current;
       el.textContent = render(rotationX, rotationY, cameraDistance);
     };
     drawRef.current = draw;
+
+    // Map a client point onto the grid and report whether it's over the star.
+    // The <pre> has no padding/border, so its box maps 1:1 onto the character
+    // grid regardless of the CSS transform (getBoundingClientRect is post-
+    // transform), and each cell is an equal slice of the box.
+    const isOverStar = (clientX, clientY) => {
+      const rect = el.getBoundingClientRect();
+      if (rect.width === 0 || rect.height === 0) return false;
+      const col = Math.floor(((clientX - rect.left) / rect.width) * width);
+      const row = Math.floor(((clientY - rect.top) / rect.height) * height);
+      return isCovered(col, row);
+    };
+    hitTestRef.current = isOverStar;
 
     draw(); // initial frame
 
@@ -267,6 +298,7 @@ export default function Asset6AsciiViewer() {
     if (prefersReduced) {
       return () => {
         drawRef.current = null;
+        hitTestRef.current = null;
       };
     }
 
@@ -306,6 +338,7 @@ export default function Asset6AsciiViewer() {
       if (animFrameRef.current) cancelAnimationFrame(animFrameRef.current);
       if (observer) observer.disconnect();
       drawRef.current = null;
+      hitTestRef.current = null;
     };
   }, [isMobile]);
 
@@ -331,16 +364,43 @@ export default function Asset6AsciiViewer() {
       if (drawRef.current) drawRef.current();
     };
 
+    // True only when the pointer is over an actual star cell, so a drag can
+    // only begin on the star silhouette, never on the blank space around it.
+    // Falls back to true if the renderer hasn't published a hit-test yet, so
+    // input still works during the very first frames.
+    const isOverStar = (x, y) =>
+      typeof hitTestRef.current === 'function'
+        ? hitTestRef.current(x, y)
+        : true;
+
     const endDrag = () => {
       stateRef.current.isDragging = false;
+      // Restore hover cursor based on where the pointer ended up.
+      el.style.cursor = isOverStar(
+        stateRef.current.lastMouseX,
+        stateRef.current.lastMouseY
+      )
+        ? 'grab'
+        : 'default';
     };
 
-    // Mouse: only start a drag when pressing directly on the star, but
-    // track movement/release on the document so the drag keeps going even
+    // Mouse: only start a drag when pressing on the star silhouette itself,
+    // but track movement/release on the document so the drag keeps going even
     // if the cursor wanders off the star mid-drag.
-    const handleMouseDown = (e) => startDrag(e.clientX, e.clientY);
+    const handleMouseDown = (e) => {
+      if (!isOverStar(e.clientX, e.clientY)) return;
+      startDrag(e.clientX, e.clientY);
+      el.style.cursor = 'grabbing';
+    };
     const handleMouseMove = (e) => moveDrag(e.clientX, e.clientY);
     const handleMouseUp = () => endDrag();
+
+    // Cursor feedback: show grab only while hovering the star, default over the
+    // dead space. Skipped mid-drag so the grabbing cursor sticks.
+    const handleHoverCursor = (e) => {
+      if (stateRef.current.isDragging) return;
+      el.style.cursor = isOverStar(e.clientX, e.clientY) ? 'grab' : 'default';
+    };
 
     // Touch: touch events are implicitly captured to the element that
     // received touchstart, so move/end can live on the element itself.
@@ -359,7 +419,10 @@ export default function Asset6AsciiViewer() {
 
     const handleTouchStart = (e) => {
       const t = e.touches[0];
+      // Must be inside the mobile hotspot (so page scrolling still works) AND
+      // on the star silhouette (so gaps around it aren't grabbable).
       if (!isInTouchHotspot(t.clientX, t.clientY)) return;
+      if (!isOverStar(t.clientX, t.clientY)) return;
       startDrag(t.clientX, t.clientY);
     };
     const handleTouchMove = (e) => {
@@ -371,6 +434,7 @@ export default function Asset6AsciiViewer() {
     const handleTouchEnd = () => endDrag();
 
     el.addEventListener('mousedown', handleMouseDown);
+    el.addEventListener('mousemove', handleHoverCursor);
     document.addEventListener('mousemove', handleMouseMove);
     document.addEventListener('mouseup', handleMouseUp);
 
@@ -381,6 +445,7 @@ export default function Asset6AsciiViewer() {
 
     return () => {
       el.removeEventListener('mousedown', handleMouseDown);
+      el.removeEventListener('mousemove', handleHoverCursor);
       document.removeEventListener('mousemove', handleMouseMove);
       document.removeEventListener('mouseup', handleMouseUp);
       el.removeEventListener('touchstart', handleTouchStart);

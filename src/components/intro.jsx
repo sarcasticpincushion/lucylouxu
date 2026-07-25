@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import Star from './../components/star';
-import Contact from './../components/contact';
+import Star from '../components/star';
+import Contact from '../components/contact';
 
 function Intro() {
   return (
@@ -18,9 +18,7 @@ function Intro() {
             6 years of design systems & curating visual experiences. Currently
             making/animating icons and illustrations at ServiceNow.
           </p>
-          <p>
-            Contact me for detailed work samples.
-          </p>
+          <p>Contact me for detailed work samples.</p>
         </div>
         <Star />
       </div>

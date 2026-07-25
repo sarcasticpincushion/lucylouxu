@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
-import Citation from './../components/citation';
-import notes from './../resources/notes';
-import me from './../resources/images/me.jpg';
+import Citation from '../components/citation';
+import notes from '../resources/data/notes';
+import me from '../resources/images/me.jpg';
 
 function Me() {
   return (

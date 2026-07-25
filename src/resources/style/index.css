@@ -98,6 +98,7 @@ h1 a {
 .main .star {
   font-family: "Courier New", monospace;
   font-size: 6.5px;
+  font-weight: 600;
   line-height: 1;
 }
 .main header nav li {
@@ -138,8 +139,9 @@ h1 a {
   font-size: 34px;
   line-height: 24px;
 }
-.main .citation-number {
+.main .me-container .citation-number {
   font-size: 0.7em;
+  font-weight: 600;
   line-height: 0;
 }
 .main footer {
@@ -152,12 +154,7 @@ h1 a {
   font-size: 14px;
   text-decoration-thickness: 1px;
 }
-
-.citation-number {
-  font-weight: 600;
-}
-
-.citation-popover-close {
+.main .citation-popover-close {
   font-family: "PPNeueBit", Arial, Helvetica, sans-serif;
   font-weight: 600;
   font-size: 22px;
@@ -174,12 +171,12 @@ html,
 body {
   background-color: #fff;
   color: #000;
+  overflow-x: hidden;
 }
 
 body {
   height: 100%;
   position: relative;
-  overflow-x: hidden;
 }
 
 .main {
@@ -245,7 +242,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: calc(100dvh - 35px - 59px);
+  min-height: calc(100dvh - 35px - 97px);
 }
 .main .intro-container .intro-container-inner {
   position: relative;
@@ -253,7 +250,6 @@ body {
   flex: 1;
   justify-content: space-between;
   align-items: center;
-  overflow: hidden;
 }
 @media (max-width: 992px) {
   .main .intro-container .intro-container-inner {
@@ -288,7 +284,7 @@ body {
   letter-spacing: 0;
   white-space: pre;
   color: #000;
-  cursor: pointer;
+  cursor: default;
   user-select: none;
   transform: scale(1.75) translateY(-20px);
 }
@@ -317,7 +313,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 150px;
-  margin-bottom: 165px;
+  margin-bottom: 250px;
 }
 @media (max-width: 768px) {
   .main .work-container {

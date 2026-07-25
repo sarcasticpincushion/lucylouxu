@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import LazyVideo from './../components/lazyVideo';
+import LazyVideo from '../components/lazyVideo';
 
 function More() {
   return (

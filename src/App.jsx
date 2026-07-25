@@ -6,7 +6,6 @@ import More from './pages/more';
 import Me from './pages/me';
 import Header from './components/header';
 import Footer from './components/footer';
-import ExternalRedirect from './utils/redirect';
 
 function App() {
   const location = useLocation();

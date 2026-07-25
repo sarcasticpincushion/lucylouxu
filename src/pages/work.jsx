@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
-import Intro from './../components/intro';
-import LazyVideo from './../components/lazyVideo';
-import projects from './../resources/projects.json';
+import Intro from '../components/intro';
+import LazyVideo from '../components/lazyVideo';
+import projects from '../resources/data/projects.json';
 
 function ThumbnailMedia({ item }) {
   return (

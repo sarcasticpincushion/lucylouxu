@@ -27,6 +27,7 @@ h1 a {
   .star {
     font-family: 'Courier New', monospace;
     font-size: 6.5px;
+    font-weight: 600;
     line-height: 1;
   }
 
@@ -86,12 +87,12 @@ h1 a {
       font-size: 34px;
       line-height: 24px;
     }
-  }
 
-  // citation
-  .citation-number {
-    font-size: 0.7em;
-    line-height: 0;
+    .citation-number {
+      font-size: 0.7em;
+      font-weight: 600;
+      line-height: 0;
+    }
   }
 
   // footer
@@ -107,15 +108,11 @@ h1 a {
       }
     }
   }
-}
 
-.citation-number {
-  font-weight: 600;
-}
-
-.citation-popover-close {
-  font-family: 'PPNeueBit', Arial, Helvetica, sans-serif;
-  font-weight: 600;
-  font-size: 22px;
-  line-height: 18px;
+  .citation-popover-close {
+    font-family: 'PPNeueBit', Arial, Helvetica, sans-serif;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 18px;
+  }
 }
