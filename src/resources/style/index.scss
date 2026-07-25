@@ -11,13 +11,9 @@
 //     auto;
 // }
 
-// Force light mode everywhere: opt out of dark UA styling / auto-dark, and pin
-// an explicit light background + text color so the page never inherits a dark
-// canvas regardless of the visitor's OS/browser theme.
 :root {
   color-scheme: only light;
-  --pad: 35px;
-  --edge: calc(max((100vw - #{$xxl}) / 2, 0px) + var(--pad));
+  --edge: calc(max((100vw - #{$xxl}) / 2, 0px) + #{$padding});
   --col: calc(100vw - 2 * var(--edge));
 }
 
@@ -44,21 +40,16 @@ body {
   max-width: $xxl;
   min-height: 100vh;
   margin: auto;
-  padding: var(--pad);
+  padding: $padding;
   box-sizing: border-box;
   container-type: inline-size;
   container-name: main-container;
 
   @include md {
-    padding: 24px;
+    padding: $padding-sm;
   }
 
   // header
-  //
-  // `display: contents` collapses the header box so its children lay out
-  // directly inside `.main` (a tall, position: relative scroll context). This
-  // lets the nav stick across the whole page while the h1 scrolls away with the
-  // content instead of being pinned along with it.
   header {
     display: contents;
 
@@ -67,28 +58,22 @@ body {
       text-decoration: none;
     }
 
-    // Site title: sits at the top-left but scrolls away with the page. Absolute
-    // positioning is relative to `.main`'s padding box, so top/left match the
-    // container padding (35px, 24px on md). top stays 35px to line up with the
-    // nav's stuck position.
     h1 {
       position: absolute;
       z-index: 10;
-      top: var(--pad);
-      left: var(--pad);
+      top: $padding;
+      left: $padding;
 
       @include md {
-        left: 24px;
+        left: $padding-sm;
       }
     }
 
-    // Nav: stays pinned. fit-content width + margin-left auto keeps the sticky
-    // box only as wide as the links (right-aligned) so it never overlays and
-    // blocks clicks on the content to its left.
     nav {
       position: sticky;
       z-index: 10;
-      top: var(--pad);
+      top: $padding;
+      right: $padding;
       width: fit-content;
       margin-left: auto;
 
@@ -96,6 +81,10 @@ body {
         display: flex;
         flex-direction: column;
         gap: 17px;
+
+        @include md {
+          gap: 12px;
+        }
 
         li {
           text-align: right;
@@ -115,7 +104,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    min-height: calc(100dvh - var(--pad) - 59px);
+    min-height: calc(100dvh - $padding - 59px);
 
     .intro-container-inner {
       position: relative;
@@ -167,11 +156,11 @@ body {
         }
 
         @include md {
-          transform: translate(-50%, -35%) scale(1);
+          transform: translate(-50%, -30%) scale(1);
         }
 
         @include sm {
-          transform: translate(-50%, -30%) scale(0.75);
+          transform: translate(-50%, -22%) scale(0.75);
         }
       }
     }
@@ -190,18 +179,16 @@ body {
     gap: 150px;
     margin-bottom: 165px;
 
-    $details-frac: 0.37; // details card takes this fraction of the content column
-    $details-width: percentage($details-frac); // 37%
-    $thumbnail-frac: 0.55; // each thumbnail's width as a fraction of the content column
-    $thumbnail-frac-lg: 0.85; // wider thumbnails once the layout stacks (below $lg)
+    $details-frac: 0.37;
+    $details-width: percentage($details-frac);
+    $thumbnail-frac: 0.55;
+    $thumbnail-frac-lg: 0.85;
     $thumbnail-gap: 36px;
 
     @include md {
       gap: 80px;
     }
 
-    // Stacked gallery: each project is its own row with a details card and a
-    // horizontal strip of thumbnails the visitor scrolls/swipes manually.
     .project-container {
       display: flex;
       flex-direction: column;
@@ -212,9 +199,6 @@ body {
       }
 
       .project-item {
-        // Details and the thumbnail strip share a single grid cell so they
-        // overlap, yet the row still grows to fit whichever is taller (grid
-        // sizes the track to the max of both) — preventing rows from colliding.
         display: grid;
         grid-template-columns: 1fr;
 
@@ -250,22 +234,10 @@ body {
         .project-thumbnails {
           grid-area: 1 / 1;
           z-index: 1;
-          min-width: 0; // allow the scroll container to shrink within the grid cell
+          min-width: 0;
           overflow-x: auto;
           scroll-snap-type: x mandatory;
           scrollbar-width: none;
-
-          // Full-bleed the right edge at every breakpoint: the scroll box extends
-          // past the content column out to the viewport edge, so thumbnails scroll
-          // off toward the real screen edge instead of being clipped at the
-          // column. The left edge stays pinned to the column (under the details
-          // card above $lg; under the stacked details text below it). --pad
-          // mirrors .main's page padding, --edge is the column's inset from the
-          // viewport (padding + any centering above $xxl), and --col is the
-          // resulting content-column width — used so the details-clearing offsets
-          // and thumbnail widths hold their place even though the scrollport is
-          // now wider. (A scroll container clips both axes, so this widens the box
-          // rather than "un-clipping" it.)
           margin-right: calc(50% - 50vw);
           scroll-padding-left: calc(#{$details-frac} * var(--col));
 
@@ -273,20 +245,13 @@ body {
             display: none;
           }
 
-          // Below $lg the details card stops overlapping and stacks above the
-          // strip, so the thumbnails no longer need to clear it — but the strip
-          // still spills to the viewport edge.
           @include lg {
             grid-area: auto;
             scroll-padding-left: 0;
           }
 
-          @include md {
-            --pad: 24px; // .main's padding tightens here
-          }
-
           @include sm {
-            margin-left: -12px;
+            margin-left: -$padding-xs;
           }
 
           .project-thumbnails-track {
@@ -300,12 +265,10 @@ body {
           }
 
           .project-thumbnail {
-            // Size relative to the content column (not the now-wider scrollport)
-            // so full-bleed doesn't inflate the thumbnails.
             flex: 0 0 calc(#{$thumbnail-frac} * var(--col));
             scroll-snap-align: start;
-            scroll-snap-stop: always; // land on each thumbnail; no fling-past
-            cursor: pointer; // click to slide this thumbnail into view
+            scroll-snap-stop: always;
+            cursor: pointer;
             display: flex;
             flex-direction: column;
             gap: 8px;
@@ -314,10 +277,6 @@ body {
               flex-basis: calc(#{$thumbnail-frac-lg} * var(--col));
             }
 
-            // Offset the opening thumbnail so its artwork sits to the right of
-            // the details column; scrolling slides later thumbnails underneath.
-            // Expressed as a length (details-fraction of the column) instead of a
-            // percentage, which would resolve against the widened scrollport.
             &:first-child {
               margin-left: calc(#{$details-frac} * var(--col));
 
@@ -326,13 +285,16 @@ body {
               }
             }
 
-            // Trailing space so the last thumbnail clears the viewport edge
-            // instead of sitting flush (which reads as "more to see"). Put on
-            // the item's margin — not the track's padding-right, which flex
-            // scroll containers drop from the scrollable width. Matches .main's
-            // page padding via --pad.
             &:last-child {
-              padding-right: var(--pad);
+              padding-right: $padding;
+
+              @include md {
+                padding-right: $padding-sm;
+              }
+
+              @include sm {
+                padding-right: $padding-xs;
+              }
             }
 
             .project-thumbnail-media {
@@ -407,14 +369,6 @@ body {
       pointer-events: none;
     }
 
-    // @container main-container (max-width: 1060px) {
-    //   width: $more-content-width;
-    // }
-
-    // @container main-container (max-width: 530px) {
-    //   width: $more-content-width-sm;
-    // }
-
     @container main-container (max-width: 980px) {
       flex-direction: column;
       max-width: $more-content-width;
@@ -427,18 +381,14 @@ body {
 
     img {
       width: $more-content-width;
-      // max-width: 100%; // never overflow the column when stacked below 980px
       height: auto;
       display: block;
       pointer-events: none;
+      margin-bottom: 4px;
 
       @container main-container (max-width: 980px) {
         width: 100%;
       }
-
-      // @container main-container (max-width: 530px) {
-      //   width: $more-content-width-sm;
-      // }
     }
   }
 
@@ -451,12 +401,12 @@ body {
     justify-content: space-between;
     align-items: flex-end;
     gap: 50px;
-    padding: var(--pad);
+    padding: $padding;
     width: 100%;
     box-sizing: border-box;
 
     @include md {
-      padding: 24px;
+      padding: $padding-sm;
     }
 
     p {
@@ -466,8 +416,6 @@ body {
 }
 
 // citation
-$citation-color: #ff00ff;
-
 .citation {
   .citation-phrase {
     cursor: pointer;
@@ -481,7 +429,6 @@ $citation-color: #ff00ff;
 
   .citation-number {
     color: $citation-color;
-    // Sits at the top right of the phrase, always tinted.
     vertical-align: super;
     padding-left: 1px;
   }
@@ -507,20 +454,13 @@ $citation-color: #ff00ff;
 
   .citation-popover-note {
     flex: 1 1 auto;
-    min-width: 0; // let images/long words shrink instead of overflowing
-    // Honor literal "\n" line breaks in plain-string notes. JSX notes are
-    // unaffected (source newlines are collapsed at build time) and can add
-    // their own breaks with <br /> or block elements.
+    min-width: 0;
     white-space: pre-line;
 
-    // Rich content authored in a note:
     img {
       display: block;
       max-width: 100%;
-      height: auto; // scale height with width; aspect-ratio comes from the
-      // img's width/height attributes so its space is reserved before the
-      // file loads — otherwise the popover measures short and jumps up (it
-      // sits above the phrase) when the image arrives on first open.
+      height: auto;
       margin-bottom: 4px;
       pointer-events: none;
     }
@@ -528,11 +468,6 @@ $citation-color: #ff00ff;
     a {
       color: inherit;
       text-decoration: underline;
-    }
-
-    // Spacing between stacked block-level notes (multiple paragraphs, etc.).
-    > * + * {
-      margin-top: 10px;
     }
   }
 

@@ -166,8 +166,7 @@ h1 a {
 
 :root {
   color-scheme: only light;
-  --pad: 35px;
-  --edge: calc(max((100vw - 1440px) / 2, 0px) + var(--pad));
+  --edge: calc(max((100vw - 1440px) / 2, 0px) + 35px);
   --col: calc(100vw - 2 * var(--edge));
 }
 
@@ -188,7 +187,7 @@ body {
   max-width: 1440px;
   min-height: 100vh;
   margin: auto;
-  padding: var(--pad);
+  padding: 35px;
   box-sizing: border-box;
   container-type: inline-size;
   container-name: main-container;
@@ -208,8 +207,8 @@ body {
 .main header h1 {
   position: absolute;
   z-index: 10;
-  top: var(--pad);
-  left: var(--pad);
+  top: 35px;
+  left: 35px;
 }
 @media (max-width: 768px) {
   .main header h1 {
@@ -219,7 +218,8 @@ body {
 .main header nav {
   position: sticky;
   z-index: 10;
-  top: var(--pad);
+  top: 35px;
+  right: 35px;
   width: fit-content;
   margin-left: auto;
 }
@@ -227,6 +227,11 @@ body {
   display: flex;
   flex-direction: column;
   gap: 17px;
+}
+@media (max-width: 768px) {
+  .main header nav ul {
+    gap: 12px;
+  }
 }
 .main header nav ul li {
   text-align: right;
@@ -240,7 +245,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: calc(100dvh - var(--pad) - 59px);
+  min-height: calc(100dvh - 35px - 59px);
 }
 .main .intro-container .intro-container-inner {
   position: relative;
@@ -295,12 +300,12 @@ body {
 }
 @media (max-width: 768px) {
   .main .intro-container .intro-container-inner .star {
-    transform: translate(-50%, -35%) scale(1);
+    transform: translate(-50%, -30%) scale(1);
   }
 }
 @media (max-width: 576px) {
   .main .intro-container .intro-container-inner .star {
-    transform: translate(-50%, -30%) scale(0.75);
+    transform: translate(-50%, -22%) scale(0.75);
   }
 }
 .main .intro-container .separator {
@@ -379,11 +384,6 @@ body {
     scroll-padding-left: 0;
   }
 }
-@media (max-width: 768px) {
-  .main .work-container .project-container .project-item .project-thumbnails {
-    --pad: 24px;
-  }
-}
 @media (max-width: 576px) {
   .main .work-container .project-container .project-item .project-thumbnails {
     margin-left: -12px;
@@ -422,7 +422,17 @@ body {
   }
 }
 .main .work-container .project-container .project-item .project-thumbnails .project-thumbnail:last-child {
-  padding-right: var(--pad);
+  padding-right: 35px;
+}
+@media (max-width: 768px) {
+  .main .work-container .project-container .project-item .project-thumbnails .project-thumbnail:last-child {
+    padding-right: 24px;
+  }
+}
+@media (max-width: 576px) {
+  .main .work-container .project-container .project-item .project-thumbnails .project-thumbnail:last-child {
+    padding-right: 12px;
+  }
 }
 .main .work-container .project-container .project-item .project-thumbnails .project-thumbnail .project-thumbnail-media canvas {
   height: auto !important;
@@ -496,6 +506,7 @@ body {
   height: auto;
   display: block;
   pointer-events: none;
+  margin-bottom: 4px;
 }
 @container main-container (max-width: 980px) {
   .main .me-container img {
@@ -510,7 +521,7 @@ body {
   justify-content: space-between;
   align-items: flex-end;
   gap: 50px;
-  padding: var(--pad);
+  padding: 35px;
   width: 100%;
   box-sizing: border-box;
 }
@@ -567,9 +578,6 @@ body {
 .citation-popover .citation-popover-note a {
   color: inherit;
   text-decoration: underline;
-}
-.citation-popover .citation-popover-note > * + * {
-  margin-top: 10px;
 }
 .citation-popover .citation-popover-close {
   padding: 0;

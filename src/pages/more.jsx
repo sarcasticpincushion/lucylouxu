@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import LazyVideo from './../components/lazyVideo';
 
 function More() {
   return (
@@ -13,13 +14,10 @@ function More() {
             plugin that hooks into your library color variables to generate
             multiple color variants.
           </p>
-          <video
+          <LazyVideo
             src={`/animations/colorcombocloner.mp4`}
+            poster={`/animations/posters/colorcombocloner.jpg`}
             width="100%"
-            autoPlay
-            loop
-            muted
-            playsInline
           />
         </div>
         <div className="more-container-list-item">
@@ -34,13 +32,10 @@ function More() {
             I vibe-coded a web app: add accessories to your memories in the form
             of digital sprinkles
           </p>
-          <video
+          <LazyVideo
             src={`/animations/symbolsoup.mp4`}
+            poster={`/animations/posters/symbolsoup.jpg`}
             width="100%"
-            autoPlay
-            loop
-            muted
-            playsInline
           />
         </div>
       </div>

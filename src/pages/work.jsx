@@ -1,17 +1,15 @@
 import { Link } from 'react-router-dom';
 import Intro from './../components/intro';
+import LazyVideo from './../components/lazyVideo';
 import projects from './../resources/projects.json';
 
 function ThumbnailMedia({ item }) {
   return (
     <div className="project-thumbnail-media">
-      <video
+      <LazyVideo
         src={`/animations/${item.assetName}`}
+        poster={`/animations/posters/${item.assetName.replace('.mp4', '.jpg')}`}
         width="100%"
-        autoPlay
-        loop
-        muted
-        playsInline
       />
     </div>
   );

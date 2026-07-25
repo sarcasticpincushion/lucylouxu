@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { VERTICES, FACES } from './../resources/starData';
 
 // ASCII grid resolution. Phones render at a smaller grid (see the effect
@@ -22,6 +22,13 @@ const MOBILE_HOTSPOT_FRACTION = 0.4; // fraction of the star box (centered)
 const TARGET_FPS = 30;
 const FRAME_INTERVAL = 1000 / TARGET_FPS;
 const ROTATION_PER_FRAME = 0.003; // radians added each rendered frame at 60fps
+
+// Which grid/perf profile to use. Recomputed whenever the viewport crosses
+// MOBILE_BREAKPOINT (see the effect below) so a window resize or device
+// rotation swaps the star between its desktop and mobile profiles instead of
+// freezing at whatever it was on first paint.
+const getIsMobile = () =>
+  typeof window !== 'undefined' && window.innerWidth <= MOBILE_BREAKPOINT;
 
 function normalizeVertices(verts) {
   if (verts.length === 0) return [];
@@ -213,13 +220,34 @@ export default function Asset6AsciiViewer() {
   // Set by the animation effect; the input effect calls it to redraw on drag.
   const drawRef = useRef(null);
 
+  // Tracks whether we're below the mobile breakpoint. Flipping this rebuilds
+  // the animation effect (renderer, frame-rate cap, spin step) at the right
+  // resolution for the current viewport.
+  const [isMobile, setIsMobile] = useState(getIsMobile);
+
+  // Re-evaluate the profile when the viewport crosses the breakpoint. matchMedia
+  // fires only on the actual crossing, so there's no per-pixel resize churn.
+  useEffect(() => {
+    if (typeof window.matchMedia !== 'function') return;
+    const mq = window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT}px)`);
+    const onChange = (e) => setIsMobile(e.matches);
+    setIsMobile(mq.matches); // sync any change between initial render and now
+    // addEventListener is the modern API; addListener is the pre-Safari 14 fallback.
+    if (mq.addEventListener) mq.addEventListener('change', onChange);
+    else mq.addListener(onChange);
+    return () => {
+      if (mq.removeEventListener) mq.removeEventListener('change', onChange);
+      else mq.removeListener(onChange);
+    };
+  }, []);
+
   // Animation loop: renders the spinning star, throttled and paused when it
-  // isn't needed.
+  // isn't needed. Rebuilds whenever isMobile flips; rotation lives in stateRef,
+  // so the star keeps its current orientation across a rebuild.
   useEffect(() => {
     const el = preRef.current;
     if (!el) return;
 
-    const isMobile = window.innerWidth <= MOBILE_BREAKPOINT;
     const width = isMobile ? MOBILE_WIDTH : DESKTOP_WIDTH;
     const height = isMobile ? MOBILE_HEIGHT : DESKTOP_HEIGHT;
     const render = createRenderer(width, height);
@@ -279,7 +307,7 @@ export default function Asset6AsciiViewer() {
       if (observer) observer.disconnect();
       drawRef.current = null;
     };
-  }, []);
+  }, [isMobile]);
 
   // Pointer/touch input: rotate the star by dragging.
   useEffect(() => {
