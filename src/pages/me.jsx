@@ -57,7 +57,7 @@ function Me() {
         </p>
       </div>
       <div className="portrait-container">
-        <img src={me} alt="me" />
+        <img src={me} alt="me" width="708" height="628" loading="lazy" />
         <p>
           <Citation number={6} note={notes[6]}>
             Lucy

@@ -1,0 +1,13 @@
+# Dependencies
+node_modules/
+
+# Build output (deployed from the gh-pages branch, not tracked on main)
+dist/
+
+# Compiled SCSS output — the .scss files are the source of truth and Vite
+# compiles them at build time. These are only produced by `npm run sass:watch`.
+src/resources/style/*.css
+src/resources/style/*.css.map
+
+# macOS
+.DS_Store

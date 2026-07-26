@@ -50,7 +50,9 @@ function Citation({ number, note, children }) {
     if (top < MARGIN) {
       const below = a.bottom + GAP;
       top =
-        below + ph <= vh - MARGIN ? below : clamp(top, MARGIN, vh - ph - MARGIN);
+        below + ph <= vh - MARGIN
+          ? below
+          : clamp(top, MARGIN, vh - ph - MARGIN);
     }
 
     setPos({ top, left, ready: true });

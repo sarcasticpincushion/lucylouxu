@@ -1,11 +1,11 @@
 import lucyVanPelt from '../images/lucy-van-pelt.jpg';
 
 // Notes shown in each citation's popover. Each value can be a plain string
-// (where "\n" becomes a line break) OR JSX for rich content, e.g.:
+// (where '\n' becomes a line break) OR JSX for rich content, e.g.:
 //   2: (
 //     <>
-//       See my <a href="https://..." target="_blank">portfolio↗</a>.
-//       <img src={someImage} alt="a nail set" width={W} height={H} />
+//       See my <a href='https://...' target='_blank'>portfolio↗</a>.
+//       <img src={someImage} alt='a nail set' width={W} height={H} />
 //       <p>A second paragraph.</p>
 //     </>
 //   ),
