@@ -171,7 +171,7 @@ html,
 body {
   background-color: #fff;
   color: #000;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 body {
@@ -436,10 +436,15 @@ body {
 .main .more-container {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 30px;
   margin: 60px auto 150px;
   width: 100%;
   max-width: 980px;
+}
+@container main-container (max-width: 980px) {
+  .main .more-container {
+    max-width: 450px;
+  }
 }
 .main .more-container h2 {
   width: 50%;
@@ -452,11 +457,12 @@ body {
 .main .more-container .more-container-list {
   display: flex;
   gap: 80px;
+  margin: auto;
 }
 @container main-container (max-width: 980px) {
   .main .more-container .more-container-list {
     flex-direction: column;
-    gap: 24px;
+    gap: 30px;
   }
 }
 .main .more-container .more-container-list .more-container-list-item {

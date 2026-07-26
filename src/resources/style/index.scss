@@ -14,7 +14,12 @@ html,
 body {
   background-color: #fff;
   color: $default-text-color;
-  overflow-x: hidden;
+  // Clip the star's horizontal overflow without turning the root into a scroll
+  // container. `overflow-x: hidden` would force overflow-y to compute to `auto`,
+  // making <html>/<body> the nearest scroll ancestor and killing the sticky nav.
+  // `clip` pairs legally with `overflow-y: visible`, so the viewport stays the
+  // scroll root and position: sticky keeps working.
+  overflow-x: clip;
   // cursor:
   //     url('./../images/mycursor.svg') 10 8,
   //     auto;
@@ -309,10 +314,14 @@ body {
   .more-container {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 30px;
     margin: 60px auto 150px;
     width: 100%;
     max-width: $content-width;
+
+    @container main-container (max-width: #{$content-width}) {
+      max-width: $content-width-sm;
+    }
 
     h2 {
       width: 50%;
@@ -325,10 +334,11 @@ body {
     .more-container-list {
       display: flex;
       gap: 80px;
+      margin: auto;
 
       @container main-container (max-width: #{$content-width}) {
         flex-direction: column;
-        gap: 24px;
+        gap: 30px;
       }
 
       .more-container-list-item {
@@ -368,7 +378,7 @@ body {
 
     @container main-container (max-width: #{$content-width}) {
       flex-direction: column;
-      max-width: $more-content-width;
+      max-width: $content-width-sm;
       gap: 24px;
     }
 
@@ -377,7 +387,7 @@ body {
     }
 
     img {
-      width: $more-content-width;
+      width: $content-width-sm;
       height: auto;
       display: block;
       pointer-events: none;
