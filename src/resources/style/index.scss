@@ -103,6 +103,10 @@ body {
     height: calc(100dvh - #{$padding} - 97px);
     min-height: 400px;
 
+    @include md {
+      height: calc(100dvh - #{$padding-sm} - 87px);
+    }
+
     .intro-container-inner {
       position: relative;
       display: flex;
@@ -141,7 +145,7 @@ body {
         margin: 0;
         letter-spacing: 0;
         white-space: pre;
-        color: #000;
+        color: #333;
         // star.jsx swaps this to grab/grabbing over the star silhouette and
         // back to default over the blank space around it.
         cursor: default;
@@ -165,8 +169,12 @@ body {
 
     .separator {
       border-top: 1px solid #000;
-      padding: 14px 0;
+      padding: 14px 0 $padding;
       margin-top: 14px;
+
+      @include md {
+        padding: 14px 0 $padding-sm;
+      }
     }
   }
 
