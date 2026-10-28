@@ -1,74 +1,16 @@
 [
   {
-    "title": "Horizon Design System refresh",
-    "type": "design systems, iconography, illustration, motion",
-    "description": [
-      "Built and evolved a scalable iconography and illustration system for our design system refresh, including 800+ utility icons and 100+ illustrations. Introduced a 20px size to bridge the gap between our existing 16px and 24px, enabling our designers with greater flexibility and increasing adoption across product teams by 21%.",
-      "Led end to end unification strategy of 200+ multi-colored icons across ServiceNow's Service Portal. Collaborated cross-functionally with PMs, designers, and engineers to audit >90 use cases to standardize icon usage and theming patterns and built a design library to standardize patterns for further adoption.",
-      "Maintained shared icon libraries by using and vibe-coding Figma plugins for organization and validation, supporting cross-functional teams with efficient handoff of icon and animation requests, and ensuring consistent implementation of design system standards across product experiences."
-    ],
-    "links": [],
-    "items": [
-      {
-        "text": "Iconography evolution, introduction of 20px icon size",
-        "linkText": "",
-        "linkUrl": "",
-        "suffix": "",
-        "assetName": "1A.mp4"
-      },
-      {
-        "text": "Service Portal icon unification",
-        "linkText": "",
-        "linkUrl": "",
-        "suffix": "",
-        "assetName": "1B.mp4"
-      },
-      {
-        "text": "Product illustration animations sample",
-        "linkText": "",
-        "linkUrl": "",
-        "suffix": "",
-        "assetName": "1C.mp4"
-      }
-    ]
-  },
-  {
-    "title": "ServiceNow EmployeeWorks",
-    "type": "design systems, iconography, illustration, motion",
-    "description": [
-      "Established icon motion strategy and motion specifications (Lottie + CSS via Claude Code) through cross-functional collaboration with researchers, designers, and stakeholders, improving product clarity and reducing animation → specification → delivery workflow time by 30%.",
-      "Defined icon and illustration animations for ServiceNow's design system, establishing scalable animation behaviors across core product experiences and emerging AI offerings.",
-      "Explored and developed visual concepts to expand our visual language in the second phase of our design system refresh."
-    ],
-    "links": [],
-    "items": [
-      {
-        "text": "Navigation icon animation levels determined in collaboration with research",
-        "linkText": "",
-        "linkUrl": "",
-        "suffix": "",
-        "assetName": "2A.mp4"
-      },
-      {
-        "text": "Scalable menu icon illustrations across core product experiences",
-        "linkText": "",
-        "linkUrl": "",
-        "suffix": "",
-        "assetName": "2B.mp4"
-      }
-    ]
-  },
-  {
     "title": "Lightstep Incident Response",
-    "status": "",
-    "type": "ux design, design systems",
+    "type": "text",
+    "subheader": "Designing and evolving a design system for an enterprise incident management platform",
     "description": [
-      "Owned the visual design of key Lightstep workflows within a 0→1 DevOps/SRE platform in ServiceNow's billion dollar ITSM portfolio, as 1 of 2 design system focused product designers, applying systems thinking to create scalable components and reusable patterns across enterprise-scale experiences.",
-      "Established custom component foundations for Lightstep's unique use cases, developing detailed design specifications that enabled scalable adoption while maintaining alignment with ServiceNow's broader design ecosystem.",
+      "Built scalable component and pattern foundations to create a distinct visual language for a new net product for DevOps/SRE while maintaining alignment with ServiceNow's larger design system.",
+      "Migrated and rebuilt the library in Figma, scaling token adoption with accessibility and theming support across 5 scrum teams to bridge the gap between design and development, building 0→1.",
       "Lightstep reached 40+ clients following MVP launch in March 2022."
     ],
     "links": [
       {
+        "pre": "Contact for full details.",
         "text": "Press↗",
         "url": "https://newsroom.servicenow.com/press-releases/details/2022/ServiceNow-Broadens-Lightstep-Portfolio-with-Introduction-of-Incident-Response-Product-for-More-Predictive-Efficient-Incident-Resolution-03-14-2022-12-00-AM/default.aspx"
       }
@@ -98,18 +40,73 @@
     ]
   },
   {
-    "title": "horizon.servicenow.com",
-    "status": "Ongoing",
-    "type": "design systems, illustration, motion",
+    "title": "Horizon Design System",
+    "type": "text",
+    "subheader": "Shaping visual strategy across the core iconography system",
     "description": [
-      "Designed reusable illustration patterns, created animations for motion patterns and page headers, and set visual guidelines for our new design system site to enable consistent asset reproduction and implementation."
+      "Redesigning and reimagining redundant metaphors in the legacy icon set in order to align with the new brand tone.",
+      "Led the evolution of iconography systems across the Service Portal product and co-led core Horizon iconography, unifying a previously disconnected set into a scalable and themeable system across the platform.",
+      "Impacting 113 platform-wide enterprise teams across ServiceNow's multi-product ecosystem."
     ],
-    "links": [
+    "links": [],
+    "items": [
       {
-        "text": "Site↗",
-        "url": "https://horizon.servicenow.com/"
+        "text": "Iconography evolution, introduction of 20px icon size",
+        "linkText": "",
+        "linkUrl": "",
+        "suffix": "",
+        "assetName": "1A.mp4"
+      },
+      {
+        "text": "Service Portal icon unification",
+        "linkText": "",
+        "linkUrl": "",
+        "suffix": "",
+        "assetName": "1B.mp4"
+      },
+      {
+        "text": "Product illustration animations sample",
+        "linkText": "",
+        "linkUrl": "",
+        "suffix": "",
+        "assetName": "1C.mp4"
       }
+    ]
+  },
+  {
+    "title": "ServiceNow's AI-native Product, EmployeeWorks",
+    "type": "text",
+    "subheader": "Defining a distinct visual language for an emerging AI identity",
+    "description": [
+      "Shaping product strategy through illustration, UI, and motion micro-interaction patterns, across core product experiences and emerging AI offerings."
     ],
+    "links": [],
+    "items": [
+      {
+        "text": "Navigation icon animation levels determined in collaboration with research",
+        "linkText": "",
+        "linkUrl": "",
+        "suffix": "",
+        "assetName": "2A.mp4"
+      },
+      {
+        "text": "Scalable menu icon illustrations across core product experiences",
+        "linkText": "",
+        "linkUrl": "",
+        "suffix": "",
+        "assetName": "2B.mp4"
+      }
+    ]
+  },
+  {
+    "title": "horizon.servicenow.com ↗",
+    "type": "link",
+    "link": "https://horizon.servicenow.com/",
+    "subheader": "Elevating reusable illustration patterns, animations, and visual guidelines for our design system site",
+    "description": [
+      "Giving platform designers tools to design with cohesive component usage and standardizing implementation across the ecosystem."
+    ],
+    "links": [],
     "items": [
       {
         "text": "'Motion interaction and transition' patterns animations",

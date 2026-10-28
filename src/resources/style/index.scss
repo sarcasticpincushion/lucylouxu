@@ -127,7 +127,7 @@ body {
         display: flex;
         flex-direction: column;
         gap: 17px;
-        width: 40%;
+        width: 35%;
 
         @include lg {
           width: 100%;
@@ -217,7 +217,7 @@ body {
           background: #fff;
           display: flex;
           flex-direction: column;
-          gap: 16px;
+          gap: 12px;
 
           @include lg {
             grid-area: auto;
@@ -229,11 +229,24 @@ body {
           .project-item-header {
             display: flex;
             justify-content: space-between;
+
+            a {
+              color: $default-text-color;
+              text-decoration-thickness: 0.7px;
+            }
           }
 
-          .project-type {
-            color: $subheader-text-color;
-            margin-bottom: 16px;
+          .project-item-body {
+            color: $project-text-color;
+
+            .link {
+              color: $project-text-color;
+            }
+
+            .project-subheader {
+              color: $subheader-text-color;
+              margin-bottom: 4px;
+            }
           }
         }
 
@@ -489,6 +502,10 @@ body {
 
 .underline {
   text-decoration: underline;
+}
+
+.bold {
+  font-weight: 600;
 }
 
 .link {

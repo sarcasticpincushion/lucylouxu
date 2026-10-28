@@ -21,10 +21,11 @@ FONT_DIR = "src/resources/fonts"
 OUT = "src/resources/style/_fonts.scss"
 
 # (font-family, font-weight, source file relative to FONT_DIR)
+# Variable fonts take a weight range string, e.g. "200 800".
 FACES = [
     ("PPNeueBit", 400, "PPNeueBit-Regular.ttf"),
     ("PPNeueBit", 700, "PPNeueBit-Bold.otf"),
-    ("CallingCode", 400, "CallingCode-Regular.otf"),
+    ("NationalPark", "200 800", "NationalPark-Variable.ttf"),
 ]
 
 

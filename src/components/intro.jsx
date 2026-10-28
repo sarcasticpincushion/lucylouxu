@@ -11,20 +11,20 @@ function Intro() {
             <Link to="/">Lucy Xu</Link>
           </h1>
           <p>
-            <span className="underline">Product designer</span> with a visual
-            design background, based in NYC.
+            <span className="underline">Product designer</span> based in NYC.
           </p>
           <p>
-            6 years of design systems & curating visual experiences. Currently
-            making/animating icons and illustrations at ServiceNow.
+            7 years of <span className="bold">design systems</span> & curating{' '}
+            <span className="bold">visual experiences</span>. Currently defining
+            visual systems at ServiceNow.
           </p>
-          <p>Contact me for detailed work samples.</p>
+          <p>Contact me for more detailed work samples.</p>
         </div>
         <Star />
       </div>
       <Contact />
       <div className="separator">
-        <p>↓ Selected works samples below</p>
+        <p>↓ Selected works below</p>
       </div>
     </div>
   );

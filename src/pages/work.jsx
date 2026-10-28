@@ -1,3 +1,4 @@
+import { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import Intro from '../components/intro';
 import LazyVideo from '../components/lazyVideo';
@@ -33,10 +34,18 @@ function ProjectDetails({ project }) {
   return (
     <div className="project-item-details">
       <div className="project-item-header">
-        <h2>{project.title}</h2>
+        <h2>
+          {project.type === 'text' ? (
+            project.title
+          ) : (
+            <Link to={project.link} target="_blank">
+              {project.title}
+            </Link>
+          )}
+        </h2>
       </div>
       <div className="project-item-body">
-        <h3 className="project-type">{project.type}</h3>
+        <h3 className="project-subheader">{project.subheader}</h3>
         {project.description.map((para, i) => (
           <div key={i}>
             <p>{para}</p>
@@ -44,9 +53,12 @@ function ProjectDetails({ project }) {
           </div>
         ))}
         {project.links?.map((link, id) => (
-          <Link key={id} to={link.url} target="_blank" className="link">
-            {link.text}
-          </Link>
+          <Fragment key={id}>
+            {link.pre && <>{link.pre}&nbsp;</>}
+            <Link to={link.url} target="_blank" className="link">
+              {link.text}
+            </Link>
+          </Fragment>
         ))}
       </div>
     </div>
